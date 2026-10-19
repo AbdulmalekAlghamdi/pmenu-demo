@@ -73,10 +73,11 @@ mm.add({ desk: '(min-width: 761px)', mob: '(max-width: 760px)' }, (ctx) => {
 
 /* THEMES: one theme, everything changes */
 const THEMES = {
-  wekad: { word: 'وِكاد', name: 'وِكاد الكلاسيك', tag: 'قهوة مختصة · حفر الباطن', banner: 'أهلاً فيك في وِكاد', ftag: 'توقيع وِكاد' },
-  pink: { word: 'أكتوبر الوردي', name: 'أكتوبر الوردي', tag: 'أكتوبر شهر التوعية', banner: 'من كل طلب وردي.. ريال للتوعية', ftag: 'إصدار أكتوبر' },
-  national: { word: 'يوم الوطن ٩٦', name: 'اليوم الوطني', tag: 'نحتفل بطعم الأرض', banner: 'قائمة الوطني متوفرة لين ٢٣ سبتمبر', ftag: 'إصدار الوطني' },
+  wekad: { word: 'وِكاد', name: 'وِكاد الكلاسيك', tag: 'قهوة مختصة · الدمام', banner: 'أهلاً فيك في وِكاد', ftag: 'توقيع وِكاد' },
+  founding: { word: 'يوم التأسيس', name: 'يوم التأسيس', tag: 'يوم بدينا', banner: 'قائمة التأسيس متوفرة لين ٢٢ فبراير', ftag: 'إصدار التأسيس' },
   ramadan: { word: 'رمضان كريم', name: 'رمضان', tag: 'رمضان كريم', banner: 'باقي على الإفطار ٠٢:١٤:٣٧', ftag: 'سفرة الإفطار' },
+  national: { word: 'يوم الوطن ٩٦', name: 'اليوم الوطني', tag: 'هي لنا دار', banner: 'قائمة الوطني متوفرة لين ٢٣ سبتمبر', ftag: 'إصدار الوطني' },
+  pink: { word: 'أكتوبر الوردي', name: 'أكتوبر الوردي', tag: 'أكتوبر شهر التوعية', banner: 'من كل طلب وردي.. ريال للتوعية', ftag: 'إصدار أكتوبر' },
 };
 const KEYS = Object.keys(THEMES);
 const themesEl = $('.themes');
@@ -108,7 +109,7 @@ $$('.theme-picker button').forEach((b) => b.addEventListener('click', () => setT
 $('.theme-picker button[data-pick="wekad"]').classList.add('on');
 
 ScrollTrigger.create({
-  trigger: '.themes', start: 'top top', end: '+=320%', pin: true,
+  trigger: '.themes', start: 'top top', end: '+=420%', pin: true,
   onUpdate: (self) => setTheme(KEYS[Math.min(KEYS.length - 1, Math.floor(self.progress * KEYS.length))]),
 });
 gsap.from(['.st-dash', '.phone', '.st-side'], { y: 80, opacity: 0, stagger: .12, duration: 1.1, ease: 'power3.out', scrollTrigger: { trigger: '.themes', start: 'top 60%' } });
@@ -195,7 +196,7 @@ setInterval(() => {
 ScrollTrigger.create({
   trigger: '.gwin', start: 'top 70%', once: true,
   onEnter: () => {
-    const text = 'تشيز كيك مانجو حفر الباطن';
+    const text = 'تشيز كيك مانجو الدمام';
     const out = $('.gtype');
     let i = 0;
     const iv = setInterval(() => {
