@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>Pmenu — المحرر الكامل</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&amp;family=Poppins:wght@500;600;700;800&amp;family=El+Messiri:wght@500;700&amp;family=Reem+Kufi:wght@500;700&amp;family=Amiri:wght@400;700&amp;family=Tajawal:wght@400;700&amp;family=Cairo:wght@400;700&amp;family=Almarai:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F6F4EF}
+a{color:#FF5E13}a:hover{color:#FF7A3D}
+input[type=range]{accent-color:#FF5E13;width:100%}
+input[type=color]{width:44px;height:44px;border:0;border-radius:12px;padding:0;background:none;cursor:pointer}
+@keyframes pm-tick{to{transform:translateX(50%)}}
+@keyframes pm-bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes pm-fade{0%,100%{opacity:1}50%{opacity:.55}}
+@keyframes pm-spark{0%{transform:scale(.6);opacity:0}50%{opacity:1}100%{transform:scale(1.4);opacity:0}}
+.pm-tick{animation:pm-tick 12s linear infinite}
+.pm-bounce{animation:pm-bounce 2s ease-in-out infinite}
+.pm-fade{animation:pm-fade 2.4s ease-in-out infinite}
+.pm-spark{animation:pm-spark 1.6s ease-out infinite}
+@media (prefers-reduced-motion: reduce){.pm-tick,.pm-bounce,.pm-fade,.pm-spark{animation:none}}
+</style>
+</helmet>
+<div dir="rtl" style="font-family: 'Readex Pro', sans-serif; color: #16140F; background: radial-gradient(1100px 520px at 90% -8%, rgba(255,94,19,.14), rgba(255,94,19,0) 60%), radial-gradient(700px 420px at 0% 100%, rgba(255,94,19,.06), rgba(255,94,19,0) 60%), #F6F4EF; min-height: 100vh; display: flex; flex-wrap: wrap; align-items: stretch">
+  <div style="flex: 1 1 240px; max-width: 272px"><dc-import name="Sidebar" active="editor" hint-size="100%,1000px"></dc-import></div>
+
+  <main style="flex: 999 1 560px; min-width: 0; padding: 32px 36px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px">
+      <div>
+        <h1 style="margin: 0; font-size: 34px; font-weight: 600">المحرر الكامل</h1>
+        <p style="margin: 6px 0 0; color: #6B675E; font-weight: 300">كل شي في منيوك تحت إيدك. اضغط على أي جزء في الجوال وعدّله</p>
+      </div>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center">
+        <span style="padding: 10px 14px; border-radius: 999px; background: #FFFFFF; font-size: 13px; color: #3D3A33; box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16)">{{s.changes}} تعديل · محفوظ كمسودة</span>
+        <button type="button" onClick="{{reset}}" style="padding: 11px 16px; border-radius: 999px; border: 1px solid rgba(22,20,15,.14); background: #FFFFFF; font: inherit; font-size: 14px; cursor: pointer">رجّع الأصل</button>
+        <button type="button" style="padding: 11px 20px; border-radius: 999px; border: 0; background: #FF5E13; color: #0A0A0A; font: inherit; font-weight: 700; cursor: pointer">انشر التعديلات</button>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+      <section style="flex: 1.25 1 420px; min-width: 0; border-radius: 28px; background: #FFFFFF; border: 1px solid rgba(22,20,15,.07); box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16); overflow: hidden; display: flex; flex-direction: column">
+        <div role="tablist" aria-label="أقسام المحرر" style="display: flex; flex-wrap: wrap; gap: 4px; padding: 10px; background: #F3F0EA">
+          <sc-for list="{{tabs}}" as="t" hint-placeholder-count="11">
+            <button type="button" role="tab" onClick="{{t.pick}}" style="display: flex; align-items: center; gap: 7px; padding: 9px 12px; border-radius: 12px; border: 0; font: inherit; font-size: 13px; cursor: pointer; white-space: nowrap; background: {{t.bg}}; color: {{t.fg}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{t.d}}"></path></svg>{{t.name}}</button>
+          </sc-for>
+        </div>
+
+        <div style="padding: 22px; display: flex; flex-direction: column; gap: 18px">
+          <sc-if value="{{is.colors}}" hint-placeholder-val="{{true}}">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px">
+              <sc-for list="{{colorFields}}" as="c" hint-placeholder-count="6">
+                <label style="display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 16px; background: #F6F4EF; font-size: 14px; cursor: pointer"><input type="color" value="{{c.v}}" onChange="{{c.set}}" aria-label="{{c.t}}"><span style="display: flex; flex-direction: column; gap: 2px"><span>{{c.t}}</span><span dir="ltr" style="font-family: 'Poppins', sans-serif; font-size: 11px; color: #6B675E; text-align: right">{{c.v}}</span></span></label>
+              </sc-for>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 10px">
+              <span style="font-size: 14px; color: #3D3A33">لوحات جاهزة من شعارك</span>
+              <div style="display: flex; gap: 10px; flex-wrap: wrap">
+                <sc-for list="{{palettes}}" as="pl" hint-placeholder-count="4">
+                  <button type="button" onClick="{{pl.pick}}" aria-label="{{pl.name}}" style="display: flex; padding: 4px; gap: 3px; border-radius: 14px; border: 1px solid rgba(22,20,15,.12); background: #FFFFFF; cursor: pointer"><span style="width: 22px; height: 30px; border-radius: 9px 0 0 9px; background: {{pl.a}}"></span><span style="width: 22px; height: 30px; background: {{pl.b}}"></span><span style="width: 22px; height: 30px; border-radius: 0 9px 9px 0; background: {{pl.c}}"></span></button>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{is.type}}" hint-placeholder-val="{{false}}">
+            <div style="display: flex; flex-direction: column; gap: 10px">
+              <span style="font-size: 14px; color: #3D3A33">الخط</span>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 8px">
+                <sc-for list="{{fonts}}" as="f" hint-placeholder-count="8"><button type="button" onClick="{{f.pick}}" style="padding: 12px; border-radius: 14px; font-family: {{f.css}}; font-size: 16px; cursor: pointer; background: {{f.bg}}; color: {{f.fg}}; border: 1px solid {{f.border}}">{{f.label}}</button></sc-for>
+              </div>
+            </div>
+            <label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: #3D3A33">حجم الخط · {{s.scale}}%<input type="range" min="85" max="125" value="{{s.scale}}" onChange="{{num.scale}}"></label>
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #6B675E">نص زر الويتر<input type="text" value="{{s.waiter}}" onChange="{{txt.waiter}}" style="padding: 12px; border-radius: 12px; border: 1px solid rgba(22,20,15,.14); font: inherit; font-size: 14px; color: #16140F"></label>
+            <label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: #3D3A33">استدارة الزوايا · {{s.radius}}px<input type="range" min="0" max="28" value="{{s.radius}}" onChange="{{num.radius}}"></label>
+            <label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: #3D3A33">المسافات · {{s.gap}}px<input type="range" min="4" max="20" value="{{s.gap}}" onChange="{{num.gap}}"></label>
+            <div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 14px; color: #3D3A33">شكل البطاقات</span>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap"><sc-for list="{{seg.cardStyle}}" as="o" hint-placeholder-count="3"><button type="button" onClick="{{o.pick}}" style="padding: 10px 16px; border-radius: 12px; font: inherit; font-size: 14px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}; border: 1px solid {{o.border}}">{{o.t}}</button></sc-for></div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 14px; color: #3D3A33">شكل الأزرار</span>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap"><sc-for list="{{seg.btnStyle}}" as="o" hint-placeholder-count="3"><button type="button" onClick="{{o.pick}}" style="padding: 10px 16px; border-radius: 12px; font: inherit; font-size: 14px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}; border: 1px solid {{o.border}}">{{o.t}}</button></sc-for></div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{is.logo}}" hint-placeholder-val="{{false}}">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px">
+              <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #6B675E">نص فوق الشعار<input type="text" value="{{s.above}}" onChange="{{txt.above}}" style="padding: 12px; border-radius: 12px; border: 1px solid rgba(22,20,15,.14); font: inherit; font-size: 14px; color: #16140F"></label>
+              <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #6B675E">نص تحت الشعار<input type="text" value="{{s.below}}" onChange="{{txt.below}}" style="padding: 12px; border-radius: 12px; border: 1px solid rgba(22,20,15,.14); font: inherit; font-size: 14px; color: #16140F"></label>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 14px; color: #3D3A33">مكان الشعار</span>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap"><sc-for list="{{seg.logoPos}}" as="o" hint-placeholder-count="3"><button type="button" onClick="{{o.pick}}" style="padding: 10px 16px; border-radius: 12px; font: inherit; font-size: 14px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}; border: 1px solid {{o.border}}">{{o.t}}</button></sc-for></div>
+            </div>
+            <label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: #3D3A33">حجم الشعار · {{s.logoSize}}px<input type="range" min="56" max="140" value="{{s.logoSize}}" onChange="{{num.logoSize}}"></label>
+            <label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: #3D3A33">ارتفاع الهيدر · {{s.headerH}}px<input type="range" min="110" max="230" value="{{s.headerH}}" onChange="{{num.headerH}}"></label>
+            <div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 14px; color: #3D3A33">خلفية الشعار</span>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap"><sc-for list="{{seg.logoBg}}" as="o" hint-placeholder-count="3"><button type="button" onClick="{{o.pick}}" style="padding: 10px 16px; border-radius: 12px; font: inherit; font-size: 14px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}; border: 1px solid {{o.border}}">{{o.t}}</button></sc-for></div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 14px; color: #3D3A33">حركة الشعار</span>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap"><sc-for list="{{seg.logoAnim}}" as="o" hint-placeholder-count="3"><button type="button" onClick="{{o.pick}}" style="padding: 10px 16px; border-radius: 12px; font: inherit; font-size: 14px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}; border: 1px solid {{o.border}}">{{o.t}}</button></sc-for></div>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px; border-radius: 14px; background: #F6F4EF; font-size: 14px">صورة الغلاف خلف الشعار<button type="button" onClick="{{flip.cover}}" aria-label="صورة الغلاف" style="width: 52px; height: 30px; border-radius: 999px; border: 0; padding: 3px; background: {{sw.cover.bg}}; display: flex; justify-content: {{sw.cover.j}}; cursor: pointer"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FFFFFF"></span></button></div>
+          </sc-if>
+
+          <sc-if value="{{is.banner}}" hint-placeholder-val="{{false}}">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px; border-radius: 14px; background: #F6F4EF; font-size: 14px">إظهار البنر<button type="button" onClick="{{flip.showBanner}}" aria-label="إظهار البنر" style="width: 52px; height: 30px; border-radius: 999px; border: 0; padding: 3px; background: {{sw.showBanner.bg}}; display: flex; justify-content: {{sw.showBanner.j}}; cursor: pointer"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FFFFFF"></span></button></div>
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #6B675E">وش ينكتب في البنر<input type="text" value="{{s.banner}}" onChange="{{txt.banner}}" style="padding: 12px; border-radius: 12px; border: 1px solid rgba(22,20,15,.14); font: inherit; font-size: 14px; color: #16140F"></label>
+            <div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 14px; color: #3D3A33">شكل البنر</span>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap"><sc-for list="{{seg.bannerStyle}}" as="o" hint-placeholder-count="4"><button type="button" onClick="{{o.pick}}" style="padding: 10px 16px; border-radius: 12px; font: inherit; font-size: 14px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}; border: 1px solid {{o.border}}">{{o.t}}</button></sc-for></div>
+            </div>
+            <span style="font-size: 13px; color: #6B675E">مكانه في المنيو تحدده من تبويب «الترتيب»</span>
+          </sc-if>
+
+          <sc-if value="{{is.images}}" hint-placeholder-val="{{false}}">
+            <div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 14px; color: #3D3A33">شكل صور الأصناف</span>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap"><sc-for list="{{seg.imgShape}}" as="o" hint-placeholder-count="4"><button type="button" onClick="{{o.pick}}" style="padding: 10px 16px; border-radius: 12px; font: inherit; font-size: 14px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}; border: 1px solid {{o.border}}">{{o.t}}</button></sc-for></div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 14px; color: #3D3A33">فلتر موحّد للصور</span>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap"><sc-for list="{{seg.filter}}" as="o" hint-placeholder-count="4"><button type="button" onClick="{{o.pick}}" style="padding: 10px 16px; border-radius: 12px; font: inherit; font-size: 14px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}; border: 1px solid {{o.border}}">{{o.t}}</button></sc-for></div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 14px; color: #3D3A33">طريقة عرض الأصناف</span>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap"><sc-for list="{{seg.layout}}" as="o" hint-placeholder-count="3"><button type="button" onClick="{{o.pick}}" style="padding: 10px 16px; border-radius: 12px; font: inherit; font-size: 14px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}; border: 1px solid {{o.border}}">{{o.t}}</button></sc-for></div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{is.order}}" hint-placeholder-val="{{false}}">
+            <span style="font-size: 14px; color: #3D3A33">ترتيب أجزاء المنيو من فوق لتحت</span>
+            <sc-for list="{{orderRows}}" as="o" hint-placeholder-count="6">
+              <div style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 14px; background: #F6F4EF; font-size: 14px">
+                <span style="width: 28px; height: 28px; border-radius: 8px; background: #16140F; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: 'Poppins', sans-serif; font-size: 13px; flex: none">{{o.n}}</span>
+                <span style="flex: 1 1 auto">{{o.t}}</span>
+                <button type="button" onClick="{{o.up}}" aria-label="لفوق" style="width: 36px; height: 36px; border-radius: 10px; border: 1px solid rgba(22,20,15,.14); background: #FFFFFF; cursor: pointer; font-size: 16px">↑</button>
+                <button type="button" onClick="{{o.down}}" aria-label="لتحت" style="width: 36px; height: 36px; border-radius: 10px; border: 1px solid rgba(22,20,15,.14); background: #FFFFFF; cursor: pointer; font-size: 16px">↓</button>
+              </div>
+            </sc-for>
+            <div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 14px; color: #3D3A33">ترتيب الأصناف داخل القسم</span>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap"><sc-for list="{{seg.sort}}" as="o" hint-placeholder-count="3"><button type="button" onClick="{{o.pick}}" style="padding: 10px 16px; border-radius: 12px; font: inherit; font-size: 14px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}; border: 1px solid {{o.border}}">{{o.t}}</button></sc-for></div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 14px; color: #3D3A33">شكل التبويبات</span>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap"><sc-for list="{{seg.tabStyle}}" as="o" hint-placeholder-count="2"><button type="button" onClick="{{o.pick}}" style="padding: 10px 16px; border-radius: 12px; font: inherit; font-size: 14px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}; border: 1px solid {{o.border}}">{{o.t}}</button></sc-for></div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{is.launch}}" hint-placeholder-val="{{false}}">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px; border-radius: 14px; background: #F6F4EF; font-size: 14px"><span style="display: flex; flex-direction: column; gap: 2px"><span>إطلاق صنف جديد</span><span style="font-size: 12px; color: #6B675E">تشويق قبل الإطلاق، واحتفال يوم الإطلاق</span></span><button type="button" onClick="{{flip.launchOn}}" aria-label="إطلاق صنف" style="width: 52px; height: 30px; border-radius: 999px; border: 0; padding: 3px; background: {{sw.launchOn.bg}}; display: flex; justify-content: {{sw.launchOn.j}}; cursor: pointer; flex: none"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FFFFFF"></span></button></div>
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #6B675E">اسم الصنف الجديد<input type="text" value="{{s.launchName}}" onChange="{{txt.launchName}}" style="padding: 12px; border-radius: 12px; border: 1px solid rgba(22,20,15,.14); font: inherit; font-size: 14px; color: #16140F"></label>
+            <div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 14px; color: #3D3A33">المرحلة</span>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap"><sc-for list="{{seg.launchMode}}" as="o" hint-placeholder-count="2"><button type="button" onClick="{{o.pick}}" style="padding: 10px 16px; border-radius: 12px; font: inherit; font-size: 14px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}; border: 1px solid {{o.border}}">{{o.t}}</button></sc-for></div>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px">
+              <div style="padding: 12px 14px; border-radius: 14px; background: #F6F4EF; font-size: 13px; display: flex; flex-direction: column; gap: 4px"><span style="color: #6B675E">موعد الإطلاق</span><strong style="font-weight: 500">الخميس ٨ مساءً</strong></div>
+              <div style="padding: 12px 14px; border-radius: 14px; background: #F6F4EF; font-size: 13px; display: flex; flex-direction: column; gap: 4px"><span style="color: #6B675E">طلبوا تنبيه</span><strong style="font-family: 'Poppins', sans-serif; font-weight: 600">214</strong></div>
+              <div style="padding: 12px 14px; border-radius: 14px; background: #F6F4EF; font-size: 13px; display: flex; flex-direction: column; gap: 4px"><span style="color: #6B675E">ينشر تلقائياً في</span><strong style="font-weight: 500">قصص المنيو + قوقل</strong></div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{is.qr}}" hint-placeholder-val="{{false}}">
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+              <div style="flex: none; padding: 16px; border-radius: 22px; background: {{q.frame}}; display: flex; flex-direction: column; align-items: center; gap: 10px">
+                <div style="position: relative; background: #FFFFFF; padding: 10px; border-radius: 14px">
+                  <div role="img" aria-label="الباركود" style="display: grid; grid-template-columns: repeat(21, minmax(0, 1fr)); width: 147px; height: 147px">
+                    <sc-for list="{{q.cells}}" as="c" hint-placeholder-count="441"><div style="background: {{c.bg}}; border-radius: {{q.dot}}"></div></sc-for>
+                  </div>
+                  <sc-if value="{{s.qrLogo}}" hint-placeholder-val="{{true}}"><div style="position: absolute; top: 50%; left: 50%; width: 40px; height: 40px; margin: -20px 0 0 -20px; border-radius: 10px; background: #054026; border: 3px solid #FFFFFF; display: flex; align-items: center; justify-content: center"><img src="/_blob/180e7683b31119fe5e372edcb2673be9" alt="" style="width: 26px; height: auto"></div></sc-if>
+                </div>
+                <span style="color: {{q.capColor}}; font-size: 14px; font-weight: 600">{{s.qrCaption}}</span>
+              </div>
+              <div style="flex: 1 1 220px; display: flex; flex-direction: column; gap: 14px">
+                <div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 14px; color: #3D3A33">شكل النقاط</span>
+                  <div style="display: flex; gap: 8px; flex-wrap: wrap"><sc-for list="{{seg.qrDot}}" as="o" hint-placeholder-count="3"><button type="button" onClick="{{o.pick}}" style="padding: 10px 14px; border-radius: 12px; font: inherit; font-size: 13px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}; border: 1px solid {{o.border}}">{{o.t}}</button></sc-for></div>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 14px; color: #3D3A33">لون الإطار</span>
+                  <div style="display: flex; gap: 8px; flex-wrap: wrap"><sc-for list="{{seg.qrFrame}}" as="o" hint-placeholder-count="4"><button type="button" onClick="{{o.pick}}" style="padding: 10px 14px; border-radius: 12px; font: inherit; font-size: 13px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}; border: 1px solid {{o.border}}">{{o.t}}</button></sc-for></div>
+                </div>
+                <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #6B675E">النص تحت الباركود<input type="text" value="{{s.qrCaption}}" onChange="{{txt.qrCaption}}" style="padding: 12px; border-radius: 12px; border: 1px solid rgba(22,20,15,.14); font: inherit; font-size: 14px; color: #16140F"></label>
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px; border-radius: 14px; background: #F6F4EF; font-size: 14px">الشعار في النص<button type="button" onClick="{{flip.qrLogo}}" aria-label="الشعار في الباركود" style="width: 52px; height: 30px; border-radius: 999px; border: 0; padding: 3px; background: {{sw.qrLogo.bg}}; display: flex; justify-content: {{sw.qrLogo.j}}; cursor: pointer"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FFFFFF"></span></button></div>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{is.items}}" hint-placeholder-val="{{false}}">
+            <div style="display: flex; gap: 8px; flex-wrap: wrap">
+              <sc-for list="{{itemTabs}}" as="it" hint-placeholder-count="4"><button type="button" onClick="{{it.pick}}" style="display: flex; align-items: center; gap: 8px; padding: 5px 12px 5px 5px; border-radius: 999px; font: inherit; font-size: 13px; cursor: pointer; background: {{it.bg}}; color: {{it.fg}}; border: 1px solid {{it.border}}"><img src="{{it.img}}" alt="" style="width: 28px; height: 28px; border-radius: 50%; object-fit: cover">{{it.n}}</button></sc-for>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px">
+              <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #6B675E">اسم الصنف<input type="text" value="{{cur.n}}" onChange="{{cur.setName}}" style="padding: 12px; border-radius: 12px; border: 1px solid rgba(22,20,15,.14); font: inherit; font-size: 14px; color: #16140F"></label>
+              <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #6B675E">السعر<input type="text" value="{{cur.p}}" onChange="{{cur.setPrice}}" style="padding: 12px; border-radius: 12px; border: 1px solid rgba(22,20,15,.14); font: inherit; font-size: 14px; color: #16140F"></label>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 14px; color: #3D3A33">علامة على الصنف</span>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap"><sc-for list="{{badges}}" as="o" hint-placeholder-count="6"><button type="button" onClick="{{o.pick}}" style="padding: 9px 14px; border-radius: 999px; font: inherit; font-size: 13px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}; border: 1px solid {{o.border}}">{{o.t}}</button></sc-for></div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 14px; color: #3D3A33">مسببات الحساسية</span>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap"><sc-for list="{{allergens}}" as="o" hint-placeholder-count="4"><button type="button" onClick="{{o.pick}}" style="padding: 9px 14px; border-radius: 999px; font: inherit; font-size: 13px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}; border: 1px solid {{o.border}}">{{o.t}}</button></sc-for></div>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 14px; border-radius: 14px; background: #F6F4EF; font-size: 14px">يظهر في المنيو<button type="button" onClick="{{cur.toggleHide}}" aria-label="إظهار الصنف" style="width: 52px; height: 30px; border-radius: 999px; border: 0; padding: 3px; background: {{cur.hideBg}}; display: flex; justify-content: {{cur.hideJ}}; cursor: pointer; flex: none"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FFFFFF"></span></button></div>
+              <div style="padding: 12px 14px; border-radius: 14px; background: #F6F4EF; font-size: 13px; display: flex; flex-direction: column; gap: 4px"><span style="color: #6B675E">أوقات الظهور</span><strong style="font-weight: 500">كل يوم · ٧ص إلى ١٢م</strong></div>
+              <div style="padding: 12px 14px; border-radius: 14px; background: #F6F4EF; font-size: 13px; display: flex; flex-direction: column; gap: 4px"><span style="color: #6B675E">الأحجام والإضافات</span><strong style="font-weight: 500">صغير · وسط · كبير · شوفان +٣</strong></div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{is.sections}}" hint-placeholder-val="{{false}}">
+            <span style="font-size: 13px; color: #6B675E">شغّل أو طفّي أي جزء أو زر في المنيو</span>
+            <sc-for list="{{toggles}}" as="o" hint-placeholder-count="7">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px; border-radius: 14px; background: #F6F4EF; font-size: 14px">
+                <span style="display: flex; flex-direction: column; gap: 2px"><span>{{o.t}}</span><span style="font-size: 12px; color: #6B675E">{{o.d}}</span></span>
+                <button type="button" onClick="{{o.toggle}}" aria-label="{{o.t}}" style="width: 52px; height: 30px; border-radius: 999px; border: 0; padding: 3px; background: {{o.bg}}; display: flex; justify-content: {{o.j}}; cursor: pointer; flex: none"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FFFFFF"></span></button>
+              </div>
+            </sc-for>
+          </sc-if>
+        </div>
+      </section>
+
+      <section style="flex: 0 1 340px; display: flex; flex-direction: column; align-items: center; gap: 12px">
+        <span style="font-size: 13px; color: #6B675E">اضغط على أي جزء في المنيو لتعديله</span>
+        <div style="width: 320px; height: 680px; border-radius: 48px; background: #0A0A0A; padding: 10px; box-sizing: border-box; box-shadow: 0 40px 80px -30px rgba(22,20,15,.45)">
+          <div style="width: 100%; height: 100%; border-radius: 38px; overflow: hidden; overflow-y: auto; background: {{p.bg}}; color: {{p.text}}; font-family: {{p.font}}; font-size: {{p.fs}}; display: flex; flex-direction: column; gap: {{p.gap}}; padding-bottom: 14px; box-sizing: border-box">
+            <button type="button" onClick="{{go.logo}}" style="position: relative; flex: none; height: {{p.headerH}}; border: 0; padding: 0; background: {{p.hero}}; cursor: pointer; font: inherit; color: inherit; outline: {{ol.logo}}; outline-offset: -3px">
+              <sc-if value="{{s.cover}}" hint-placeholder-val="{{true}}"><img src="/_blob/6b7575ca47bf3cb57980503ea567bb10" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .45; mix-blend-mode: luminosity"></sc-if>
+              <span style="position: absolute; inset: 0; padding: 16px; display: flex; flex-direction: column; justify-content: flex-end; align-items: {{p.logoAlign}}; gap: 5px; color: {{p.heroText}}; text-align: {{p.logoText}}">
+                <sc-if value="{{s.above}}" hint-placeholder-val="{{true}}"><span style="font-size: 0.78em; opacity: .85">{{s.above}}</span></sc-if>
+                <span class="{{p.logoAnim}}" style="display: flex; padding: {{p.logoPad}}; border-radius: {{p.logoRad}}; background: {{p.logoBg}}"><img src="/_blob/180e7683b31119fe5e372edcb2673be9" alt="" style="width: {{p.logoSize}}; height: auto"></span>
+                <sc-if value="{{s.below}}" hint-placeholder-val="{{true}}"><span style="font-size: 0.88em">{{s.below}}</span></sc-if>
+              </span>
+            </button>
+
+            <sc-for list="{{blocks}}" as="b" hint-placeholder-count="5">
+              <sc-if value="{{b.banner}}" hint-placeholder-val="{{false}}">
+                <button type="button" onClick="{{go.banner}}" style="flex: none; margin: 0 12px; padding: 0; border: {{p.bannerBorder}}; border-radius: {{p.r}}; background: {{p.bannerBg}}; color: {{p.bannerFg}}; font: inherit; font-weight: 700; text-align: right; cursor: pointer; outline: {{ol.banner}}; overflow: hidden; display: flex; align-items: center; min-height: 42px">
+                  <sc-if value="{{bs.card}}" hint-placeholder-val="{{false}}"><img src="/_blob/9d167fd45658d101a5c46f34d84c3993" alt="" style="width: 70px; height: 62px; object-fit: cover; flex: none"></sc-if>
+                  <sc-if value="{{bs.ticker}}" hint-placeholder-val="{{false}}"><span class="pm-tick" style="display: flex; gap: 30px; white-space: nowrap; width: max-content; padding: 10px 0"><span>{{s.banner}}</span><span>✦</span><span>{{s.banner}}</span><span>✦</span><span>{{s.banner}}</span><span>✦</span><span>{{s.banner}}</span><span>✦</span></span></sc-if>
+                  <sc-if value="{{bs.plain}}" hint-placeholder-val="{{true}}"><span style="padding: 10px 12px">{{s.banner}}</span></sc-if>
+                </button>
+              </sc-if>
+              <sc-if value="{{b.stories}}" hint-placeholder-val="{{false}}">
+                <div style="flex: none; display: flex; gap: 10px; padding: 0 12px">
+                  <sc-for list="{{stories}}" as="st" hint-placeholder-count="4"><img src="{{st}}" alt="" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 2px {{p.bg}}, 0 0 0 4px {{p.accent}}"></sc-for>
+                </div>
+              </sc-if>
+              <sc-if value="{{b.launch}}" hint-placeholder-val="{{false}}">
+                <button type="button" onClick="{{go.launch}}" style="position: relative; flex: none; margin: 0 12px; padding: 0; border: 0; border-radius: {{p.r}}; overflow: hidden; height: 130px; cursor: pointer; font: inherit; outline: {{ol.launch}}">
+                  <img src="/_blob/cf3e70c0de50761053d88353688b5a86" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: {{lc.filter}}">
+                  <span style="position: absolute; inset: 0; background: {{lc.overlay}}; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; color: #FFFFFF; text-align: center">
+                    <span style="padding: 3px 10px; border-radius: 999px; background: #FF5E13; color: #0A0A0A; font-size: 0.72em; font-weight: 700">{{lc.tag}}</span>
+                    <strong style="font-size: 1.1em">{{s.launchName}}</strong>
+                    <span dir="ltr" style="font-family: 'Poppins', sans-serif; font-size: 1.05em; font-weight: 600">{{lc.line}}</span>
+                  </span>
+                  <sc-if value="{{lc.party}}" hint-placeholder-val="{{false}}"><span class="pm-spark" style="position: absolute; top: 14px; left: 18px; width: 14px; height: 14px; border-radius: 50%; background: #FF5E13"></span><span class="pm-spark" style="position: absolute; bottom: 18px; right: 22px; width: 10px; height: 10px; border-radius: 50%; background: #DEC49E; animation-delay: .5s"></span><span class="pm-spark" style="position: absolute; top: 30px; right: 40px; width: 8px; height: 8px; border-radius: 50%; background: #FFFFFF; animation-delay: .9s"></span></sc-if>
+                </button>
+              </sc-if>
+              <sc-if value="{{b.tabs}}" hint-placeholder-val="{{false}}">
+                <div style="display: flex; gap: 6px; padding: 0 12px">
+                  <span style="padding: 7px 12px; border-radius: {{p.tabR}}; background: {{p.accent}}; color: {{p.onAccent}}; font-size: 0.85em">مشروبات</span>
+                  <span style="padding: 7px 12px; border-radius: {{p.tabR}}; background: {{p.tabOff}}; font-size: 0.85em">حلا</span>
+                  <span style="padding: 7px 12px; border-radius: {{p.tabR}}; background: {{p.tabOff}}; font-size: 0.85em">موسمي</span>
+                </div>
+              </sc-if>
+              <sc-if value="{{b.items}}" hint-placeholder-val="{{false}}">
+                <div style="flex: none; display: {{p.itemsDisplay}}; grid-template-columns: repeat(2, minmax(0, 1fr)); flex-direction: column; gap: {{p.gap}}; padding: 0 12px">
+                  <sc-for list="{{shownItems}}" as="it" hint-placeholder-count="4">
+                    <button type="button" onClick="{{it.go}}" style="display: flex; flex-direction: {{p.itemDir}}; align-items: {{p.itemAlign}}; gap: {{p.itemGap}}; padding: {{p.itemPad}}; overflow: hidden; border-radius: {{p.r}}; background: {{p.card}}; border: {{p.cardBorder}}; box-shadow: {{p.cardShadow}}; font: inherit; color: inherit; text-align: right; cursor: pointer; outline: {{it.ol}}">
+                      <img src="{{it.img}}" alt="" style="width: {{p.imgW}}; height: {{p.imgH}}; border-radius: {{p.imgR}}; object-fit: cover; filter: {{p.filter}}; flex: none">
+                      <span style="flex: 1 1 auto; display: flex; flex-direction: column; gap: 3px; padding: {{p.textPad}}"><span style="font-weight: 600">{{it.n}}</span><sc-if value="{{it.badge}}" hint-placeholder-val="{{false}}"><span style="align-self: flex-start; padding: 2px 8px; border-radius: 999px; background: {{p.accent}}; color: {{p.onAccent}}; font-size: 0.72em">{{it.badge}}</span></sc-if><sc-if value="{{it.meta}}" hint-placeholder-val="{{true}}"><span style="font-size: 0.72em; opacity: .65">{{it.meta}}</span></sc-if><sc-if value="{{s.showPrices}}" hint-placeholder-val="{{true}}"><strong style="font-family: 'Poppins', sans-serif; color: {{p.price}}">{{it.p}} ر.س</strong></sc-if></span>
+                    </button>
+                  </sc-for>
+                </div>
+              </sc-if>
+              <sc-if value="{{b.waiter}}" hint-placeholder-val="{{false}}">
+                <button type="button" onClick="{{go.waiter}}" style="flex: none; margin: 0 12px; padding: 13px; border-radius: {{p.btnR}}; background: {{p.btnBg}}; color: {{p.btnFg}}; border: {{p.btnBorder}}; font: inherit; font-weight: 700; cursor: pointer; outline: {{ol.waiter}}">{{s.waiter}}</button>
+              </sc-if>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1150}}'>
+class Component extends DCLogic {
+base() {
+return {
+tab: 'logo', sel: 'logo', item: 0, changes: 0, sec: 2 * 86400 + 5 * 3600 + 12 * 60,
+accent: '#0A6B41', hero: '#054026', bg: '#F4F1EA', card: '#FFFFFF', text: '#0C1A12', price: '#0A6B41',
+font: 'Readex Pro', scale: 100, radius: 16, gap: 10, cardStyle: 'shadow', btnStyle: 'fill',
+above: 'أهلاً فيك', below: 'قهوة مختصة · الدمام', logoPos: 'start', logoSize: 90, headerH: 160, logoBg: 'none', logoAnim: 'none', cover: true,
+showBanner: true, banner: 'جرّب ذرا وِكاد.. توقيعنا الخاص', bannerStyle: 'bar',
+imgShape: 'square', filter: 'none', layout: 'list', sort: 'manual', tabStyle: 'pill',
+order: ['banner', 'launch', 'stories', 'tabs', 'items', 'waiter'],
+launchOn: true, launchName: 'ذرا بالكراميل', launchMode: 'teaser',
+qrDot: 'round', qrFrame: 'hero', qrCaption: 'امسح وتصفّح المنيو', qrLogo: true,
+showStories: true, showPrices: true, showCal: true, showAllergens: true, showWaiter: true, showEnglish: false,
+items: [
+{ n: 'ذرا وِكاد', p: '24', sold: 640, img: '/_blob/cf3e70c0de50761053d88353688b5a86', badge: 'الأكثر مبيعاً', hide: false, al: ['حليب'], cal: '٣٢٠' },
+{ n: 'لاتيه', p: '18', sold: 520, img: '/_blob/049e92a00bf77ff8ff360eb67800e5f0', badge: '', hide: false, al: ['حليب'], cal: '١٩٠' },
+{ n: 'تشيز كيك المانجو', p: '26', sold: 300, img: '/_blob/9d167fd45658d101a5c46f34d84c3993', badge: 'جديد', hide: false, al: ['حليب', 'جلوتين'], cal: '٣٨٠' },
+{ n: 'آيس أمريكانو', p: '16', sold: 410, img: '/_blob/ed67cfafe78b2f6ba4611f02485a7892', badge: '', hide: false, al: [], cal: '١٠' }
+]
+};
+}
+constructor(p) { super(p); this.state = this.base(); }
+componentDidMount() { this.t = setInterval(() => this.setState({ sec: Math.max(0, this.state.sec - 1) }), 1000); }
+componentWillUnmount() { clearInterval(this.t); }
+up(patch) { this.setState({ ...patch, changes: this.state.changes + 1 }); }
+upItem(patch) { this.up({ items: this.state.items.map((x, i) => i === this.state.item ? { ...x, ...patch } : x) }); }
+renderVals() {
+const s = this.state;
+const segOf = (key, list) => list.map(o => ({ t: o[1], bg: s[key] === o[0] ? '#16140F' : '#FFFFFF', fg: s[key] === o[0] ? '#FFFFFF' : '#3D3A33', border: s[key] === o[0] ? '#16140F' : 'rgba(22,20,15,.14)', pick: () => this.up({ [key]: o[0] }) }));
+const swOf = (k) => ({ bg: s[k] ? '#FF5E13' : '#D9D5CC', j: s[k] ? 'flex-end' : 'flex-start' });
+const light = (hex) => { const n = parseInt(hex.slice(1), 16); return ((n >> 16) * 299 + ((n >> 8) & 255) * 587 + (n & 255) * 114) / 1000 > 150; };
+const T = [
+['logo', 'الشعار والهيدر', 'M12 2l3 7h7l-5.5 4.5 2 7.5L12 16.5 5.5 21l2-7.5L2 9h7z'],
+['banner', 'البنر', 'M3 6h18v8H3zM7 18h10'],
+['colors', 'الألوان', 'M12 3a9 9 0 1 0 0 18c1.5 0 2-1 2-2s-1-2 0-3h3a4 4 0 0 0 4-4c0-5-4-9-9-9z'],
+['type', 'الخطوط والأشكال', 'M4 7V4h16v3M9 20h6M12 4v16'],
+['images', 'الصور والعرض', 'M3 5h18v14H3zM8.5 10a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM21 15l-5-5L5 19'],
+['order', 'الترتيب', 'M7 4v16M3 8l4-4 4 4M17 20V4M13 16l4 4 4-4'],
+['launch', 'إطلاق صنف', 'M5 15c-1.5 1.5-2 5-2 5s3.5-.5 5-2M9 12a12 12 0 0 1 10-9c0 4-2 8-9 10zM9 12l3 3'],
+['qr', 'الباركود', 'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h3v3h-3zM20 20h1'],
+['items', 'كل صنف', 'M20 7l-8-4-8 4 8 4 8-4zM4 7v10l8 4 8-4V7'],
+['sections', 'الأزرار والأجزاء', 'M4 6h16M4 12h16M4 18h10']
+];
+const tabs = T.map(t => ({ name: t[1], d: t[2], bg: s.tab === t[0] ? '#16140F' : 'transparent', fg: s.tab === t[0] ? '#FFFFFF' : '#3D3A33', pick: () => this.setState({ tab: t[0] }) }));
+const is = {}; T.forEach(t => { is[t[0]] = s.tab === t[0]; });
+const mkT = (k) => (e) => this.up({ [k]: e.target.value });
+const mkN = (k) => (e) => this.up({ [k]: Number(e.target.value) });
+const txt = {}; ['waiter', 'above', 'below', 'banner', 'launchName', 'qrCaption'].forEach(k => { txt[k] = mkT(k); });
+const num = {}; ['scale', 'radius', 'gap', 'logoSize', 'headerH'].forEach(k => { num[k] = mkN(k); });
+const flip = {}; const sw = {}; ['cover', 'showBanner', 'launchOn', 'qrLogo'].forEach(k => { flip[k] = () => this.up({ [k]: !s[k] }); sw[k] = swOf(k); });
+const colorFields = [['accent', 'اللون الأساسي'], ['hero', 'خلفية الهيدر'], ['bg', 'خلفية المنيو'], ['card', 'لون البطاقات'], ['text', 'لون النص'], ['price', 'لون الأسعار']].map(c => ({ t: c[1], v: s[c[0]], set: mkT(c[0]) }));
+const PAL = [
+['أصلي', { hero: '#054026', accent: '#0A6B41', bg: '#F4F1EA', card: '#FFFFFF', text: '#0C1A12', price: '#0A6B41' }],
+['ليل', { hero: '#06130C', accent: '#DEC49E', bg: '#0B1A12', card: '#132A1D', text: '#ECD7B4', price: '#DEC49E' }],
+['رمل', { hero: '#B98A4E', accent: '#054026', bg: '#FBF6EC', card: '#FFFFFF', text: '#3A2A1C', price: '#6B4A35' }],
+['برتقالي', { hero: '#16140F', accent: '#FF5E13', bg: '#F6F4EF', card: '#FFFFFF', text: '#16140F', price: '#C2410C' }]
+];
+const palettes = PAL.map(p => ({ name: p[0], a: p[1].hero, b: p[1].accent, c: p[1].bg, pick: () => this.up(p[1]) }));
+const fonts = ['Readex Pro', 'El Messiri', 'Reem Kufi', 'Amiri', 'Tajawal', 'Cairo', 'Almarai', 'Poppins'].map(f => ({ label: f === 'Poppins' ? 'Wekad' : 'وِكاد', css: "'" + f + "', sans-serif", bg: s.font === f ? '#16140F' : '#FFFFFF', fg: s.font === f ? '#FFFFFF' : '#16140F', border: s.font === f ? '#16140F' : 'rgba(22,20,15,.14)', pick: () => this.up({ font: f }) }));
+const seg = {
+cardStyle: segOf('cardStyle', [['shadow', 'ظل'], ['border', 'إطار'], ['flat', 'مسطّح']]),
+btnStyle: segOf('btnStyle', [['fill', 'معبّأ'], ['outline', 'إطار'], ['pill', 'كبسولة']]),
+logoPos: segOf('logoPos', [['start', 'يمين'], ['center', 'بالنص'], ['end', 'يسار']]),
+logoBg: segOf('logoBg', [['none', 'بدون'], ['circle', 'دائرة'], ['card', 'بطاقة']]),
+logoAnim: segOf('logoAnim', [['none', 'ثابت'], ['bounce', 'نطّة'], ['fade', 'نبض']]),
+bannerStyle: segOf('bannerStyle', [['bar', 'شريط'], ['card', 'بطاقة بصورة'], ['ticker', 'نص متحرك'], ['outline', 'إطار']]),
+imgShape: segOf('imgShape', [['square', 'مربعة'], ['round', 'دائرية'], ['wide', 'عريضة'], ['none', 'بدون صور']]),
+filter: segOf('filter', [['none', 'طبيعي'], ['warm', 'دافئ'], ['vivid', 'حيوي'], ['bw', 'أبيض وأسود']]),
+layout: segOf('layout', [['list', 'قائمة'], ['grid', 'شبكة'], ['big', 'صور كبيرة']]),
+sort: segOf('sort', [['manual', 'يدوي'], ['best', 'الأكثر مبيعاً'], ['price', 'الأقل سعراً']]),
+tabStyle: segOf('tabStyle', [['pill', 'كبسولات'], ['line', 'مربعة']]),
+launchMode: segOf('launchMode', [['teaser', 'تشويق قبل الإطلاق'], ['live', 'يوم الإطلاق']]),
+qrDot: segOf('qrDot', [['square', 'مربعات'], ['soft', 'ناعمة'], ['round', 'دوائر']]),
+qrFrame: segOf('qrFrame', [['hero', 'لون الهيدر'], ['accent', 'اللون الأساسي'], ['black', 'أسود'], ['white', 'أبيض']])
+};
+const NAMES = { banner: 'البنر', launch: 'إطلاق صنف', stories: 'قصص المنيو', tabs: 'التبويبات', items: 'الأصناف', waiter: 'زر الويتر' };
+const mv = (i, d) => () => { const o = s.order.slice(); const j = i + d; if (j < 0 || j >= o.length) return; const t = o[i]; o[i] = o[j]; o[j] = t; this.up({ order: o }); };
+const orderRows = s.order.map((k, i) => ({ n: i + 1, t: NAMES[k], up: mv(i, -1), down: mv(i, 1) }));
+const visible = { banner: s.showBanner, launch: s.launchOn, stories: s.showStories, tabs: true, items: true, waiter: s.showWaiter };
+const blocks = s.order.filter(k => visible[k]).map(k => ({ banner: k === 'banner', launch: k === 'launch', stories: k === 'stories', tabs: k === 'tabs', items: k === 'items', waiter: k === 'waiter' }));
+const OL = '2px dashed #FF5E13', NO = '0 solid transparent';
+let list = s.items.map((x, i) => ({ ...x, i })).filter(x => !x.hide);
+if (s.sort === 'best') list = list.slice().sort((a, b) => b.sold - a.sold);
+if (s.sort === 'price') list = list.slice().sort((a, b) => Number(a.p) - Number(b.p));
+const shownItems = list.map(x => ({ ...x, meta: [s.showCal ? x.cal + ' سعرة' : '', s.showAllergens && x.al.length ? 'يحتوي ' + x.al.join('، ') : ''].filter(Boolean).join(' · '), ol: s.sel === 'item' && s.item === x.i ? OL : NO, go: () => this.setState({ tab: 'items', sel: 'item', item: x.i }) }));
+const L = s.layout, noImg = s.imgShape === 'none';
+const p = {
+bg: s.bg, text: s.text, font: "'" + s.font + "', sans-serif", fs: Math.round(14 * s.scale / 100) + 'px', gap: s.gap + 'px',
+hero: s.hero, heroText: light(s.hero) ? '#16140F' : '#F6F4EF', accent: s.accent, onAccent: light(s.accent) ? '#16140F' : '#FFFFFF',
+card: s.card, price: s.price, r: s.radius + 'px', headerH: s.headerH + 'px',
+logoAlign: s.logoPos === 'center' ? 'center' : s.logoPos === 'end' ? 'flex-end' : 'flex-start', logoText: s.logoPos === 'center' ? 'center' : s.logoPos === 'end' ? 'left' : 'right',
+logoSize: s.logoSize + 'px', logoAnim: s.logoAnim === 'bounce' ? 'pm-bounce' : s.logoAnim === 'fade' ? 'pm-fade' : '',
+logoBg: s.logoBg === 'none' ? 'transparent' : s.hero, logoPad: s.logoBg === 'none' ? '0' : s.logoBg === 'circle' ? '16px' : '10px 14px', logoRad: s.logoBg === 'circle' ? '50%' : '14px',
+bannerBg: s.bannerStyle === 'outline' ? 'transparent' : s.accent, bannerFg: s.bannerStyle === 'outline' ? s.accent : (light(s.accent) ? '#16140F' : '#FFFFFF'), bannerBorder: s.bannerStyle === 'outline' ? '2px solid ' + s.accent : '0',
+cardShadow: s.cardStyle === 'shadow' ? '0 8px 20px -10px rgba(0,0,0,.3)' : 'none', cardBorder: s.cardStyle === 'border' ? '1px solid rgba(0,0,0,.14)' : '0',
+itemsDisplay: L === 'grid' ? 'grid' : 'flex', itemDir: L === 'list' ? 'row' : 'column', itemAlign: L === 'list' ? 'center' : 'stretch', itemGap: L === 'list' ? '10px' : '0', itemPad: L === 'list' ? '8px' : '0', textPad: L === 'list' ? '0' : '8px 10px',
+imgW: noImg ? '0' : L === 'list' ? (s.imgShape === 'wide' ? '84px' : '54px') : '100%', imgH: noImg ? '0' : L === 'list' ? '54px' : L === 'grid' ? '96px' : '140px',
+imgR: L !== 'list' ? '0' : s.imgShape === 'round' ? '50%' : Math.max(4, s.radius - 6) + 'px',
+filter: s.filter === 'warm' ? 'sepia(.25) saturate(1.2)' : s.filter === 'vivid' ? 'saturate(1.35) contrast(1.06)' : s.filter === 'bw' ? 'grayscale(1)' : 'none',
+tabR: s.tabStyle === 'pill' ? '999px' : '6px', tabOff: s.card,
+btnR: s.btnStyle === 'pill' ? '999px' : s.radius + 'px', btnBg: s.btnStyle === 'outline' ? 'transparent' : s.accent,
+btnFg: s.btnStyle === 'outline' ? s.accent : (light(s.accent) ? '#16140F' : '#FFFFFF'), btnBorder: s.btnStyle === 'outline' ? '2px solid ' + s.accent : '0'
+};
+const pad = n => String(n).padStart(2, '0');
+const d = Math.floor(s.sec / 86400), h = Math.floor(s.sec % 86400 / 3600), m = Math.floor(s.sec % 3600 / 60), sc = s.sec % 60;
+const lc = s.launchMode === 'teaser'
+? { tag: 'قريباً', line: d + 'd ' + pad(h) + ':' + pad(m) + ':' + pad(sc), filter: 'blur(6px) brightness(.6)', overlay: 'rgba(0,0,0,.25)', party: false }
+: { tag: 'وصل الحين', line: 'جرّبه اليوم بـ٢٢ بدل ٢٦', filter: 'saturate(1.2)', overlay: 'linear-gradient(transparent, rgba(0,0,0,.65))', party: true };
+const N = 21; let seed = 9; const rnd = () => { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; };
+const fnd = (r, c) => { for (const q of [[0, 0], [0, N - 7], [N - 7, 0]]) { const y = r - q[0], x = c - q[1]; if (y >= 0 && y < 7 && x >= 0 && x < 7) return (y === 0 || y === 6 || x === 0 || x === 6 || (y >= 2 && y <= 4 && x >= 2 && x <= 4)) ? 1 : 0; if (y >= -1 && y <= 7 && x >= -1 && x <= 7) return 0; } return -1; };
+const frame = s.qrFrame === 'hero' ? s.hero : s.qrFrame === 'accent' ? s.accent : s.qrFrame === 'black' ? '#16140F' : '#FFFFFF';
+const ink = s.qrFrame === 'white' ? s.hero : frame;
+const cells = []; for (let r = 0; r < N; r++) for (let c = 0; c < N; c++) { const f = fnd(r, c); const mid = s.qrLogo && r >= 8 && r <= 12 && c >= 8 && c <= 12; cells.push({ bg: !mid && (f === -1 ? rnd() > .5 : f === 1) ? ink : 'transparent' }); }
+const q = { cells, frame, dot: s.qrDot === 'round' ? '50%' : s.qrDot === 'soft' ? '2px' : '0', capColor: light(frame) ? '#16140F' : '#FFFFFF' };
+const cur0 = s.items[s.item];
+const go = (tab, sel) => () => this.setState({ tab, sel });
+const toggles = [['showStories', 'قصص المنيو', 'دوائر الأصناف الجديدة'], ['showPrices', 'الأسعار', 'تخفيها لمنيو الفعاليات'], ['showCal', 'السعرات', 'حسب اشتراطات هيئة الغذاء'], ['showAllergens', 'مسببات الحساسية', 'تحت اسم كل صنف'], ['showWaiter', 'زر نادِ الويتر', 'يوصل تنبيه للكاشير'], ['showEnglish', 'زر English', 'المنيو بالإنجليزي تلقائياً']].map(x => ({ t: x[1], d: x[2], ...swOf(x[0]), toggle: () => this.up({ [x[0]]: !s[x[0]] }) }));
+return {
+s, is, tabs, txt, num, flip, sw, seg, colorFields, palettes, fonts, orderRows, blocks, shownItems, p, lc, q, toggles,
+bs: { card: s.bannerStyle === 'card', ticker: s.bannerStyle === 'ticker', plain: s.bannerStyle !== 'ticker' },
+stories: s.items.map(x => x.img),
+reset: () => this.setState(this.base()),
+go: { logo: go('logo', 'logo'), banner: go('banner', 'banner'), launch: go('launch', 'launch'), waiter: go('type', 'waiter') },
+ol: { logo: s.sel === 'logo' ? OL : NO, banner: s.sel === 'banner' ? OL : NO, launch: s.sel === 'launch' ? OL : NO, waiter: s.sel === 'waiter' ? OL : NO },
+itemTabs: s.items.map((x, i) => ({ n: x.n, img: x.img, bg: s.item === i ? '#16140F' : '#FFFFFF', fg: s.item === i ? '#FFFFFF' : '#3D3A33', border: s.item === i ? '#16140F' : 'rgba(22,20,15,.14)', pick: () => this.setState({ item: i, sel: 'item' }) })),
+cur: { n: cur0.n, p: cur0.p, setName: (e) => this.upItem({ n: e.target.value }), setPrice: (e) => this.upItem({ p: e.target.value }), toggleHide: () => this.upItem({ hide: !cur0.hide }), hideBg: cur0.hide ? '#D9D5CC' : '#FF5E13', hideJ: cur0.hide ? 'flex-start' : 'flex-end' },
+badges: ['', 'جديد', 'الأكثر مبيعاً', 'حار', 'نباتي', 'موسمي'].map(b => ({ t: b || 'بدون', bg: cur0.badge === b ? '#16140F' : '#FFFFFF', fg: cur0.badge === b ? '#FFFFFF' : '#3D3A33', border: cur0.badge === b ? '#16140F' : 'rgba(22,20,15,.14)', pick: () => this.upItem({ badge: b }) })),
+allergens: ['حليب', 'جلوتين', 'مكسرات', 'بيض'].map(a => { const has = cur0.al.indexOf(a) !== -1; return { t: a, bg: has ? '#FF5E13' : '#FFFFFF', fg: has ? '#0A0A0A' : '#3D3A33', border: has ? '#FF5E13' : 'rgba(22,20,15,.14)', pick: () => this.upItem({ al: has ? cur0.al.filter(x => x !== a) : cur0.al.concat([a]) }) }; })
+};
+}
+}
+</script>
+</body>
+</html>

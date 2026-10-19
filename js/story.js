@@ -233,6 +233,52 @@ gsap.from('.camp-chips span', { y: 30, opacity: 0, scale: .8, stagger: .08, dura
 gsap.from('.camp-card', { y: 80, opacity: 0, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: '.camp-card', start: 'top 85%' } });
 gsap.to('.cc-chart i', { scaleY: 1, stagger: .09, duration: .9, ease: 'power3.out', scrollTrigger: { trigger: '.cc-chart', start: 'top 80%' } });
 
+/* FULL EDITOR: the menu reshapes itself step by step */
+(function () {
+  const ph = $('.ed-phone'), lis = $$('.ed-list li'), qr = $('.ed-qr');
+  const grid = $('.ed-qrg'); let seed = 3;
+  const rnd = () => { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; };
+  for (let r = 0; r < 17; r++) for (let c = 0; c < 17; c++) {
+    const i = document.createElement('i');
+    const corner = (r < 5 && c < 5) || (r < 5 && c > 11) || (r > 11 && c < 5);
+    const ring = corner && (r % 12 === 0 || r % 12 === 4 || c % 12 === 0 || c % 12 === 4 || ((r % 12 === 2) && (c % 12 === 2)));
+    if (!(corner ? ring : rnd() > .5)) i.className = 'off';
+    grid.appendChild(i);
+  }
+  const STEPS = [
+    {},
+    { cls: ['logo-c'] },
+    { cls: ['logo-c', 'ban-t'] },
+    { cls: ['logo-c', 'ban-t'], vars: { '--e-hero': '#06130C', '--e-accent': '#DEC49E', '--e-bg': '#0B1A12', '--e-card': '#132A1D', '--e-text': '#ECD7B4', '--e-font': "'Reem Kufi', sans-serif" } },
+    { cls: ['logo-c', 'ban-t', 'grid'], vars: { '--e-hero': '#06130C', '--e-accent': '#DEC49E', '--e-bg': '#0B1A12', '--e-card': '#132A1D', '--e-text': '#ECD7B4', '--e-font': "'Reem Kufi', sans-serif", '--e-r': '4px' } },
+    { cls: ['logo-c', 'ban-t', 'grid', 'launch'], vars: { '--e-hero': '#06130C', '--e-accent': '#DEC49E', '--e-bg': '#0B1A12', '--e-card': '#132A1D', '--e-text': '#ECD7B4', '--e-font': "'Reem Kufi', sans-serif", '--e-r': '4px' } },
+    { cls: ['logo-c', 'ban-t', 'grid', 'launch'], vars: { '--e-hero': '#06130C', '--e-accent': '#DEC49E', '--e-bg': '#0B1A12', '--e-card': '#132A1D', '--e-text': '#ECD7B4', '--e-font': "'Reem Kufi', sans-serif", '--e-r': '4px' }, qr: true }
+  ];
+  const HL = [-1, 0, 1, 2, 3, 4, 5];
+  const BASE = ['--e-hero', '--e-accent', '--e-bg', '--e-card', '--e-text', '--e-font', '--e-r'];
+  let cur = -1;
+  function step(n) {
+    if (n === cur) return; cur = n;
+    const st = STEPS[n];
+    ['logo-c', 'ban-t', 'grid', 'launch'].forEach((c) => ph.classList.toggle(c, (st.cls || []).includes(c)));
+    BASE.forEach((k) => ph.style.removeProperty(k));
+    Object.entries(st.vars || {}).forEach(([k, v]) => ph.style.setProperty(k, v));
+    qr.classList.toggle('on', !!st.qr);
+    lis.forEach((li, i) => li.classList.toggle('on', i === HL[n]));
+    if (!reduce && n > 0) gsap.fromTo(ph, { scale: .97 }, { scale: 1, duration: .6, ease: 'back.out(2)' });
+  }
+  step(0);
+  let cd = 2 * 86400 + 5 * 3600 + 12 * 60;
+  setInterval(() => { cd = Math.max(0, cd - 1); const p2 = (x) => String(x).padStart(2, '0'); $('.ed-cd').textContent = Math.floor(cd / 86400) + 'd ' + p2(Math.floor(cd % 86400 / 3600)) + ':' + p2(Math.floor(cd % 3600 / 60)) + ':' + p2(cd % 60); }, 1000);
+  mm.add({ desk: '(min-width: 761px)', mob: '(max-width: 760px)' }, (ctx) => {
+    const desk = ctx.conditions.desk;
+    ScrollTrigger.create({
+      trigger: desk ? '.ed' : '.ed-stage', start: desk ? 'top top' : 'top 70%', end: desk ? '+=260%' : 'bottom 15%', pin: desk,
+      onUpdate: (self) => step(Math.min(STEPS.length - 1, Math.floor(self.progress * STEPS.length))),
+    });
+  });
+})();
+
 /* GOOGLE: typing -> result -> pin drop */
 ScrollTrigger.create({
   trigger: '.gwin', start: 'top 70%', once: true,
