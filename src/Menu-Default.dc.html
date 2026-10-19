@@ -37,7 +37,7 @@ body{margin:0}
   </div>
 
   <div style="padding: 10px 18px 0; display: flex; flex-direction: column; gap: 10px">
-    <strong style="font-size: 15px; font-weight: 500">وش مزاجك اليوم؟</strong>
+    <strong style="font-size: 15px; font-weight: 500">اختيارات وِكاد</strong>
     <div style="display: flex; gap: 8px">
       <sc-for list="{{moods}}" as="m" hint-placeholder-count="3"><button type="button" onClick="{{m.pick}}" style="padding: 9px 14px; border-radius: 999px; font: inherit; font-size: 13px; cursor: pointer; background: {{m.bg}}; color: {{m.fg}}; border: 1px solid {{m.border}}">{{m.t}}</button></sc-for>
     </div>
@@ -84,9 +84,9 @@ iced: { n: 'آيس أمريكانو', p: '16', cal: '١٠ سعرات', img: '/_b
 cold: { n: 'قهوة اليوم الباردة', p: '19', cal: '٥ سعرات', img: '/_blob/8fa87bf0280ddc6d70958400c13a767a' }
 };
 const M = [
-{ t: 'أبي شي منعش', hero: 'iced', tag: 'يبرّد عليك', grid: ['cold', 'cake'] },
-{ t: 'أبي أدلع نفسي', hero: 'thra', tag: 'توقيع وِكاد', grid: ['cake', 'latte'] },
-{ t: 'قهوتي وبس', hero: 'latte', tag: 'الأكثر طلباً', grid: ['iced', 'cold'] }
+{ t: 'الأكثر مبيعاً', hero: 'thra', tag: 'الأكثر مبيعاً', grid: ['latte', 'cake'] },
+{ t: 'جديدنا', hero: 'cake', tag: 'جديد', grid: ['cold', 'thra'] },
+{ t: 'منعش للحر', hero: 'iced', tag: 'يبرّد عليك', grid: ['cold', 'cake'] }
 ];
 const m = M[this.state.mood];
 return {
