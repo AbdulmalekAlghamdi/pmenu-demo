@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>منيو وِكاد — رمضان</title>
+<link rel="icon" href="assets/favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&amp;family=Readex+Pro:wght@300;400;500;600&amp;family=Poppins:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+@keyframes pm-glow{0%,100%{opacity:.55}50%{opacity:1}}
+.pm-glow{animation:pm-glow 3s ease-in-out infinite}
+@media (prefers-reduced-motion: reduce){.pm-glow{animation:none}}
+</style>
+<link rel="stylesheet" href="css/demo.css">
+</head>
+<body class="is-phone">
+<template id="tpl-main">
+<div dir="rtl" style="position: relative; width: 390px; height: 844px; overflow: hidden; font-family: 'Readex Pro', sans-serif; background: #0F1830; color: #F2E8D0">
+  <div style="position: relative; height: 300px; overflow: hidden; background: #14213D">
+    <svg width="390" height="300" viewBox="0 0 390 300" aria-hidden="true" style="position: absolute; inset: 0">
+      <circle cx="80" cy="40" r="1.5" fill="#E0B654"></circle><circle cx="140" cy="90" r="1" fill="#E0B654"></circle><circle cx="300" cy="60" r="1.5" fill="#E0B654"></circle><circle cx="250" cy="130" r="1" fill="#E0B654"></circle><circle cx="40" cy="150" r="1" fill="#E0B654"></circle><circle cx="350" cy="170" r="1.5" fill="#E0B654"></circle>
+      <path d="M86 60a46 46 0 1 0 46 66 38 38 0 1 1-46-66z" fill="#E0B654" class="pm-glow"></path>
+      <path d="M300 0v70M330 0v40M360 0v95" stroke="#E0B654" stroke-width="1"></path>
+      <path d="M290 70h20l-4 22h-12zM320 40h20l-4 22h-12zM350 95h20l-4 22h-12z" fill="#E0B654" class="pm-glow"></path>
+    </svg>
+    <div style="position: absolute; top: 18px; right: 18px">
+      <img src="assets/wordmark-cream.svg" alt="وِكاد" style="height: 32px; width: auto">
+    </div>
+    <div style="position: absolute; bottom: 24px; right: 20px; left: 20px; display: flex; flex-direction: column; gap: 14px">
+      <h1 style="margin: 0; font-family: 'Amiri', serif; font-size: 44px; line-height: 1.1; color: #E0B654">رمضان كريم</h1>
+      <div style="display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 18px; background: rgba(224,182,84,.12); border: 1px solid rgba(224,182,84,.35)">
+        <span style="font-size: 13px; color: #CFC3A3">باقي على الإفطار</span>
+        <strong dir="ltr" style="font-family: 'Poppins', sans-serif; font-size: 26px; font-weight: 600; color: #F2E8D0; letter-spacing: 1px">{{countdown}}</strong>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding: 18px 18px 8px; display: flex; justify-content: space-between; align-items: baseline">
+    <h2 style="margin: 0; font-family: 'Amiri', serif; font-size: 26px; color: #E0B654">سفرة الإفطار</h2>
+    <span style="font-size: 12px; color: #9FB0D6">الطلب قبل الأذان بساعة</span>
+  </div>
+
+  <div style="margin: 0 18px; border-radius: 24px; overflow: hidden; background: #1A2747; border: 1px solid rgba(224,182,84,.25)">
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); height: 130px">
+      <img src="assets/smores.jpg" alt="ذرا وِكاد" style="width: 100%; height: 100%; object-fit: cover">
+      <img src="assets/mango-cheesecake.jpg" alt="تشيز كيك المانجو" style="width: 100%; height: 100%; object-fit: cover">
+      <img src="assets/latte.jpg" alt="لاتيه" style="width: 100%; height: 100%; object-fit: cover">
+    </div>
+    <div style="padding: 14px 16px; display: flex; justify-content: space-between; align-items: center">
+      <div style="display: flex; flex-direction: column; gap: 3px"><strong style="font-size: 16px; font-weight: 500">بوكس الإفطار لشخصين</strong><span style="font-size: 12px; color: #9FB0D6">٢ ذرا + تشيز كيك + لاتيه · وفّر ١٥ ريال</span></div>
+      <strong style="font-family: 'Poppins', sans-serif; font-size: 20px; color: #E0B654">74</strong>
+    </div>
+  </div>
+
+  <div style="padding: 16px 18px 0; display: flex; flex-direction: column; gap: 10px">
+    <div style="display: flex; align-items: center; gap: 12px; padding: 10px; border-radius: 18px; background: #1A2747">
+      <img src="assets/iced-coffee.jpg" alt="قهوة اليوم الباردة" style="width: 60px; height: 60px; border-radius: 14px; object-fit: cover">
+      <div style="flex: 1 1 auto; display: flex; flex-direction: column; gap: 2px"><strong style="font-size: 14px; font-weight: 500">قهوة السحور الباردة</strong><span style="font-size: 12px; color: #9FB0D6">متوفرة لين ٣ الفجر</span></div>
+      <strong style="font-family: 'Poppins', sans-serif; color: #E0B654">19</strong>
+    </div>
+  </div>
+
+  <div style="position: absolute; bottom: 16px; right: 16px; left: 16px; padding: 8px; border-radius: 999px; background: #E0B654; display: flex; gap: 8px; box-shadow: 0 16px 32px rgba(0,0,0,.4)">
+    <button type="button" style="flex: 1 1 0; height: 48px; border-radius: 999px; border: 0; background: #14213D; color: #E0B654; font: inherit; font-weight: 600">احجز طاولة إفطار</button>
+    <button type="button" style="flex: 1 1 0; height: 48px; border-radius: 999px; border: 0; background: transparent; color: #14213D; font: inherit; font-weight: 500">المنيو كامل</button>
+  </div>
+</div>
+</template>
+<div id="app"></div>
+<nav class="demo-nav" aria-label="تنقل العرض">
+  <a href="index.html" class="demo-brand" dir="ltr"><span>P</span>menu</a>
+  <a href="index.html">الموقع</a>
+  <a href="Dashboard-Overview.html">لوحة التحكم</a>
+  <a href="menus.html">منيو العميل</a>
+</nav>
+<script src="js/morphdom.min.js"></script>
+<script src="js/dc.js"></script>
+<script>
+DC.define('main', document.getElementById('tpl-main'), (function () {
+
+class Component extends DCLogic {
+constructor(p) { super(p); this.state = { left: 2 * 3600 + 14 * 60 + 37 }; }
+componentDidMount() { this.t = setInterval(() => this.setState({ left: Math.max(0, this.state.left - 1) }), 1000); }
+componentWillUnmount() { clearInterval(this.t); }
+renderVals() {
+const l = this.state.left;
+const pad = n => String(n).padStart(2, '0');
+return { countdown: pad(Math.floor(l / 3600)) + ':' + pad(Math.floor(l % 3600 / 60)) + ':' + pad(l % 60) };
+}
+}
+
+return Component;
+})());
+DC.mount('main', document.getElementById('app'));
+</script>
+</body>
+</html>

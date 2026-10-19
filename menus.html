@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Pmenu — منيو العميل</title>
+<link rel="icon" href="assets/favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&amp;family=Poppins:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/demo.css">
+<style>
+body { margin: 0; font-family: 'Readex Pro', sans-serif; color: #16140F; background: radial-gradient(1100px 520px at 90% -8%, rgba(255, 94, 19, .14), rgba(255, 94, 19, 0) 60%), #F6F4EF; }
+main { max-width: 1840px; margin: 0 auto; padding: 56px 24px 120px; display: flex; flex-direction: column; gap: 40px; }
+h1 { margin: 0; font-size: clamp(32px, 5vw, 56px); font-weight: 700; }
+p.lead { margin: 12px 0 0; color: #5E5A52; font-size: 18px; font-weight: 300; line-height: 1.8; max-width: 640px; }
+.phones { display: flex; flex-wrap: wrap; gap: 40px 32px; justify-content: center; }
+.phone { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.phone h2 { margin: 0; font-size: 18px; font-weight: 500; display: flex; align-items: center; gap: 10px; }
+.phone h2 span { width: 12px; height: 12px; border-radius: 50%; }
+.frame { width: 390px; height: 844px; border-radius: 44px; overflow: hidden; box-shadow: 0 0 0 10px #0A0A0A, 0 40px 90px rgba(22, 20, 15, .3); background: #000; }
+.frame iframe { width: 390px; height: 844px; border: 0; display: block; }
+.phone a { color: #C2410C; font-size: 14px; }
+@media (max-width: 440px) {
+  .frame { width: 340px; height: 736px; }
+  .frame iframe { transform: scale(.872); transform-origin: top right; }
+}
+</style>
+</head>
+<body>
+<main>
+  <div>
+    <h1>العميل يمسح الباركود.. ويشوف هذا</h1>
+    <p class="lead">نفس المنيو، يلبس ثيم جديد كل موسم تلقائياً. جرّب الضغط على «وش مزاجك؟» في المنيو الأول، وشوف العدّاد في منيو رمضان.</p>
+  </div>
+  <div class="phones">
+    <div class="phone"><h2><span style="background:#054026"></span>ثيم من شعار وِكاد</h2><div class="frame"><iframe src="Menu-Default.html" title="منيو وِكاد"></iframe></div><a href="Menu-Default.html">افتح بشاشة كاملة</a></div>
+    <div class="phone"><h2><span style="background:#D6336C"></span>أكتوبر الوردي</h2><div class="frame"><iframe src="Menu-PinkOctober.html" title="منيو أكتوبر الوردي"></iframe></div><a href="Menu-PinkOctober.html">افتح بشاشة كاملة</a></div>
+    <div class="phone"><h2><span style="background:#006C35"></span>اليوم الوطني</h2><div class="frame"><iframe src="Menu-NationalDay.html" title="منيو اليوم الوطني"></iframe></div><a href="Menu-NationalDay.html">افتح بشاشة كاملة</a></div>
+    <div class="phone"><h2><span style="background:#14213D"></span>رمضان</h2><div class="frame"><iframe src="Menu-Ramadan.html" title="منيو رمضان"></iframe></div><a href="Menu-Ramadan.html">افتح بشاشة كاملة</a></div>
+  </div>
+</main>
+<nav class="demo-nav" aria-label="تنقل العرض">
+  <a href="index.html" class="demo-brand" dir="ltr"><span>P</span>menu</a>
+  <a href="index.html">الموقع</a>
+  <a href="Dashboard-Overview.html">لوحة التحكم</a>
+  <a href="menus.html">منيو العميل</a>
+</nav>
+</body>
+</html>

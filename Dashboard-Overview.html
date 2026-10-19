@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Pmenu — نبض المنيو</title>
+<link rel="icon" href="assets/favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&amp;family=Poppins:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F6F4EF}
+a{color:#FF5E13}a:hover{color:#FF7A3D}
+@keyframes pm-pulse{0%{box-shadow:0 0 0 0 rgba(255,94,19,.6)}100%{box-shadow:0 0 0 16px rgba(255,94,19,0)}}
+.pm-live{animation:pm-pulse 1.6s ease-out infinite}
+@media (prefers-reduced-motion: reduce){.pm-live{animation:none}}
+</style>
+<link rel="stylesheet" href="css/demo.css">
+</head>
+<body class="is-page">
+<template id="tpl-main">
+<div dir="rtl" style="font-family: 'Readex Pro', sans-serif; color: #16140F; background: radial-gradient(1100px 520px at 90% -8%, rgba(255,94,19,.14), rgba(255,94,19,0) 60%), radial-gradient(700px 420px at 0% 100%, rgba(255,94,19,.06), rgba(255,94,19,0) 60%), #F6F4EF; min-height: 100vh; display: flex; flex-wrap: wrap; align-items: stretch">
+  <div style="flex: 1 1 240px; max-width: 272px"><div data-import="Sidebar" data-props='{"active": "overview"}'></div></div>
+
+  <main style="flex: 999 1 560px; min-width: 0; padding: 32px 36px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px">
+      <div>
+        <h1 style="margin: 0; font-size: 34px; font-weight: 600">مساء الخير، وِكاد</h1>
+        <p style="margin: 6px 0 0; color: #6B675E; font-weight: 300">هذا نبض منيوك في كل الفروع</p>
+      </div>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap">
+        <label style="display: flex; align-items: center; gap: 8px; padding: 0 14px; border-radius: 14px; background: #FFFFFF; border: 1px solid rgba(22,20,15,.08); color: #3D3A33; font-size: 14px; box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16)">الفرع
+          <select style="height: 44px; border: 0; background: transparent; color: #16140F; font: inherit"><option>كل الفروع</option><option>الرئيسي</option><option>الفرع الثاني</option></select></label>
+        <div role="group" aria-label="الفترة" style="display: flex; padding: 4px; border-radius: 14px; background: #FFFFFF; border: 1px solid rgba(22,20,15,.08); box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16)">
+          <template data-for="{{ranges}}" data-as="r"><button type="button" onClick="{{r.pick}}" style="padding: 9px 16px; border: 0; border-radius: 10px; font: inherit; font-size: 14px; cursor: pointer; background: {{r.bg}}; color: {{r.fg}}">{{r.label}}</button></template>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px">
+      <div style="position: relative; overflow: hidden; padding: 22px; border-radius: 24px; background: #FF5E13; color: #0A0A0A; display: flex; flex-direction: column; gap: 10px">
+        <div aria-hidden="true" style="position: absolute; top: -40px; left: -40px; width: 130px; height: 130px; border-radius: 50%; border: 1px solid rgba(10,10,10,.25)"></div>
+        <span style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600"><span class="pm-live" style="width: 9px; height: 9px; border-radius: 50%; background: #0A0A0A"></span>يتصفحون الحين</span>
+        <strong style="font-family: 'Poppins', sans-serif; font-size: 52px; font-weight: 700; line-height: 1">{{live}}</strong>
+        <span style="font-size: 13px">٢٢ في الفرع الرئيسي · ١٥ في الفرع الثاني</span>
+      </div>
+      <template data-for="{{stats}}" data-as="s">
+        <div style="padding: 22px; border-radius: 24px; background: #FFFFFF; border: 1px solid rgba(22,20,15,.07); display: flex; flex-direction: column; gap: 10px; box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16)">
+          <span style="color: #6B675E; font-size: 14px">{{s.label}}</span>
+          <strong style="font-family: 'Poppins', sans-serif; font-size: 38px; font-weight: 600; line-height: 1">{{s.value}}</strong>
+          <span style="font-size: 13px; color: #178048">{{s.delta}}</span>
+        </div>
+      </template>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 14px">
+      <section style="flex: 2 1 520px; min-width: 0; padding: 24px; border-radius: 24px; background: #FFFFFF; border: 1px solid rgba(22,20,15,.07); display: flex; flex-direction: column; gap: 16px; box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16)">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px">
+          <h2 style="margin: 0; font-size: 18px; font-weight: 500">الزوار ومسحات الباركود</h2>
+          <div style="display: flex; gap: 16px; font-size: 13px; color: #6B675E"><span style="display: flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; border-radius: 3px; background: #FF5E13"></span>هذا الأسبوع</span><span style="display: flex; align-items: center; gap: 6px"><span style="width: 10px; height: 2px; background: #A39F95"></span>الأسبوع الماضي</span></div>
+        </div>
+        <svg viewBox="0 0 700 240" width="100%" height="240" preserveAspectRatio="none" role="img" aria-label="رسم بياني للزوار خلال الأسبوع">
+          <defs><linearGradient id="pmArea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF5E13" stop-opacity=".35"></stop><stop offset="1" stop-color="#FF5E13" stop-opacity="0"></stop></linearGradient></defs>
+          <path d="M0 60H700M0 120H700M0 180H700" stroke="rgba(22,20,15,.06)" stroke-width="1"></path>
+          <polyline points="{{prevPts}}" fill="none" stroke="#A39F95" stroke-width="2" stroke-dasharray="5 6"></polyline>
+          <polygon points="{{areaPts}}" fill="url(#pmArea)"></polygon>
+          <polyline points="{{curPts}}" fill="none" stroke="#FF5E13" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></polyline>
+          <circle cx="583" cy="{{peakY}}" r="6" fill="#FFFFFF" stroke="#FF5E13" stroke-width="3"></circle>
+        </svg>
+        <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); font-size: 13px; color: #6B675E; text-align: center"><span>السبت</span><span>الأحد</span><span>الاثنين</span><span>الثلاثاء</span><span>الأربعاء</span><span>الخميس</span><span>الجمعة</span></div>
+      </section>
+
+      <section style="flex: 1 1 300px; min-width: 0; padding: 24px; border-radius: 24px; background: linear-gradient(160deg, #FFE9DB, #FFFFFF 65%); border: 1px solid rgba(255,94,19,.25); display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; align-items: center; gap: 10px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF5E13" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"></path></svg><h2 style="margin: 0; font-size: 18px; font-weight: 500">اقتراحات Pmenu</h2></div>
+        <template data-for="{{insights}}" data-as="i">
+          <div style="padding: 14px; border-radius: 16px; background: rgba(22,20,15,.04); border: 1px solid rgba(22,20,15,.06); display: flex; flex-direction: column; gap: 8px">
+            <p style="margin: 0; font-size: 14px; line-height: 1.7; color: #2A2721">{{i.t}}</p>
+            <a href="{{i.href}}" style="font-size: 13px; font-weight: 600; color: #FF7A3D; text-decoration: none">{{i.cta}} ←</a>
+          </div>
+        </template>
+      </section>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 14px">
+      <section style="flex: 1 1 340px; min-width: 0; padding: 24px; border-radius: 24px; background: #FFFFFF; border: 1px solid rgba(22,20,15,.07); display: flex; flex-direction: column; gap: 16px; box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16)">
+        <h2 style="margin: 0; font-size: 18px; font-weight: 500">خريطة انتباه المنيو</h2>
+        <p style="margin: 0; color: #6B675E; font-size: 13px">وين يوقف العميل أطول وقت</p>
+        <template data-for="{{attention}}" data-as="a">
+          <div style="display: flex; align-items: center; gap: 12px">
+            <img src="{{a.img}}" alt="" style="width: 40px; height: 40px; border-radius: 10px; object-fit: cover; flex: none"><span style="flex: 0 0 130px; font-size: 14px">{{a.name}}</span>
+            <div style="flex: 1 1 auto; height: 30px; border-radius: 9px; background: rgba(22,20,15,.04); overflow: hidden"><div style="height: 30px; border-radius: 9px; background: {{a.color}}; width: {{a.w}}"></div></div>
+            <span style="flex: 0 0 52px; font-size: 13px; color: #6B675E; text-align: left">{{a.sec}}</span>
+          </div>
+        </template>
+      </section>
+
+      <section style="flex: 1 1 340px; min-width: 0; padding: 24px; border-radius: 24px; background: #FFFFFF; border: 1px solid rgba(22,20,15,.07); display: flex; flex-direction: column; gap: 14px; box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16)">
+        <h2 style="margin: 0; font-size: 18px; font-weight: 500">ساعات الذروة</h2>
+        <div style="display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 5px">
+          <template data-for="{{heat}}" data-as="c"><div style="height: 26px; border-radius: 6px; background: {{c.bg}}"></div></template>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); font-size: 11px; color: #6B675E; text-align: center"><span>٦ص</span><span>٩ص</span><span>١٢م</span><span>٣م</span><span>٦م</span><span>٩م</span><span>١٢ل</span><span>٣ل</span></div>
+        <div style="display: flex; gap: 24px; padding-top: 6px; border-top: 1px solid rgba(22,20,15,.06)">
+          <div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #6B675E">العربية / English</span><strong style="font-family: 'Poppins', sans-serif">82% / 18%</strong></div>
+          <div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #6B675E">زوار يرجعون</span><strong style="font-family: 'Poppins', sans-serif">41%</strong></div>
+          <div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #6B675E">من الباركود</span><strong style="font-family: 'Poppins', sans-serif">74%</strong></div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+</template>
+<template id="tpl-Sidebar">
+<nav dir="rtl" aria-label="لوحة التحكم" style="font-family: 'Readex Pro', sans-serif; color: #16140F; background: #FFFFFF; width: 100%; min-height: 1000px; box-sizing: border-box; padding: 24px 16px; display: flex; flex-direction: column; gap: 6px; border-left: 1px solid rgba(22,20,15,.07)">
+  <a href="index.html" dir="ltr" style="align-self: flex-end; padding: 0 10px 20px; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 26px; color: #16140F; text-decoration: none"><span style="color: #FF5E13">P</span>menu</a>
+  <div style="display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 16px; background: #F6F4EF; border: 1px solid rgba(22,20,15,.07); margin-bottom: 14px">
+    <div style="width: 38px; height: 38px; border-radius: 11px; background: #054026; display: flex; align-items: center; justify-content: center; flex: none"><img src="assets/wordmark-cream.svg" alt="" style="width: 26px; height: auto"></div>
+    <div style="display: flex; flex-direction: column; min-width: 0"><strong style="font-size: 15px; font-weight: 600">وِكاد</strong><span style="font-size: 12px; color: #6B675E">٣ فروع · الباقة الفخمة</span></div>
+  </div>
+  <template data-for="{{items}}" data-as="it">
+    <a href="{{it.href}}" style="display: flex; align-items: center; gap: 12px; padding: 13px 14px; border-radius: 14px; text-decoration: none; font-size: 15px; background: {{it.bg}}; color: {{it.fg}}; font-weight: {{it.fw}}">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{it.d}}"></path></svg>
+      <span style="flex: 1 1 auto">{{it.label}}</span>
+      <template data-if="{{it.badge}}"><span style="padding: 2px 8px; border-radius: 999px; background: #FF5E13; color: #0A0A0A; font-size: 11px; font-weight: 700">{{it.badge}}</span></template>
+    </a>
+  </template>
+  <div style="margin-top: 28px; position: relative; overflow: hidden; padding: 18px; border-radius: 20px; background: #E8467C; color: #fff; display: flex; flex-direction: column; gap: 8px">
+    <div aria-hidden="true" style="position: absolute; top: -30px; left: -30px; width: 100px; height: 100px; border-radius: 50%; border: 1px solid rgba(255,255,255,.45)"></div>
+    <span style="font-size: 12px; opacity: .9">Season Drop</span>
+    <strong style="font-size: 17px">أكتوبر الوردي مفعّل</strong>
+    <span style="font-size: 13px; line-height: 1.6">يرجع ثيمك تلقائياً ١ نوفمبر</span>
+  </div>
+</nav>
+</template>
+<div id="app"></div>
+<nav class="demo-nav" aria-label="تنقل العرض">
+  <a href="index.html" class="demo-brand" dir="ltr"><span>P</span>menu</a>
+  <a href="index.html">الموقع</a>
+  <a href="Dashboard-Overview.html">لوحة التحكم</a>
+  <a href="menus.html">منيو العميل</a>
+</nav>
+<script src="js/morphdom.min.js"></script>
+<script src="js/dc.js"></script>
+<script>
+DC.define('Sidebar', document.getElementById('tpl-Sidebar'), (function () {
+
+class Component extends DCLogic {
+renderVals() {
+const a = this.props.active ?? 'overview';
+const L = [
+{ k: 'overview', label: 'نبض المنيو', href: 'Dashboard-Overview.html', d: 'M3 12h4l3-8 4 16 3-8h4', badge: '' },
+{ k: 'menu', label: 'المنيو والصور', href: 'Dashboard-Menu.html', d: 'M4 6h16M4 12h16M4 18h10', badge: '' },
+{ k: 'themes', label: 'الهوية والثيمات', href: 'Dashboard-Themes.html', d: 'M12 3a9 9 0 1 0 0 18c1.5 0 2-1 2-2s-1-2 0-3h3a4 4 0 0 0 4-4c0-5-4-9-9-9zM7.5 11h.01M10.5 7h.01M15 7.5h.01', badge: '' },
+{ k: 'smart', label: 'المنيو الذكي', href: 'Dashboard-Smart.html', d: 'M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z', badge: 'جديد' },
+{ k: 'google', label: 'قوقل والظهور', href: 'Dashboard-Google.html', d: 'M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21zM12 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z', badge: '' },
+{ k: 'qr', label: 'الباركود', href: 'Dashboard-QR.html', d: 'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h3v3h-3zM20 20h1M17 20h.01M20 14h1', badge: '' },
+{ k: 'billing', label: 'الاشتراك', href: 'Dashboard-Billing.html', d: 'M2 6h20v12H2zM2 10h20', badge: '' }
+];
+return { items: L.map(x => ({ ...x, bg: x.k === a ? '#16140F' : 'transparent', fg: x.k === a ? '#FFFFFF' : '#3D3A33', fw: x.k === a ? '600' : '400' })) };
+}
+}
+
+return Component;
+})());
+DC.define('main', document.getElementById('tpl-main'), (function () {
+
+class Component extends DCLogic {
+constructor(p) { super(p); this.state = { live: 37, range: 1 }; }
+componentDidMount() { this.timer = setInterval(() => { const d = Math.round(Math.random() * 4 - 2); this.setState({ live: Math.max(20, Math.min(60, this.state.live + d)) }); }, 2200); }
+componentWillUnmount() { clearInterval(this.timer); }
+renderVals() {
+const cur = [210, 245, 230, 290, 360, 520, 470];
+const prev = [190, 200, 215, 240, 300, 430, 410];
+const y = v => Math.round(225 - v / 560 * 205);
+const x = i => Math.round(i * 700 / 6);
+const pts = a => a.map((v, i) => x(i) + ',' + y(v)).join(' ');
+const ranges = ['اليوم', '٧ أيام', '٣٠ يوم'].map((l, i) => ({ label: l, bg: this.state.range === i ? '#16140F' : 'transparent', fg: this.state.range === i ? '#FFFFFF' : '#3D3A33', pick: () => this.setState({ range: i }) }));
+const att = [['ذرا وِكاد', 9.2, 'assets/smores.jpg'], ['تشيز كيك المانجو', 8.1, 'assets/mango-cheesecake.jpg'], ['لاتيه', 6.4, 'assets/latte.jpg'], ['آيس أمريكانو', 4.9, 'assets/iced-black.jpg'], ['قهوة اليوم الباردة', 3.3, 'assets/iced-coffee.jpg']];
+const lv = [0,0,1,1,2,1,0,0, 0,1,1,2,2,2,1,0, 0,1,2,1,2,3,2,1, 0,1,1,1,2,3,3,1, 0,0,1,1,2,3,3,2, 1,1,1,2,3,3,3,2, 0,1,1,1,2,3,2,1];
+const shades = ['#F3EFE8', '#FFD3B8', '#FF9457', '#FF5E13'];
+return {
+live: this.state.live,
+ranges: ranges,
+stats: [
+{ label: 'مسحات الباركود', value: '2,325', delta: '↑ ١٨٪ عن الأسبوع الماضي' },
+{ label: 'زوار جدد', value: '1,480', delta: '↑ ١١٪' },
+{ label: 'متوسط التصفح', value: '2:34', delta: '↑ ٢٠ ثانية' }
+],
+curPts: pts(cur),
+prevPts: pts(prev),
+areaPts: '0,225 ' + pts(cur) + ' 700,225',
+peakY: y(520),
+insights: [
+{ t: '«تشيز كيك المانجو» تنشاف كثير، بس ٦٢٪ يطلعون بدون ما يكملون. جرّب صورة أقرب بالاستوديو؟', cta: 'افتح استوديو الصور', href: 'Dashboard-Menu.html' },
+{ t: 'الجو بيوصل ٤٤° بكرة. فعّل قاعدة «الباردة أول» من الساعة ١٢.', cta: 'فعّل القاعدة', href: 'Dashboard-Smart.html' },
+{ t: '١٨٪ من زوارك يتصفحون بالإنجليزي. ٤ أصناف ما لها ترجمة.', cta: 'ترجم تلقائياً', href: 'Dashboard-Menu.html' }
+],
+attention: att.map((a, i) => ({ img: a[2], name: a[0], sec: a[1] + ' ث', w: Math.round(a[1] / 9.2 * 100) + '%', color: i === 0 ? '#FF5E13' : (i < 2 ? '#FF8A47' : '#FFC9A8') })),
+heat: lv.map(l => ({ bg: shades[l] }))
+};
+}
+}
+
+return Component;
+})());
+DC.mount('main', document.getElementById('app'));
+</script>
+</body>
+</html>

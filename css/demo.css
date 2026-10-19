@@ -1,0 +1,73 @@
+*, *::before, *::after { box-sizing: border-box; }
+template { display: none; }
+
+body.is-phone {
+  background: radial-gradient(900px 500px at 85% -10%, rgba(255, 94, 19, .16), rgba(255, 94, 19, 0) 60%), #EFEBE3;
+  min-height: 100vh;
+}
+body.is-phone #app {
+  display: flex;
+  justify-content: center;
+  padding: 40px 16px 110px;
+}
+body.is-phone #app > div {
+  border-radius: 44px;
+  box-shadow: 0 0 0 10px #0A0A0A, 0 40px 90px rgba(22, 20, 15, .35);
+}
+
+.demo-nav {
+  position: fixed;
+  bottom: 18px;
+  left: 18px;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px;
+  border-radius: 999px;
+  background: rgba(22, 20, 15, .92);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 14px 40px rgba(22, 20, 15, .3);
+  font-family: 'Readex Pro', system-ui, sans-serif;
+}
+.demo-nav a {
+  padding: 10px 14px;
+  border-radius: 999px;
+  color: #F6F4EF;
+  text-decoration: none;
+  font-size: 14px;
+  white-space: nowrap;
+}
+.demo-nav a:hover { background: rgba(246, 244, 239, .12); color: #fff; }
+.demo-nav .demo-brand { font-family: 'Poppins', sans-serif; font-weight: 800; }
+.demo-nav .demo-brand span { color: #FF5E13; }
+
+@media (max-width: 760px) {
+  div:has(> [data-import="Sidebar"]) { flex: 1 1 100% !important; max-width: 100% !important; position: sticky; top: 0; z-index: 40; }
+  [data-import="Sidebar"] nav {
+    min-height: 0 !important;
+    flex-direction: row !important;
+    overflow-x: auto;
+    padding: 10px 12px !important;
+    border-left: 0 !important;
+    border-bottom: 1px solid rgba(22, 20, 15, .08);
+    scrollbar-width: none;
+  }
+  [data-import="Sidebar"] nav > a:first-child,
+  [data-import="Sidebar"] nav > div { display: none !important; }
+  [data-import="Sidebar"] nav > a { flex: none; white-space: nowrap; padding: 10px 14px !important; }
+  main { padding: 20px 16px 100px !important; }
+
+  #top h1 { font-size: 46px !important; }
+  #features h2, #drops h2, #pricing h2 { font-size: 34px !important; }
+  header nav[aria-label="القائمة الرئيسية"] { display: none !important; }
+  #features [style*="grid-column: span"] { grid-column: auto !important; }
+}
+
+@media (max-width: 560px) {
+  body.is-phone #app { padding: 0; }
+  body.is-phone #app > div { border-radius: 0; box-shadow: none; }
+  body.is-phone .demo-nav { display: none; }
+  .demo-nav { left: 50%; transform: translateX(-50%); bottom: 12px; }
+  .demo-nav a { padding: 9px 11px; font-size: 13px; }
+}

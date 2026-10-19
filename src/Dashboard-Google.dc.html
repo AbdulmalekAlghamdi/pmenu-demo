@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>Pmenu — قوقل والظهور</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&amp;family=Poppins:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F6F4EF}
+a{color:#FF5E13}a:hover{color:#FF7A3D}
+@keyframes pm-drop{0%{transform:translateY(-10px)}50%{transform:translateY(0)}100%{transform:translateY(-10px)}}
+@keyframes pm-ripple{0%{transform:scale(.4);opacity:.7}100%{transform:scale(2.4);opacity:0}}
+.pm-pin{animation:pm-drop 2.4s ease-in-out infinite}
+.pm-ripple{animation:pm-ripple 2.4s ease-out infinite}
+@media (prefers-reduced-motion: reduce){.pm-pin,.pm-ripple{animation:none}}
+</style>
+</helmet>
+<div dir="rtl" style="font-family: 'Readex Pro', sans-serif; color: #16140F; background: radial-gradient(1100px 520px at 90% -8%, rgba(255,94,19,.14), rgba(255,94,19,0) 60%), radial-gradient(700px 420px at 0% 100%, rgba(255,94,19,.06), rgba(255,94,19,0) 60%), #F6F4EF; min-height: 100vh; display: flex; flex-wrap: wrap; align-items: stretch">
+  <div style="flex: 1 1 240px; max-width: 272px"><dc-import name="Sidebar" active="google" hint-size="100%,1000px"></dc-import></div>
+
+  <main style="flex: 999 1 560px; min-width: 0; padding: 32px 36px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px">
+      <div>
+        <h1 style="margin: 0; font-size: 34px; font-weight: 600">قوقل والظهور</h1>
+        <p style="margin: 6px 0 0; color: #6B675E; font-weight: 300">خلّ اللي يدوّر على صنف، يلقى منيوك أول</p>
+      </div>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap">
+        <span style="display: flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px; background: rgba(123,216,143,.1); border: 1px solid rgba(123,216,143,.3); color: #178048; font-size: 14px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #178048"></span>مربوط بقوقل ماب</span>
+        <span style="display: flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px; background: rgba(255,94,19,.1); border: 1px solid rgba(255,94,19,.3); color: #C2410C; font-size: 14px">٢٤ صنف مفهرس في قوقل</span>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px">
+      <sc-for list="{{kpis}}" as="k" hint-placeholder-count="4">
+        <div style="padding: 22px; border-radius: 24px; background: #FFFFFF; border: 1px solid rgba(22,20,15,.07); display: flex; flex-direction: column; gap: 10px; box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16)">
+          <span style="color: #6B675E; font-size: 14px">{{k.label}}</span>
+          <strong style="font-family: 'Poppins', sans-serif; font-size: 36px; font-weight: 600; line-height: 1">{{k.value}}</strong>
+          <span style="font-size: 13px; color: #178048">{{k.delta}}</span>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch">
+      <section style="flex: 1 1 420px; min-width: 0; border-radius: 28px; background: #FFFFFF; border: 1px solid rgba(22,20,15,.07); overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16)">
+        <div style="position: relative; height: 300px; background: #E8E6E0; overflow: hidden">
+          <svg width="100%" height="100%" viewBox="0 0 600 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="600" height="300" fill="#ECEAE4"></rect>
+            <path d="M0 210 Q150 190 300 220 T600 200" stroke="#fff" stroke-width="22" fill="none"></path>
+            <path d="M0 210 Q150 190 300 220 T600 200" stroke="#F6D58A" stroke-width="8" fill="none"></path>
+            <path d="M360 0 L330 300" stroke="#fff" stroke-width="16"></path>
+            <path d="M120 0 L170 300M0 90 L600 70M480 0 L520 300" stroke="#fff" stroke-width="8"></path>
+            <rect x="190" y="105" width="120" height="70" rx="6" fill="#DCE8D5"></rect>
+            <rect x="400" y="100" width="70" height="80" rx="6" fill="#E0DED7"></rect>
+            <rect x="20" y="110" width="80" height="60" rx="6" fill="#E0DED7"></rect>
+            <rect x="200" y="235" width="110" height="60" rx="6" fill="#E0DED7"></rect>
+            <rect x="380" y="225" width="90" height="70" rx="6" fill="#CFE2EE"></rect>
+          </svg>
+          <div style="position: absolute; top: 118px; right: 270px; width: 40px; height: 40px">
+            <span class="pm-ripple" style="position: absolute; inset: 0; border-radius: 50%; background: rgba(255,94,19,.45)"></span>
+          </div>
+          <div class="pm-pin" style="position: absolute; top: 66px; right: 262px; width: 56px; height: 56px; border-radius: 50% 50% 50% 0; transform-origin: center; background: #054026; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px rgba(0,0,0,.3); rotate: -45deg">
+            <img src="/_blob/180e7683b31119fe5e372edcb2673be9" alt="" style="width: 32px; height: auto; rotate: 45deg">
+          </div>
+          <div style="position: absolute; bottom: 14px; right: 14px; left: 14px; padding: 14px; border-radius: 18px; background: #fff; color: #202124; display: flex; gap: 12px; align-items: center; box-shadow: 0 10px 30px rgba(0,0,0,.18); font-family: Arial, sans-serif">
+            <img src="/_blob/6b7575ca47bf3cb57980503ea567bb10" alt="واجهة وِكاد" style="width: 64px; height: 64px; border-radius: 12px; object-fit: cover; flex: none">
+            <div style="flex: 1 1 auto; display: flex; flex-direction: column; gap: 3px; min-width: 0">
+              <strong style="font-size: 16px">وِكاد · Wekad</strong>
+              <span style="font-size: 12px; color: #70757A">مقهى مختص · مفتوح الحين · يقفل ١٢ م</span>
+              <div style="display: flex; gap: 6px; padding-top: 3px"><span style="padding: 5px 10px; border-radius: 999px; background: #054026; color: #fff; font-size: 12px">المنيو</span><span style="padding: 5px 10px; border-radius: 999px; background: #E8F0FE; color: #1A56C4; font-size: 12px">الاتجاهات</span></div>
+            </div>
+          </div>
+        </div>
+        <div style="padding: 22px; display: flex; flex-direction: column; gap: 4px">
+          <h2 style="margin: 0 0 8px; font-size: 18px; font-weight: 500">مزامنة ملف النشاط في قوقل</h2>
+          <sc-for list="{{syncs}}" as="x" hint-placeholder-count="5">
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(22,20,15,.06)">
+              <div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px">{{x.t}}</span><span style="font-size: 12px; color: #6B675E">{{x.d}}</span></div>
+              <button type="button" onClick="{{x.toggle}}" aria-label="{{x.t}}" style="width: 52px; height: 30px; border-radius: 999px; border: 0; padding: 3px; background: {{x.bg}}; display: flex; justify-content: {{x.j}}; cursor: pointer; flex: none"><span style="width: 24px; height: 24px; border-radius: 50%; background: #F5F5F0"></span></button>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section style="flex: 1 1 440px; min-width: 0; padding: 24px; border-radius: 28px; background: #FFFFFF; border: 1px solid rgba(22,20,15,.07); display: flex; flex-direction: column; gap: 16px; box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16)">
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap">
+          <h2 style="margin: 0; font-size: 18px; font-weight: 500">كيف يطلع صنفك في البحث</h2>
+          <span style="font-size: 13px; color: #6B675E">اختر صنف</span>
+        </div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap">
+          <sc-for list="{{items}}" as="it" hint-placeholder-count="4">
+            <button type="button" onClick="{{it.pick}}" style="display: flex; align-items: center; gap: 8px; padding: 6px 14px 6px 6px; border-radius: 999px; font: inherit; font-size: 13px; cursor: pointer; background: {{it.bg}}; color: {{it.fg}}; border: 1px solid {{it.border}}"><img src="{{it.img}}" alt="" style="width: 30px; height: 30px; border-radius: 50%; object-fit: cover">{{it.n}}</button>
+          </sc-for>
+        </div>
+
+        <div style="padding: 22px; border-radius: 22px; background: #fff; color: #202124; display: flex; flex-direction: column; gap: 16px; font-family: Arial, sans-serif">
+          <div style="display: flex; align-items: center; gap: 10px; padding: 12px 18px; border-radius: 999px; border: 1px solid #DADCE0; box-shadow: 0 1px 6px rgba(32,33,36,.15); font-size: 15px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5F6368" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg>{{cur.q}}</div>
+          <div style="display: flex; gap: 16px; align-items: flex-start">
+            <img src="{{cur.img}}" alt="{{cur.n}}" style="width: 112px; height: 112px; border-radius: 14px; object-fit: cover; flex: none">
+            <div style="display: flex; flex-direction: column; gap: 5px; min-width: 0">
+              <span dir="ltr" style="font-size: 12px; color: #4D5156; text-align: right">pmenu.sa › wekad › {{cur.slug}}</span>
+              <strong style="font-size: 19px; color: #1A0DAB; font-weight: 400">{{cur.n}} | وِكاد · حفر الباطن</strong>
+              <span style="font-size: 13px; color: #4D5156; line-height: 1.6">{{cur.desc}}</span>
+              <span style="font-size: 13px; color: #70757A">{{cur.p}} ر.س · {{cur.cal}} · مفتوح الحين</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+          <div style="padding: 16px; border-radius: 18px; background: #F3F0EA; display: flex; flex-direction: column; gap: 10px">
+            <span style="font-size: 13px; color: #6B675E">جاهزية الصنف للبحث</span>
+            <div style="display: flex; align-items: center; gap: 12px"><strong style="font-family: 'Poppins', sans-serif; font-size: 30px; color: {{cur.scoreColor}}">{{cur.score}}</strong><div style="flex: 1 1 auto; height: 8px; border-radius: 99px; background: #ECE8E0"><div style="height: 8px; border-radius: 99px; background: {{cur.scoreColor}}; width: {{cur.scoreW}}"></div></div></div>
+          </div>
+          <div style="padding: 16px; border-radius: 18px; background: #F3F0EA; display: flex; flex-direction: column; gap: 8px; font-size: 13px">
+            <span style="color: #178048">✓ بيانات منظمة للمنيو (Schema)</span>
+            <span style="color: #178048">✓ صورة بنص بديل</span>
+            <span style="color: {{cur.kwColor}}">{{cur.kw}}</span>
+          </div>
+        </div>
+        <label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: #3D3A33">كلمات يبحث فيها الناس عن هذا الصنف
+          <input type="text" value="{{cur.keywords}}" style="padding: 14px; border-radius: 14px; border: 1px solid rgba(22,20,15,.12); background: #F3F0EA; color: #16140F; font: inherit"></label>
+        <button type="button" style="padding: 14px; border-radius: 999px; border: 0; background: #FF5E13; color: #0A0A0A; font: inherit; font-weight: 700">اقترح كلمات بالذكاء الاصطناعي</button>
+      </section>
+    </div>
+
+    <section style="padding: 24px; border-radius: 28px; background: #FFFFFF; border: 1px solid rgba(22,20,15,.07); display: flex; flex-direction: column; gap: 14px; box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16)">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px"><h2 style="margin: 0; font-size: 18px; font-weight: 500">وش يكتبون الناس قبل ما يوصلون لك</h2><span style="font-size: 13px; color: #6B675E">آخر ٢٨ يوم · قوقل وقوقل ماب</span></div>
+      <div style="overflow-x: auto">
+        <table style="width: 100%; min-width: 620px; border-collapse: collapse; font-size: 15px">
+          <thead><tr style="color: #6B675E; font-size: 13px; text-align: right"><th style="padding: 10px 8px; font-weight: 400">عبارة البحث</th><th style="padding: 10px 8px; font-weight: 400">ظهور</th><th style="padding: 10px 8px; font-weight: 400">دخلوا المنيو</th><th style="padding: 10px 8px; font-weight: 400">طلبوا الاتجاهات</th><th style="padding: 10px 8px; font-weight: 400">الترتيب</th></tr></thead>
+          <tbody>
+            <sc-for list="{{queries}}" as="q" hint-placeholder-count="5">
+              <tr style="border-top: 1px solid rgba(22,20,15,.06)"><td style="padding: 14px 8px">{{q.q}}</td><td style="padding: 14px 8px; font-family: 'Poppins', sans-serif">{{q.i}}</td><td style="padding: 14px 8px; font-family: 'Poppins', sans-serif">{{q.c}}</td><td style="padding: 14px 8px; font-family: 'Poppins', sans-serif">{{q.d}}</td><td style="padding: 14px 8px"><span style="padding: 4px 10px; border-radius: 999px; background: {{q.rankBg}}; color: {{q.rankFg}}; font-family: 'Poppins', sans-serif; font-size: 13px">#{{q.r}}</span></td></tr>
+            </sc-for>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1250}}'>
+class Component extends DCLogic {
+constructor(p) { super(p); this.state = { sel: 1, off: {} }; }
+renderVals() {
+const s = this.state;
+const I = [
+{ n: 'ذرا وِكاد', slug: 'thra-wekad', img: '/_blob/cf3e70c0de50761053d88353688b5a86', q: 'هوت شوكلت مارشميلو حفر الباطن', desc: 'شوكولاتة حارة مع مارشميلو محمّص بالنار، توقيع وِكاد الخاص. متوفر طول اليوم.', p: '24', cal: '٣٢٠ سعرة', score: 92, keywords: 'هوت شوكلت، مارشميلو، مشروب شتوي، حفر الباطن', kw: '✓ كلمات مفتاحية كافية', kwColor: '#178048' },
+{ n: 'تشيز كيك المانجو', slug: 'mango-cheesecake', img: '/_blob/9d167fd45658d101a5c46f34d84c3993', q: 'تشيز كيك مانجو قريب مني', desc: 'تشيز كيك كريمي بمانجو طازج على قاعدة بسكويت مقرمشة. يُحضّر يومياً.', p: '26', cal: '٣٨٠ سعرة', score: 78, keywords: 'تشيز كيك، مانجو، حلا بارد', kw: '! أضف اسم المدينة للكلمات', kwColor: '#9A6700' },
+{ n: 'لاتيه', slug: 'latte', img: '/_blob/049e92a00bf77ff8ff360eb67800e5f0', q: 'لاتيه مختص حفر الباطن', desc: 'إسبريسو من محصول مختار مع حليب مبخّر ورسمة لاتيه آرت.', p: '18', cal: '١٩٠ سعرة', score: 88, keywords: 'لاتيه، قهوة مختصة، لاتيه آرت، حفر الباطن', kw: '✓ كلمات مفتاحية كافية', kwColor: '#178048' },
+{ n: 'آيس أمريكانو', slug: 'iced-americano', img: '/_blob/ed67cfafe78b2f6ba4611f02485a7892', q: 'ايس امريكانو', desc: 'إسبريسو مزدوج على ثلج. منعش وخفيف لأيام الحر.', p: '16', cal: '١٠ سعرات', score: 64, keywords: 'امريكانو', kw: '! الوصف قصير، أضف تفاصيل', kwColor: '#9A6700' }
+];
+const c = I[s.sel];
+const cur = { ...c, scoreW: c.score + '%', scoreColor: c.score >= 85 ? '#178048' : (c.score >= 70 ? '#9A6700' : '#FF7A3D') };
+const items = I.map((x, i) => ({ n: x.n, img: x.img, bg: s.sel === i ? '#16140F' : 'transparent', fg: s.sel === i ? '#FFFFFF' : '#3D3A33', border: s.sel === i ? '#16140F' : 'rgba(22,20,15,.14)', pick: () => this.setState({ sel: i }) }));
+const S = [
+['المنيو في قوقل ماب', 'زر «المنيو» يفتح منيوك مباشرة'],
+['صور الأصناف', 'ترفع صورك لملف النشاط تلقائياً'],
+['أوقات الدوام', 'من إعدادات الفروع، مع أوقات الصلاة'],
+['الأسعار', 'أي تعديل في المنيو يوصل قوقل خلال دقائق'],
+['الثيم الموسمي', 'صورة الغلاف تتغير مع الموسم']
+];
+const syncs = S.map((x, i) => { const off = !!s.off[i]; return { t: x[0], d: x[1], bg: off ? '#D9D5CC' : '#FF5E13', j: off ? 'flex-start' : 'flex-end', toggle: () => { const o = { ...this.state.off }; o[i] = !o[i]; this.setState({ off: o }); } }; });
+const Q = [['قهوة مختصة حفر الباطن', '4,210', '612', '188', 2], ['ذرا وكاد', '1,980', '940', '310', 1], ['تشيز كيك مانجو قريب مني', '1,340', '205', '96', 3], ['كوفي مفتوح الحين', '3,870', '388', '241', 4], ['هوت شوكلت مارشميلو', '760', '122', '35', 1]];
+const queries = Q.map(q => ({ q: q[0], i: q[1], c: q[2], d: q[3], r: q[4], rankBg: q[4] <= 2 ? 'rgba(123,216,143,.14)' : 'rgba(22,20,15,.06)', rankFg: q[4] <= 2 ? '#178048' : '#3D3A33' }));
+return {
+cur, items, syncs, queries,
+kpis: [
+{ label: 'ظهور في قوقل', value: '12.1K', delta: '↑ ٣٤٪ هذا الشهر' },
+{ label: 'دخلوا المنيو من البحث', value: '2,267', delta: '↑ ٢١٪' },
+{ label: 'طلبوا الاتجاهات', value: '870', delta: '↑ ١٢٪' },
+{ label: 'مكالمات من قوقل ماب', value: '146', delta: '↑ ٨٪' }
+]
+};
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Pmenu — المنيو والصور</title>
+<link rel="icon" href="assets/favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&amp;family=Poppins:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F6F4EF}
+a{color:#FF5E13}a:hover{color:#FF7A3D}
+@keyframes pm-scan{0%{top:0}100%{top:100%}}
+.pm-scan{animation:pm-scan 2.4s ease-in-out infinite alternate}
+@media (prefers-reduced-motion: reduce){.pm-scan{animation:none}}
+</style>
+<link rel="stylesheet" href="css/demo.css">
+</head>
+<body class="is-page">
+<template id="tpl-main">
+<div dir="rtl" style="font-family: 'Readex Pro', sans-serif; color: #16140F; background: radial-gradient(1100px 520px at 90% -8%, rgba(255,94,19,.14), rgba(255,94,19,0) 60%), radial-gradient(700px 420px at 0% 100%, rgba(255,94,19,.06), rgba(255,94,19,0) 60%), #F6F4EF; min-height: 100vh; display: flex; flex-wrap: wrap; align-items: stretch">
+  <div style="flex: 1 1 240px; max-width: 272px"><div data-import="Sidebar" data-props='{"active": "menu"}'></div></div>
+
+  <main style="flex: 999 1 560px; min-width: 0; padding: 32px 36px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px">
+      <div>
+        <h1 style="margin: 0; font-size: 34px; font-weight: 600">المنيو</h1>
+        <p style="margin: 6px 0 0; color: #6B675E; font-weight: 300; display: flex; align-items: center; gap: 8px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #178048"></span>متزامن مع فودكس · آخر تحديث قبل دقيقتين</p>
+      </div>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap">
+        <button type="button" style="padding: 12px 18px; border-radius: 999px; border: 1px solid rgba(22,20,15,.16); background: transparent; color: #16140F; font: inherit">استيراد من صورة منيو</button>
+        <button type="button" style="padding: 12px 22px; border-radius: 999px; border: 0; background: #FF5E13; color: #0A0A0A; font: inherit; font-weight: 700">+ صنف جديد</button>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 8px">
+      <template data-for="{{cats}}" data-as="c">
+        <button type="button" onClick="{{c.pick}}" style="padding: 10px 18px; border-radius: 999px; font: inherit; font-size: 14px; cursor: pointer; background: {{c.bg}}; color: {{c.fg}}; border: 1px solid {{c.border}}">{{c.name}} <span style="opacity: .6">{{c.count}}</span></button>
+      </template>
+      <button type="button" style="padding: 10px 18px; border-radius: 999px; font: inherit; font-size: 14px; background: transparent; color: #6B675E; border: 1px dashed rgba(22,20,15,.2)">+ قسم</button>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start">
+      <section style="flex: 3 1 460px; min-width: 0; border-radius: 24px; background: #FFFFFF; border: 1px solid rgba(22,20,15,.07); overflow: hidden; box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16)">
+        <template data-for="{{items}}" data-as="it">
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px; padding: 16px 20px; border-bottom: 1px solid rgba(22,20,15,.06); background: {{it.rowBg}}">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#B3AEA4" aria-hidden="true"><circle cx="9" cy="6" r="1.6"></circle><circle cx="15" cy="6" r="1.6"></circle><circle cx="9" cy="12" r="1.6"></circle><circle cx="15" cy="12" r="1.6"></circle><circle cx="9" cy="18" r="1.6"></circle><circle cx="15" cy="18" r="1.6"></circle></svg>
+            <img src="{{it.img}}" alt="{{it.name}}" style="width: 64px; height: 64px; border-radius: 16px; object-fit: cover; flex: none; background: {{it.tint}}">
+            <div style="flex: 1 1 180px; min-width: 0; display: flex; flex-direction: column; gap: 5px">
+              <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap"><strong style="font-size: 16px; font-weight: 500">{{it.name}}</strong><template data-if="{{it.tag}}"><span style="padding: 2px 10px; border-radius: 999px; background: {{it.tagBg}}; color: {{it.tagFg}}; font-size: 11px; font-weight: 600">{{it.tag}}</span></template></div>
+              <span style="font-size: 13px; color: #6B675E">{{it.desc}} · {{it.cal}}</span>
+            </div>
+            <strong style="font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 600; flex: none">{{it.price}} <span style="font-family: 'Readex Pro', sans-serif; font-size: 13px; color: #6B675E; font-weight: 400">ر.س</span></strong>
+            <button type="button" onClick="{{it.toggle}}" aria-label="{{it.avLabel}}" style="width: 52px; height: 30px; border-radius: 999px; border: 0; padding: 3px; background: {{it.swBg}}; display: flex; justify-content: {{it.swJustify}}; cursor: pointer; flex: none"><span style="width: 24px; height: 24px; border-radius: 50%; background: #F5F5F0"></span></button>
+            <button type="button" onClick="{{it.pick}}" aria-label="تعديل الصنف" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid rgba(22,20,15,.1); background: transparent; display: flex; align-items: center; justify-content: center; flex: none; cursor: pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3D3A33" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"></path></svg></button>
+          </div>
+        </template>
+      </section>
+
+      <section style="flex: 2 1 360px; min-width: 0; border-radius: 24px; background: #FFFFFF; border: 1px solid rgba(22,20,15,.07); padding: 22px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16)">
+        <div style="display: flex; justify-content: space-between; align-items: center"><h2 style="margin: 0; font-size: 18px; font-weight: 500">استوديو الصور</h2><span style="padding: 4px 10px; border-radius: 999px; background: rgba(255,94,19,.14); color: #C2410C; font-size: 12px">ذكاء اصطناعي</span></div>
+        <div style="position: relative; height: 260px; border-radius: 20px; overflow: hidden; background: {{studio.bg}}; display: flex; align-items: center; justify-content: center">
+          <template data-if="{{studio.processing}}"><div class="pm-scan" style="position: absolute; right: 0; left: 0; height: 2px; background: #FF5E13; box-shadow: 0 0 24px 6px rgba(255,94,19,.6)"></div></template>
+          <img src="{{studio.img}}" alt="{{studio.item}}" style="width: {{studio.size}}; height: {{studio.size}}; border-radius: {{studio.radius}}; object-fit: cover; filter: {{studio.filter}}; box-shadow: {{studio.shadow}}">
+          <span style="position: absolute; top: 14px; right: 14px; padding: 6px 12px; border-radius: 999px; background: rgba(10,10,10,.7); font-size: 12px">{{studio.label}}</span>
+        </div>
+        <div role="group" aria-label="قبل وبعد" style="display: flex; padding: 4px; border-radius: 14px; background: #F3F0EA">
+          <template data-for="{{modes}}" data-as="m"><button type="button" onClick="{{m.pick}}" style="flex: 1 1 0; padding: 10px; border: 0; border-radius: 10px; font: inherit; font-size: 14px; cursor: pointer; background: {{m.bg}}; color: {{m.fg}}">{{m.label}}</button></template>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <span style="font-size: 14px; color: #3D3A33">خلفية الطبق</span>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap">
+            <template data-for="{{backdrops}}" data-as="b"><button type="button" onClick="{{b.pick}}" aria-label="{{b.name}}" style="width: 48px; height: 48px; border-radius: 14px; background: {{b.c}}; border: 0; cursor: pointer; outline: {{b.ring}}; outline-offset: 3px"></button></template>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+          <button type="button" style="padding: 12px; border-radius: 12px; border: 1px solid rgba(22,20,15,.1); background: transparent; color: #16140F; font: inherit; font-size: 14px">إزالة الخلفية ✓</button>
+          <button type="button" style="padding: 12px; border-radius: 12px; border: 1px solid rgba(22,20,15,.1); background: transparent; color: #16140F; font: inherit; font-size: 14px">تحسين الإضاءة ✓</button>
+          <button type="button" style="padding: 12px; border-radius: 12px; border: 1px solid rgba(22,20,15,.1); background: transparent; color: #16140F; font: inherit; font-size: 14px">بخار وحركة</button>
+          <button type="button" style="padding: 12px; border-radius: 12px; border: 1px solid rgba(22,20,15,.1); background: transparent; color: #16140F; font: inherit; font-size: 14px">تجربة A/B بصورتين</button>
+        </div>
+        <button type="button" style="padding: 15px; border-radius: 999px; border: 0; background: #FF5E13; color: #0A0A0A; font: inherit; font-weight: 700">اعتمد الصورة لـ «{{studio.item}}»</button>
+      </section>
+    </div>
+
+    <section style="border-radius: 24px; background: #FFFFFF; border: 1px solid rgba(22,20,15,.07); padding: 20px 22px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px; justify-content: space-between; box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16)">
+      <strong style="font-size: 16px; font-weight: 500">شكل عرض الأصناف عند العميل</strong>
+      <div role="group" aria-label="شكل العرض" style="display: flex; gap: 10px; flex-wrap: wrap">
+        <template data-for="{{layouts}}" data-as="l">
+          <button type="button" onClick="{{l.pick}}" style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 12px 16px; border-radius: 16px; font: inherit; font-size: 13px; cursor: pointer; background: {{l.bg}}; color: {{l.fg}}; border: 1px solid {{l.border}}">
+            <svg width="34" height="26" viewBox="0 0 34 26" fill="currentColor" aria-hidden="true"><path d="{{l.d}}"></path></svg>{{l.name}}
+          </button>
+        </template>
+      </div>
+    </section>
+  </main>
+</div>
+</template>
+<template id="tpl-Sidebar">
+<nav dir="rtl" aria-label="لوحة التحكم" style="font-family: 'Readex Pro', sans-serif; color: #16140F; background: #FFFFFF; width: 100%; min-height: 1000px; box-sizing: border-box; padding: 24px 16px; display: flex; flex-direction: column; gap: 6px; border-left: 1px solid rgba(22,20,15,.07)">
+  <a href="index.html" dir="ltr" style="align-self: flex-end; padding: 0 10px 20px; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 26px; color: #16140F; text-decoration: none"><span style="color: #FF5E13">P</span>menu</a>
+  <div style="display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 16px; background: #F6F4EF; border: 1px solid rgba(22,20,15,.07); margin-bottom: 14px">
+    <div style="width: 38px; height: 38px; border-radius: 11px; background: #054026; display: flex; align-items: center; justify-content: center; flex: none"><img src="assets/wordmark-cream.svg" alt="" style="width: 26px; height: auto"></div>
+    <div style="display: flex; flex-direction: column; min-width: 0"><strong style="font-size: 15px; font-weight: 600">وِكاد</strong><span style="font-size: 12px; color: #6B675E">٣ فروع · الباقة الفخمة</span></div>
+  </div>
+  <template data-for="{{items}}" data-as="it">
+    <a href="{{it.href}}" style="display: flex; align-items: center; gap: 12px; padding: 13px 14px; border-radius: 14px; text-decoration: none; font-size: 15px; background: {{it.bg}}; color: {{it.fg}}; font-weight: {{it.fw}}">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{it.d}}"></path></svg>
+      <span style="flex: 1 1 auto">{{it.label}}</span>
+      <template data-if="{{it.badge}}"><span style="padding: 2px 8px; border-radius: 999px; background: #FF5E13; color: #0A0A0A; font-size: 11px; font-weight: 700">{{it.badge}}</span></template>
+    </a>
+  </template>
+  <div style="margin-top: 28px; position: relative; overflow: hidden; padding: 18px; border-radius: 20px; background: #E8467C; color: #fff; display: flex; flex-direction: column; gap: 8px">
+    <div aria-hidden="true" style="position: absolute; top: -30px; left: -30px; width: 100px; height: 100px; border-radius: 50%; border: 1px solid rgba(255,255,255,.45)"></div>
+    <span style="font-size: 12px; opacity: .9">Season Drop</span>
+    <strong style="font-size: 17px">أكتوبر الوردي مفعّل</strong>
+    <span style="font-size: 13px; line-height: 1.6">يرجع ثيمك تلقائياً ١ نوفمبر</span>
+  </div>
+</nav>
+</template>
+<div id="app"></div>
+<nav class="demo-nav" aria-label="تنقل العرض">
+  <a href="index.html" class="demo-brand" dir="ltr"><span>P</span>menu</a>
+  <a href="index.html">الموقع</a>
+  <a href="Dashboard-Overview.html">لوحة التحكم</a>
+  <a href="menus.html">منيو العميل</a>
+</nav>
+<script src="js/morphdom.min.js"></script>
+<script src="js/dc.js"></script>
+<script>
+DC.define('Sidebar', document.getElementById('tpl-Sidebar'), (function () {
+
+class Component extends DCLogic {
+renderVals() {
+const a = this.props.active ?? 'overview';
+const L = [
+{ k: 'overview', label: 'نبض المنيو', href: 'Dashboard-Overview.html', d: 'M3 12h4l3-8 4 16 3-8h4', badge: '' },
+{ k: 'menu', label: 'المنيو والصور', href: 'Dashboard-Menu.html', d: 'M4 6h16M4 12h16M4 18h10', badge: '' },
+{ k: 'themes', label: 'الهوية والثيمات', href: 'Dashboard-Themes.html', d: 'M12 3a9 9 0 1 0 0 18c1.5 0 2-1 2-2s-1-2 0-3h3a4 4 0 0 0 4-4c0-5-4-9-9-9zM7.5 11h.01M10.5 7h.01M15 7.5h.01', badge: '' },
+{ k: 'smart', label: 'المنيو الذكي', href: 'Dashboard-Smart.html', d: 'M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z', badge: 'جديد' },
+{ k: 'google', label: 'قوقل والظهور', href: 'Dashboard-Google.html', d: 'M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21zM12 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z', badge: '' },
+{ k: 'qr', label: 'الباركود', href: 'Dashboard-QR.html', d: 'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h3v3h-3zM20 20h1M17 20h.01M20 14h1', badge: '' },
+{ k: 'billing', label: 'الاشتراك', href: 'Dashboard-Billing.html', d: 'M2 6h20v12H2zM2 10h20', badge: '' }
+];
+return { items: L.map(x => ({ ...x, bg: x.k === a ? '#16140F' : 'transparent', fg: x.k === a ? '#FFFFFF' : '#3D3A33', fw: x.k === a ? '600' : '400' })) };
+}
+}
+
+return Component;
+})());
+DC.define('main', document.getElementById('tpl-main'), (function () {
+
+class Component extends DCLogic {
+constructor(p) { super(p); this.state = { cat: 0, sel: 1, after: true, bd: 0, layout: 0, off: { 4: true } }; }
+renderVals() {
+const s = this.state;
+const catN = [['قهوة باردة', 8], ['قهوة حارة', 10], ['حلا', 6], ['مخبوزات', 5], ['عروض أكتوبر', 3]];
+const cats = catN.map((c, i) => ({ name: c[0], count: c[1], bg: s.cat === i ? '#16140F' : 'transparent', fg: s.cat === i ? '#FFFFFF' : '#3D3A33', border: s.cat === i ? '#16140F' : 'rgba(22,20,15,.14)', pick: () => this.setState({ cat: i }) }));
+const raw = [
+{ name: 'ذرا وِكاد', desc: 'شوكولاتة حارة ومارشميلو محمّص', cal: '٣٢٠ سعرة', price: '24', tag: 'الأكثر طلباً', tagBg: 'rgba(255,94,19,.16)', tagFg: '#C2410C', tint: '#2A211B', img: 'assets/smores.jpg' },
+{ name: 'تشيز كيك المانجو', desc: 'مانجو طازج على قاعدة بسكويت', cal: '٣٨٠ سعرة', price: '26', tag: 'جاهزة للاستوديو', tagBg: 'rgba(240,200,80,.14)', tagFg: '#9A6700', tint: '#2A2318', img: 'assets/mango-cheesecake.jpg' },
+{ name: 'لاتيه', desc: 'إسبريسو وحليب مبخّر', cal: '١٩٠ سعرة', price: '18', tag: 'A/B يعمل', tagBg: 'rgba(123,216,143,.14)', tagFg: '#178048', tint: '#26201A', img: 'assets/latte.jpg' },
+{ name: 'آيس أمريكانو', desc: 'إسبريسو مزدوج على ثلج', cal: '١٠ سعرات', price: '16', tag: '', tagBg: '', tagFg: '', tint: '#1E1A17', img: 'assets/iced-black.jpg' },
+{ name: 'قهوة اليوم الباردة', desc: 'محصول إثيوبي مقطّر', cal: '٥ سعرات', price: '19', tag: 'نفد اليوم', tagBg: 'rgba(22,20,15,.08)', tagFg: '#6B675E', tint: '#231C18', img: 'assets/iced-coffee.jpg' }
+];
+const items = raw.map((r, i) => {
+const off = !!s.off[i];
+return { ...r, rowBg: s.sel === i ? 'rgba(255,94,19,.06)' : 'transparent', swBg: off ? '#D9D5CC' : '#FF5E13', swJustify: off ? 'flex-start' : 'flex-end', avLabel: off ? 'غير متوفر' : 'متوفر', toggle: () => { const o = { ...this.state.off }; o[i] = !o[i]; this.setState({ off: o }); }, pick: () => this.setState({ sel: i }) };
+});
+const B = [['دافئ', '#E9D7BE'], ['رخام', '#E6E4E0'], ['خشب', '#6B4A33'], ['أسود فخم', '#151515'], ['برتقالي Pmenu', '#FF5E13']];
+const backdrops = B.map((b, i) => ({ name: b[0], c: b[1], ring: s.bd === i ? '2px solid #16140F' : '0 solid transparent', pick: () => this.setState({ bd: i, after: true }) }));
+const it = raw[s.sel];
+const studio = s.after
+? { bg: B[s.bd][1], img: it.img, size: '200px', radius: '28px', filter: 'saturate(1.2) contrast(1.06) brightness(1.04)', shadow: '0 30px 60px rgba(0,0,0,.4)', label: 'بعد · Pmenu Studio', processing: true, item: it.name }
+: { bg: '#3A3530', img: it.img, size: '100%', radius: '0', filter: 'brightness(.55) saturate(.45) blur(.8px)', shadow: 'none', label: 'قبل · صورة الجوال', processing: false, item: it.name };
+const modes = [['قبل', false], ['بعد', true]].map(m => ({ label: m[0], bg: s.after === m[1] ? '#16140F' : 'transparent', fg: s.after === m[1] ? '#FFFFFF' : '#3D3A33', pick: () => this.setState({ after: m[1] }) }));
+const L = [
+['كروت', 'M0 0h16v12H0zM18 0h16v12H18zM0 14h16v12H0zM18 14h16v12H18z'],
+['قائمة', 'M0 0h8v7H0zM10 2h24v3H10zM0 9.5h8v7H0zM10 11.5h24v3H10zM0 19h8v7H0zM10 21h24v3H10z'],
+['صور كبيرة', 'M0 0h34v18H0zM0 20h22v2.5H0zM0 24h14v2H0z'],
+['بدون صور', 'M0 2h34v3H0zM0 11.5h34v3H0zM0 21h34v3H0z']
+];
+const layouts = L.map((l, i) => ({ name: l[0], d: l[1], bg: s.layout === i ? 'rgba(255,94,19,.12)' : 'transparent', fg: s.layout === i ? '#FF7A3D' : '#3D3A33', border: s.layout === i ? '#FF5E13' : 'rgba(22,20,15,.12)', pick: () => this.setState({ layout: i }) }));
+return { cats, items, backdrops, studio, modes, layouts };
+}
+}
+
+return Component;
+})());
+DC.mount('main', document.getElementById('app'));
+</script>
+</body>
+</html>

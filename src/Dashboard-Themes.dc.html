@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>Pmenu — الهوية والثيمات</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&amp;family=Poppins:wght@500;600;700;800&amp;family=Reem+Kufi:wght@500;700&amp;family=El+Messiri:wght@500;700&amp;family=Amiri:wght@700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F6F4EF}
+a{color:#FF5E13}a:hover{color:#FF7A3D}
+input[type=range]{accent-color:#FF5E13}
+</style>
+</helmet>
+<div dir="rtl" style="font-family: 'Readex Pro', sans-serif; color: #16140F; background: radial-gradient(1100px 520px at 90% -8%, rgba(255,94,19,.14), rgba(255,94,19,0) 60%), radial-gradient(700px 420px at 0% 100%, rgba(255,94,19,.06), rgba(255,94,19,0) 60%), #F6F4EF; min-height: 100vh; display: flex; flex-wrap: wrap; align-items: stretch">
+  <div style="flex: 1 1 240px; max-width: 272px"><dc-import name="Sidebar" active="themes" hint-size="100%,1000px"></dc-import></div>
+
+  <main style="flex: 999 1 560px; min-width: 0; padding: 32px 36px; box-sizing: border-box; display: flex; flex-direction: column; gap: 22px">
+    <div>
+      <h1 style="margin: 0; font-size: 34px; font-weight: 600">الهوية والثيمات</h1>
+      <p style="margin: 6px 0 0; color: #6B675E; font-weight: 300">الثيم المفعّل الحين: <strong style="color: #16140F; font-weight: 500">{{cur.name}}</strong></p>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch">
+      <section style="flex: 3 1 520px; min-width: 0; padding: 26px; border-radius: 28px; background: #FFFFFF; border: 1px solid rgba(22,20,15,.07); display: flex; flex-direction: column; gap: 22px; box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16)">
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 22px">
+          <div style="position: relative; width: 120px; height: 120px; border-radius: 30px; background: #054026; display: flex; align-items: center; justify-content: center; flex: none"><img src="/_blob/180e7683b31119fe5e372edcb2673be9" alt="شعار وِكاد" style="width: 82px; height: auto">
+            <span style="position: absolute; bottom: -8px; left: -8px; padding: 4px 10px; border-radius: 999px; background: #FF5E13; color: #0A0A0A; font-size: 11px; font-weight: 700">شعارك</span>
+          </div>
+          <div style="flex: 1 1 260px; display: flex; flex-direction: column; gap: 12px">
+            <div style="display: flex; align-items: center; gap: 8px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF5E13" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"></path></svg><strong style="font-size: 18px; font-weight: 500">بصمة الهوية</strong></div>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap">
+              <sc-for list="{{dna}}" as="c" hint-placeholder-count="5"><div style="display: flex; flex-direction: column; gap: 6px; align-items: center"><div style="width: 50px; height: 50px; border-radius: 14px; background: {{c.hex}}; box-shadow: inset 0 0 0 1px rgba(22,20,15,.1)"></div><span dir="ltr" style="font-family: 'Poppins', sans-serif; font-size: 10px; color: #6B675E">{{c.hex}}</span></div></sc-for>
+            </div>
+            <span style="font-size: 13px; color: #6B675E">الطابع المكتشف: أخضر نجدي · هادئ · قهوة مختصة</span>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; padding: 18px; border-radius: 20px; background: #F3F0EA">
+          <label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px"><span style="display: flex; justify-content: space-between; color: #6B675E"><span>هادئ</span><span>جريء</span></span><input type="range" min="0" max="100" value="{{bold}}" onChange="{{setBold}}" aria-label="درجة الجرأة"></label>
+          <label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px"><span style="display: flex; justify-content: space-between; color: #6B675E"><span>كلاسيك</span><span>عصري</span></span><input type="range" min="0" max="100" value="62" aria-label="الطابع"></label>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px">
+          <sc-for list="{{brand}}" as="t" hint-placeholder-count="4">
+            <button type="button" onClick="{{t.pick}}" style="padding: 10px; border-radius: 20px; background: #F3F0EA; border: 2px solid {{t.ring}}; font: inherit; color: #16140F; cursor: pointer; display: flex; flex-direction: column; gap: 10px; text-align: right">
+              <div style="height: 150px; border-radius: 14px; background: {{t.bg}}; overflow: hidden; display: flex; flex-direction: column">
+                <div style="height: 50px; background: {{t.hero}}"></div>
+                <div style="padding: 8px; display: flex; flex-direction: column; gap: 6px"><div style="height: 18px; border-radius: 6px; background: {{t.card}}"></div><div style="height: 18px; border-radius: 6px; background: {{t.card}}"></div><div style="width: 50%; height: 14px; border-radius: 99px; background: {{t.accent}}"></div></div>
+              </div>
+              <span style="font-size: 14px; display: flex; justify-content: space-between; align-items: center">{{t.name}}<span style="font-size: 12px; color: #FF7A3D">{{t.mark}}</span></span>
+            </button>
+          </sc-for>
+        </div>
+      </section>
+
+      <section style="flex: 2 1 320px; min-width: 0; padding: 26px; border-radius: 28px; background: #FFFFFF; border: 1px solid rgba(22,20,15,.07); display: flex; flex-direction: column; gap: 16px; align-items: center; box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16)">
+        <span style="align-self: stretch; font-size: 14px; color: #6B675E">معاينة حيّة</span>
+        <div style="width: 250px; height: 500px; border-radius: 40px; background: #000; padding: 9px; box-sizing: border-box; box-shadow: 0 30px 80px rgba(0,0,0,.5), 0 0 0 1px rgba(22,20,15,.1)">
+          <div style="width: 100%; height: 100%; border-radius: 32px; overflow: hidden; background: {{cur.bg}}; display: flex; flex-direction: column">
+            <div style="position: relative; height: 150px; background: {{cur.hero}}; overflow: hidden"><img src="/_blob/6b7575ca47bf3cb57980503ea567bb10" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .5; mix-blend-mode: luminosity"><div style="position: absolute; inset: 0; padding: 18px; display: flex; flex-direction: column; justify-content: flex-end; background: linear-gradient(transparent 20%, {{cur.hero}})">
+              <span style="font-size: 11px; color: {{cur.heroFg}}; opacity: .8">{{cur.name}}</span>
+              <strong style="font-family: {{cur.font}}; font-size: 26px; color: {{cur.heroFg}}">وِكاد</strong>
+            </div></div>
+            <div style="padding: 12px; display: flex; flex-direction: column; gap: 9px">
+              <div style="display: flex; gap: 6px"><span style="padding: 6px 12px; border-radius: 99px; background: {{cur.accent}}; color: {{cur.onAccent}}; font-size: 11px">مشروبات</span><span style="padding: 6px 12px; border-radius: 99px; background: {{cur.card}}; color: {{cur.fg}}; font-size: 11px">حلا</span></div>
+              <sc-for list="{{dishes}}" as="d" hint-placeholder-count="3">
+                <div style="display: flex; align-items: center; gap: 10px; padding: 9px; border-radius: 14px; background: {{cur.card}}; color: {{cur.fg}}"><img src="{{d.img}}" alt="{{d.n}}" style="width: 44px; height: 44px; border-radius: 10px; object-fit: cover; background: {{cur.thumb}}"><span style="flex: 1 1 auto; font-size: 13px">{{d.n}}</span><strong style="font-size: 13px; color: {{cur.price}}">{{d.p}}</strong></div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+        <button type="button" style="align-self: stretch; padding: 15px; border-radius: 999px; border: 0; background: #FF5E13; color: #0A0A0A; font: inherit; font-weight: 700">انشر الثيم على الباركود</button>
+      </section>
+    </div>
+
+    <section style="padding: 26px; border-radius: 28px; background: #FFFFFF; border: 1px solid rgba(22,20,15,.07); display: flex; flex-direction: column; gap: 18px; box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16)">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px">
+        <div><h2 style="margin: 0; font-size: 22px; font-weight: 600">Season Drops</h2><p style="margin: 4px 0 0; color: #6B675E; font-size: 14px; font-weight: 300">جدوِل المواسم مرة وحدة، ونفعّلها ونرجّع ثيمك تلقائياً</p></div>
+        <span style="font-size: 14px; color: #3D3A33">٣ مواسم مجدولة</span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px">
+        <sc-for list="{{seasons}}" as="t" hint-placeholder-count="6">
+          <div style="border-radius: 22px; overflow: hidden; background: #F3F0EA; border: 2px solid {{t.ring}}; display: flex; flex-direction: column">
+            <button type="button" onClick="{{t.pick}}" style="height: 150px; border: 0; background: {{t.hero}}; color: {{t.heroFg}}; font: inherit; text-align: right; padding: 16px; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer">
+              <span style="font-size: 12px; opacity: .85">{{t.when}}</span>
+              <strong style="font-family: {{t.font}}; font-size: 24px">{{t.name}}</strong>
+            </button>
+            <div style="padding: 12px 14px; display: flex; justify-content: space-between; align-items: center; font-size: 13px">
+              <span style="color: {{t.stColor}}">{{t.status}}</span>
+              <button type="button" onClick="{{t.sched}}" aria-label="جدولة {{t.name}}" style="width: 44px; height: 26px; border-radius: 999px; border: 0; padding: 3px; background: {{t.swBg}}; display: flex; justify-content: {{t.swJ}}; cursor: pointer"><span style="width: 20px; height: 20px; border-radius: 50%; background: #F5F5F0"></span></button>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="position: relative; overflow: hidden; padding: 32px; border-radius: 28px; background: #FFE7D9; color: #0A0A0A; display: flex; flex-wrap: wrap; gap: 28px; align-items: center">
+      <div aria-hidden="true" style="position: absolute; top: -70px; left: -70px; width: 240px; height: 240px; border-radius: 50%; background: #FF5E13"></div>
+      <div aria-hidden="true" style="position: absolute; top: -110px; left: 60px; width: 260px; height: 260px; border-radius: 50%; border: 1px solid rgba(10,10,10,.25)"></div>
+      <div style="position: relative; flex: 1 1 320px; display: flex; flex-direction: column; gap: 10px">
+        <h2 style="margin: 0; font-size: 28px; font-weight: 700">تبي ثيم ما عند أحد؟</h2>
+        <p style="margin: 0; line-height: 1.8; color: #E3DED4">فريق Pmenu يصمم لك منيو خاص حسب اشتراطاتك: خطوط، رسومات يدوية، وأيقونات أصناف خاصة. تسليم خلال [المدة].</p>
+      </div>
+      <div style="position: relative; flex: 1 1 360px; display: flex; flex-direction: column; gap: 10px">
+        <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 500">وش تتخيل؟<textarea rows="3" style="padding: 14px; border-radius: 16px; border: 1px solid #3D3A33; background: #fff; font: inherit; resize: vertical">طابع نجدي تراثي بألوان الشعار، ورسومات دلة وفناجيل</textarea></label>
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap">
+          <button type="button" style="padding: 12px 16px; border-radius: 999px; border: 1px dashed #6B675E; background: transparent; font: inherit">+ ارفع مراجع</button>
+          <button type="button" style="padding: 14px 24px; border-radius: 999px; border: 0; background: #0A0A0A; color: #F5F5F0; font: inherit; font-weight: 700">أرسل الطلب · [المبلغ]</button>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1500}}'>
+class Component extends DCLogic {
+constructor(p) { super(p); this.state = { sel: 's4', bold: 40, sched: { s0: true, s1: true, s4: true } }; }
+renderVals() {
+const s = this.state;
+const k = s.bold / 100;
+const B = [
+{ id: 'b0', name: 'وِكاد الكلاسيك', bg: '#F4F1EA', hero: '#054026', heroFg: '#EDE6DA', card: '#FFFFFF', fg: '#0C1A12', accent: '#0A6B41', onAccent: '#FFFFFF', thumb: '#DEC49E', price: '#0A6B41', font: "'Readex Pro', sans-serif" },
+{ id: 'b1', name: 'ليل نجد', bg: '#06130C', hero: k > 0.5 ? '#0A6B41' : '#054026', heroFg: '#ECD7B4', card: '#0E2318', fg: '#ECD7B4', accent: '#DEC49E', onAccent: '#06130C', thumb: '#1B3A2A', price: '#DEC49E', font: "'Reem Kufi', sans-serif" },
+{ id: 'b2', name: 'رمل', bg: '#FBF6EC', hero: k > 0.5 ? '#B98A4E' : '#DEC49E', heroFg: '#054026', card: '#F3E7D2', fg: '#3A2A1C', accent: '#054026', onAccent: '#ECD7B4', thumb: '#E8D3B0', price: '#6B4A35', font: "'El Messiri', serif" },
+{ id: 'b3', name: 'موكا', bg: '#F5EFE9', hero: '#6B4A35', heroFg: '#EDE6DA', card: '#FFFFFF', fg: '#2E1F15', accent: '#0A6B41', onAccent: '#FFFFFF', thumb: '#D9C3AF', price: '#6B4A35', font: "'Readex Pro', sans-serif" }
+];
+const S = [
+{ id: 's0', name: 'يوم التأسيس', when: '٢٢ فبراير', hero: '#6B3E1F', heroFg: '#F6E7CF', bg: '#F6EBDD', card: '#FFFFFF', fg: '#3E2412', accent: '#6B3E1F', onAccent: '#F6E7CF', thumb: '#E3CBA8', price: '#6B3E1F', font: "'Reem Kufi', sans-serif" },
+{ id: 's1', name: 'رمضان', when: 'مع الهلال', hero: '#14213D', heroFg: '#E0B654', bg: '#0F1830', card: '#1A2747', fg: '#F2E8D0', accent: '#E0B654', onAccent: '#14213D', thumb: '#2A3A63', price: '#E0B654', font: "'Amiri', serif" },
+{ id: 's2', name: 'العيد', when: 'شوال', hero: '#F4E9D8', heroFg: '#5A3B12', bg: '#FFFBF4', card: '#FFFFFF', fg: '#3E2A0E', accent: '#B8892F', onAccent: '#FFFFFF', thumb: '#F0E0C2', price: '#8A6420', font: "'El Messiri', serif" },
+{ id: 's3', name: 'اليوم الوطني', when: '٢٣ سبتمبر', hero: '#006C35', heroFg: '#FFFFFF', bg: '#F2F7F3', card: '#FFFFFF', fg: '#0E2A1A', accent: '#006C35', onAccent: '#FFFFFF', thumb: '#CFE6D7', price: '#006C35', font: "'Reem Kufi', sans-serif" },
+{ id: 's4', name: 'أكتوبر الوردي', when: 'مفعّل · لين ٣١ أكتوبر', hero: '#E8467C', heroFg: '#FFFFFF', bg: '#FFF1F5', card: '#FFFFFF', fg: '#5C1530', accent: '#D6336C', onAccent: '#FFFFFF', thumb: '#FAD0DE', price: '#C2255C', font: "'El Messiri', serif" },
+{ id: 's5', name: 'الشتاء', when: 'ديسمبر', hero: '#DCE6F2', heroFg: '#1F3A5F', bg: '#F4F7FB', card: '#FFFFFF', fg: '#1F3A5F', accent: '#1F3A5F', onAccent: '#FFFFFF', thumb: '#D5E0EE', price: '#2F5788', font: "'Readex Pro', sans-serif" }
+];
+const all = B.concat(S);
+const cur = all.find(t => t.id === s.sel) || S[4];
+const brand = B.map(t => ({ ...t, ring: s.sel === t.id ? '#FF5E13' : 'transparent', mark: s.sel === t.id ? 'مفعّل' : '', pick: () => this.setState({ sel: t.id }) }));
+const seasons = S.map(t => {
+const on = !!s.sched[t.id];
+const live = t.id === 's4';
+return { ...t, ring: s.sel === t.id ? '#FF5E13' : 'transparent', status: live ? 'شغّال الحين' : (on ? 'مجدول' : 'غير مجدول'), stColor: live ? '#FF7A3D' : (on ? '#178048' : '#6B675E'), swBg: on ? '#FF5E13' : '#D9D5CC', swJ: on ? 'flex-end' : 'flex-start', pick: () => this.setState({ sel: t.id }), sched: () => { const o = { ...this.state.sched }; o[t.id] = !o[t.id]; this.setState({ sched: o }); } };
+});
+return {
+cur, brand, seasons,
+bold: s.bold,
+setBold: (e) => this.setState({ bold: Number(e.target.value) }),
+dna: [{ hex: '#054026' }, { hex: '#0A6B41' }, { hex: '#DEC49E' }, { hex: '#EDE6DA' }, { hex: '#6B4A35' }],
+dishes: [{ n: 'ذرا وِكاد', p: '24', img: '/_blob/cf3e70c0de50761053d88353688b5a86' }, { n: 'لاتيه', p: '18', img: '/_blob/049e92a00bf77ff8ff360eb67800e5f0' }, { n: 'تشيز كيك المانجو', p: '26', img: '/_blob/9d167fd45658d101a5c46f34d84c3993' }]
+};
+}
+}
+</script>
+</body>
+</html>

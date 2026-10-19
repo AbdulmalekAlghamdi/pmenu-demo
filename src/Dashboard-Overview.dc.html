@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>Pmenu — نبض المنيو</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&amp;family=Poppins:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F6F4EF}
+a{color:#FF5E13}a:hover{color:#FF7A3D}
+@keyframes pm-pulse{0%{box-shadow:0 0 0 0 rgba(255,94,19,.6)}100%{box-shadow:0 0 0 16px rgba(255,94,19,0)}}
+.pm-live{animation:pm-pulse 1.6s ease-out infinite}
+@media (prefers-reduced-motion: reduce){.pm-live{animation:none}}
+</style>
+</helmet>
+<div dir="rtl" style="font-family: 'Readex Pro', sans-serif; color: #16140F; background: radial-gradient(1100px 520px at 90% -8%, rgba(255,94,19,.14), rgba(255,94,19,0) 60%), radial-gradient(700px 420px at 0% 100%, rgba(255,94,19,.06), rgba(255,94,19,0) 60%), #F6F4EF; min-height: 100vh; display: flex; flex-wrap: wrap; align-items: stretch">
+  <div style="flex: 1 1 240px; max-width: 272px"><dc-import name="Sidebar" active="overview" hint-size="100%,1000px"></dc-import></div>
+
+  <main style="flex: 999 1 560px; min-width: 0; padding: 32px 36px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px">
+      <div>
+        <h1 style="margin: 0; font-size: 34px; font-weight: 600">مساء الخير، وِكاد</h1>
+        <p style="margin: 6px 0 0; color: #6B675E; font-weight: 300">هذا نبض منيوك في كل الفروع</p>
+      </div>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap">
+        <label style="display: flex; align-items: center; gap: 8px; padding: 0 14px; border-radius: 14px; background: #FFFFFF; border: 1px solid rgba(22,20,15,.08); color: #3D3A33; font-size: 14px; box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16)">الفرع
+          <select style="height: 44px; border: 0; background: transparent; color: #16140F; font: inherit"><option>كل الفروع</option><option>الرئيسي</option><option>الفرع الثاني</option></select></label>
+        <div role="group" aria-label="الفترة" style="display: flex; padding: 4px; border-radius: 14px; background: #FFFFFF; border: 1px solid rgba(22,20,15,.08); box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16)">
+          <sc-for list="{{ranges}}" as="r" hint-placeholder-count="3"><button type="button" onClick="{{r.pick}}" style="padding: 9px 16px; border: 0; border-radius: 10px; font: inherit; font-size: 14px; cursor: pointer; background: {{r.bg}}; color: {{r.fg}}">{{r.label}}</button></sc-for>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px">
+      <div style="position: relative; overflow: hidden; padding: 22px; border-radius: 24px; background: #FF5E13; color: #0A0A0A; display: flex; flex-direction: column; gap: 10px">
+        <div aria-hidden="true" style="position: absolute; top: -40px; left: -40px; width: 130px; height: 130px; border-radius: 50%; border: 1px solid rgba(10,10,10,.25)"></div>
+        <span style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600"><span class="pm-live" style="width: 9px; height: 9px; border-radius: 50%; background: #0A0A0A"></span>يتصفحون الحين</span>
+        <strong style="font-family: 'Poppins', sans-serif; font-size: 52px; font-weight: 700; line-height: 1">{{live}}</strong>
+        <span style="font-size: 13px">٢٢ في الفرع الرئيسي · ١٥ في الفرع الثاني</span>
+      </div>
+      <sc-for list="{{stats}}" as="s" hint-placeholder-count="3">
+        <div style="padding: 22px; border-radius: 24px; background: #FFFFFF; border: 1px solid rgba(22,20,15,.07); display: flex; flex-direction: column; gap: 10px; box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16)">
+          <span style="color: #6B675E; font-size: 14px">{{s.label}}</span>
+          <strong style="font-family: 'Poppins', sans-serif; font-size: 38px; font-weight: 600; line-height: 1">{{s.value}}</strong>
+          <span style="font-size: 13px; color: #178048">{{s.delta}}</span>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 14px">
+      <section style="flex: 2 1 520px; min-width: 0; padding: 24px; border-radius: 24px; background: #FFFFFF; border: 1px solid rgba(22,20,15,.07); display: flex; flex-direction: column; gap: 16px; box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16)">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px">
+          <h2 style="margin: 0; font-size: 18px; font-weight: 500">الزوار ومسحات الباركود</h2>
+          <div style="display: flex; gap: 16px; font-size: 13px; color: #6B675E"><span style="display: flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; border-radius: 3px; background: #FF5E13"></span>هذا الأسبوع</span><span style="display: flex; align-items: center; gap: 6px"><span style="width: 10px; height: 2px; background: #A39F95"></span>الأسبوع الماضي</span></div>
+        </div>
+        <svg viewBox="0 0 700 240" width="100%" height="240" preserveAspectRatio="none" role="img" aria-label="رسم بياني للزوار خلال الأسبوع">
+          <defs><linearGradient id="pmArea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF5E13" stop-opacity=".35"></stop><stop offset="1" stop-color="#FF5E13" stop-opacity="0"></stop></linearGradient></defs>
+          <path d="M0 60H700M0 120H700M0 180H700" stroke="rgba(22,20,15,.06)" stroke-width="1"></path>
+          <polyline points="{{prevPts}}" fill="none" stroke="#A39F95" stroke-width="2" stroke-dasharray="5 6"></polyline>
+          <polygon points="{{areaPts}}" fill="url(#pmArea)"></polygon>
+          <polyline points="{{curPts}}" fill="none" stroke="#FF5E13" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></polyline>
+          <circle cx="583" cy="{{peakY}}" r="6" fill="#FFFFFF" stroke="#FF5E13" stroke-width="3"></circle>
+        </svg>
+        <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); font-size: 13px; color: #6B675E; text-align: center"><span>السبت</span><span>الأحد</span><span>الاثنين</span><span>الثلاثاء</span><span>الأربعاء</span><span>الخميس</span><span>الجمعة</span></div>
+      </section>
+
+      <section style="flex: 1 1 300px; min-width: 0; padding: 24px; border-radius: 24px; background: linear-gradient(160deg, #FFE9DB, #FFFFFF 65%); border: 1px solid rgba(255,94,19,.25); display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; align-items: center; gap: 10px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF5E13" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"></path></svg><h2 style="margin: 0; font-size: 18px; font-weight: 500">اقتراحات Pmenu</h2></div>
+        <sc-for list="{{insights}}" as="i" hint-placeholder-count="3">
+          <div style="padding: 14px; border-radius: 16px; background: rgba(22,20,15,.04); border: 1px solid rgba(22,20,15,.06); display: flex; flex-direction: column; gap: 8px">
+            <p style="margin: 0; font-size: 14px; line-height: 1.7; color: #2A2721">{{i.t}}</p>
+            <a href="{{i.href}}" style="font-size: 13px; font-weight: 600; color: #FF7A3D; text-decoration: none">{{i.cta}} ←</a>
+          </div>
+        </sc-for>
+      </section>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 14px">
+      <section style="flex: 1 1 340px; min-width: 0; padding: 24px; border-radius: 24px; background: #FFFFFF; border: 1px solid rgba(22,20,15,.07); display: flex; flex-direction: column; gap: 16px; box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16)">
+        <h2 style="margin: 0; font-size: 18px; font-weight: 500">خريطة انتباه المنيو</h2>
+        <p style="margin: 0; color: #6B675E; font-size: 13px">وين يوقف العميل أطول وقت</p>
+        <sc-for list="{{attention}}" as="a" hint-placeholder-count="5">
+          <div style="display: flex; align-items: center; gap: 12px">
+            <img src="{{a.img}}" alt="" style="width: 40px; height: 40px; border-radius: 10px; object-fit: cover; flex: none"><span style="flex: 0 0 130px; font-size: 14px">{{a.name}}</span>
+            <div style="flex: 1 1 auto; height: 30px; border-radius: 9px; background: rgba(22,20,15,.04); overflow: hidden"><div style="height: 30px; border-radius: 9px; background: {{a.color}}; width: {{a.w}}"></div></div>
+            <span style="flex: 0 0 52px; font-size: 13px; color: #6B675E; text-align: left">{{a.sec}}</span>
+          </div>
+        </sc-for>
+      </section>
+
+      <section style="flex: 1 1 340px; min-width: 0; padding: 24px; border-radius: 24px; background: #FFFFFF; border: 1px solid rgba(22,20,15,.07); display: flex; flex-direction: column; gap: 14px; box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16)">
+        <h2 style="margin: 0; font-size: 18px; font-weight: 500">ساعات الذروة</h2>
+        <div style="display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 5px">
+          <sc-for list="{{heat}}" as="c" hint-placeholder-count="56"><div style="height: 26px; border-radius: 6px; background: {{c.bg}}"></div></sc-for>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); font-size: 11px; color: #6B675E; text-align: center"><span>٦ص</span><span>٩ص</span><span>١٢م</span><span>٣م</span><span>٦م</span><span>٩م</span><span>١٢ل</span><span>٣ل</span></div>
+        <div style="display: flex; gap: 24px; padding-top: 6px; border-top: 1px solid rgba(22,20,15,.06)">
+          <div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #6B675E">العربية / English</span><strong style="font-family: 'Poppins', sans-serif">82% / 18%</strong></div>
+          <div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #6B675E">زوار يرجعون</span><strong style="font-family: 'Poppins', sans-serif">41%</strong></div>
+          <div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #6B675E">من الباركود</span><strong style="font-family: 'Poppins', sans-serif">74%</strong></div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1300}}'>
+class Component extends DCLogic {
+constructor(p) { super(p); this.state = { live: 37, range: 1 }; }
+componentDidMount() { this.timer = setInterval(() => { const d = Math.round(Math.random() * 4 - 2); this.setState({ live: Math.max(20, Math.min(60, this.state.live + d)) }); }, 2200); }
+componentWillUnmount() { clearInterval(this.timer); }
+renderVals() {
+const cur = [210, 245, 230, 290, 360, 520, 470];
+const prev = [190, 200, 215, 240, 300, 430, 410];
+const y = v => Math.round(225 - v / 560 * 205);
+const x = i => Math.round(i * 700 / 6);
+const pts = a => a.map((v, i) => x(i) + ',' + y(v)).join(' ');
+const ranges = ['اليوم', '٧ أيام', '٣٠ يوم'].map((l, i) => ({ label: l, bg: this.state.range === i ? '#16140F' : 'transparent', fg: this.state.range === i ? '#FFFFFF' : '#3D3A33', pick: () => this.setState({ range: i }) }));
+const att = [['ذرا وِكاد', 9.2, '/_blob/cf3e70c0de50761053d88353688b5a86'], ['تشيز كيك المانجو', 8.1, '/_blob/9d167fd45658d101a5c46f34d84c3993'], ['لاتيه', 6.4, '/_blob/049e92a00bf77ff8ff360eb67800e5f0'], ['آيس أمريكانو', 4.9, '/_blob/ed67cfafe78b2f6ba4611f02485a7892'], ['قهوة اليوم الباردة', 3.3, '/_blob/8fa87bf0280ddc6d70958400c13a767a']];
+const lv = [0,0,1,1,2,1,0,0, 0,1,1,2,2,2,1,0, 0,1,2,1,2,3,2,1, 0,1,1,1,2,3,3,1, 0,0,1,1,2,3,3,2, 1,1,1,2,3,3,3,2, 0,1,1,1,2,3,2,1];
+const shades = ['#F3EFE8', '#FFD3B8', '#FF9457', '#FF5E13'];
+return {
+live: this.state.live,
+ranges: ranges,
+stats: [
+{ label: 'مسحات الباركود', value: '2,325', delta: '↑ ١٨٪ عن الأسبوع الماضي' },
+{ label: 'زوار جدد', value: '1,480', delta: '↑ ١١٪' },
+{ label: 'متوسط التصفح', value: '2:34', delta: '↑ ٢٠ ثانية' }
+],
+curPts: pts(cur),
+prevPts: pts(prev),
+areaPts: '0,225 ' + pts(cur) + ' 700,225',
+peakY: y(520),
+insights: [
+{ t: '«تشيز كيك المانجو» تنشاف كثير، بس ٦٢٪ يطلعون بدون ما يكملون. جرّب صورة أقرب بالاستوديو؟', cta: 'افتح استوديو الصور', href: 'Dashboard-Menu.dc.html' },
+{ t: 'الجو بيوصل ٤٤° بكرة. فعّل قاعدة «الباردة أول» من الساعة ١٢.', cta: 'فعّل القاعدة', href: 'Dashboard-Smart.dc.html' },
+{ t: '١٨٪ من زوارك يتصفحون بالإنجليزي. ٤ أصناف ما لها ترجمة.', cta: 'ترجم تلقائياً', href: 'Dashboard-Menu.dc.html' }
+],
+attention: att.map((a, i) => ({ img: a[2], name: a[0], sec: a[1] + ' ث', w: Math.round(a[1] / 9.2 * 100) + '%', color: i === 0 ? '#FF5E13' : (i < 2 ? '#FF8A47' : '#FFC9A8') })),
+heat: lv.map(l => ({ bg: shades[l] }))
+};
+}
+}
+</script>
+</body>
+</html>

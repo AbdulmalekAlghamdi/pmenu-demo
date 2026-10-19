@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>منيو وِكاد</title>
+<link rel="icon" href="assets/favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&amp;family=Poppins:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+<link rel="stylesheet" href="css/demo.css">
+</head>
+<body class="is-phone">
+<template id="tpl-main">
+<div dir="rtl" style="position: relative; width: 390px; height: 844px; overflow: hidden; font-family: 'Readex Pro', sans-serif; background: #F4F1EA; color: #0C1A12">
+  <div style="position: relative; height: 250px; overflow: hidden">
+    <img src="assets/counter.jpg" alt="واجهة وِكاد" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+    <div style="position: absolute; inset: 0; background: linear-gradient(rgba(5,64,38,.2), rgba(5,64,38,.92))"></div>
+    <div style="position: absolute; top: 18px; right: 18px; left: 18px; display: flex; justify-content: space-between; align-items: center">
+      <button type="button" style="height: 36px; padding: 0 14px; border-radius: 999px; border: 0; background: rgba(237,230,218,.18); color: #EDE6DA; font: inherit; font-size: 13px">English</button>
+      <span style="padding: 7px 12px; border-radius: 999px; background: rgba(237,230,218,.18); color: #EDE6DA; font-size: 12px">٤٣° · مفتوح لين ١٢ م</span>
+    </div>
+    <div style="position: absolute; bottom: 20px; right: 20px; left: 20px; display: flex; flex-direction: column; gap: 6px">
+      <img src="assets/wordmark-cream.svg" alt="وِكاد" style="height: 46px; width: auto; align-self: flex-start">
+      <span style="color: #DEC49E; font-size: 13px">قهوة مختصة · حفر الباطن</span>
+    </div>
+  </div>
+
+  <div style="display: flex; gap: 14px; padding: 16px 18px 6px; overflow: hidden">
+    <template data-for="{{stories}}" data-as="st">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 6px; flex: none">
+        <div style="width: 62px; height: 62px; border-radius: 50%; padding: 3px; background: {{st.ring}}"><img src="{{st.img}}" alt="" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 2px solid #F4F1EA; box-sizing: border-box"></div>
+        <span style="font-size: 11px; color: #3F4D45">{{st.t}}</span>
+      </div>
+    </template>
+  </div>
+
+  <div style="padding: 10px 18px 0; display: flex; flex-direction: column; gap: 10px">
+    <strong style="font-size: 15px; font-weight: 500">وش مزاجك اليوم؟</strong>
+    <div style="display: flex; gap: 8px">
+      <template data-for="{{moods}}" data-as="m"><button type="button" onClick="{{m.pick}}" style="padding: 9px 14px; border-radius: 999px; font: inherit; font-size: 13px; cursor: pointer; background: {{m.bg}}; color: {{m.fg}}; border: 1px solid {{m.border}}">{{m.t}}</button></template>
+    </div>
+  </div>
+
+  <div style="margin: 14px 18px 0; position: relative; height: 170px; border-radius: 22px; overflow: hidden">
+    <img src="{{hero.img}}" alt="{{hero.n}}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+    <div style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(5,64,38,0) 30%, rgba(5,64,38,.88))"></div>
+    <div style="position: absolute; top: 16px; right: 16px; bottom: 16px; width: 55%; display: flex; flex-direction: column; justify-content: space-between; color: #EDE6DA">
+      <span style="align-self: flex-start; padding: 4px 10px; border-radius: 999px; background: #DEC49E; color: #054026; font-size: 11px; font-weight: 600">{{hero.tag}}</span>
+      <div style="display: flex; flex-direction: column; gap: 2px"><strong style="font-size: 20px">{{hero.n}}</strong><span style="font-size: 12px; opacity: .85">{{hero.cal}}</span><strong style="font-family: 'Poppins', sans-serif; font-size: 18px; color: #ECD7B4">{{hero.p}} <span style="font-family: 'Readex Pro', sans-serif; font-size: 12px">ر.س</span></strong></div>
+    </div>
+  </div>
+
+  <div style="display: flex; gap: 18px; padding: 16px 18px 8px; font-size: 14px; border-bottom: 1px solid #E3EBE6">
+    <span style="padding-bottom: 8px; border-bottom: 2px solid #0A6B41; color: #0A6B41; font-weight: 600">قهوة</span><span style="color: #7D8B83">باردة</span><span style="color: #7D8B83">حلا</span><span style="color: #7D8B83">موسمي</span>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; padding: 12px 18px">
+    <template data-for="{{grid}}" data-as="g">
+      <div style="border-radius: 18px; background: #fff; overflow: hidden; box-shadow: 0 1px 0 rgba(12,26,18,.05)">
+        <img src="{{g.img}}" alt="{{g.n}}" style="width: 100%; height: 118px; object-fit: cover; display: block">
+        <div style="padding: 10px 12px; display: flex; justify-content: space-between; align-items: center"><div style="display: flex; flex-direction: column"><strong style="font-size: 13px; font-weight: 500">{{g.n}}</strong><span style="font-size: 11px; color: #7D8B83">{{g.cal}}</span></div><strong style="font-family: 'Poppins', sans-serif; font-size: 14px; color: #0A6B41">{{g.p}}</strong></div>
+      </div>
+    </template>
+  </div>
+
+  <div style="position: absolute; bottom: 16px; right: 16px; left: 16px; padding: 8px; border-radius: 999px; background: #054026; display: flex; gap: 8px; box-shadow: 0 16px 32px rgba(5,64,38,.35)">
+    <button type="button" style="flex: 1 1 0; height: 48px; border-radius: 999px; border: 0; background: #DEC49E; color: #054026; font: inherit; font-weight: 600">نادِ الويتر</button>
+    <button type="button" style="flex: 1 1 0; height: 48px; border-radius: 999px; border: 0; background: transparent; color: #EDE6DA; font: inherit">الاتجاهات</button>
+    <button type="button" aria-label="بحث" style="width: 48px; height: 48px; border-radius: 50%; border: 0; background: rgba(237,230,218,.14); display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#EDE6DA" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg></button>
+  </div>
+</div>
+</template>
+<div id="app"></div>
+<nav class="demo-nav" aria-label="تنقل العرض">
+  <a href="index.html" class="demo-brand" dir="ltr"><span>P</span>menu</a>
+  <a href="index.html">الموقع</a>
+  <a href="Dashboard-Overview.html">لوحة التحكم</a>
+  <a href="menus.html">منيو العميل</a>
+</nav>
+<script src="js/morphdom.min.js"></script>
+<script src="js/dc.js"></script>
+<script>
+DC.define('main', document.getElementById('tpl-main'), (function () {
+
+class Component extends DCLogic {
+constructor(p) { super(p); this.state = { mood: 0 }; }
+renderVals() {
+const D = {
+thra: { n: 'ذرا وِكاد', p: '24', cal: '٣٢٠ سعرة', img: 'assets/smores.jpg' },
+cake: { n: 'تشيز كيك المانجو', p: '26', cal: '٣٨٠ سعرة', img: 'assets/mango-cheesecake.jpg' },
+latte: { n: 'لاتيه', p: '18', cal: '١٩٠ سعرة', img: 'assets/latte.jpg' },
+iced: { n: 'آيس أمريكانو', p: '16', cal: '١٠ سعرات', img: 'assets/iced-black.jpg' },
+cold: { n: 'قهوة اليوم الباردة', p: '19', cal: '٥ سعرات', img: 'assets/iced-coffee.jpg' }
+};
+const M = [
+{ t: 'أبي شي منعش', hero: 'iced', tag: 'يبرّد عليك', grid: ['cold', 'cake'] },
+{ t: 'أبي أدلع نفسي', hero: 'thra', tag: 'توقيع وِكاد', grid: ['cake', 'latte'] },
+{ t: 'قهوتي وبس', hero: 'latte', tag: 'الأكثر طلباً', grid: ['iced', 'cold'] }
+];
+const m = M[this.state.mood];
+return {
+moods: M.map((x, i) => ({ t: x.t, bg: this.state.mood === i ? '#054026' : '#fff', fg: this.state.mood === i ? '#EDE6DA' : '#0C1A12', border: this.state.mood === i ? '#054026' : '#E3EBE6', pick: () => this.setState({ mood: i }) })),
+hero: { ...D[m.hero], tag: m.tag },
+grid: m.grid.map(k => D[k]),
+stories: [
+{ t: 'جديدنا', img: 'assets/smores.jpg', ring: 'conic-gradient(#0A6B41, #DEC49E, #0A6B41)' },
+{ t: 'الحلا', img: 'assets/mango-cheesecake.jpg', ring: 'conic-gradient(#0A6B41, #DEC49E, #0A6B41)' },
+{ t: 'الباريستا', img: 'assets/latte.jpg', ring: '#C9D3CD' },
+{ t: 'المكان', img: 'assets/counter.jpg', ring: '#C9D3CD' },
+{ t: 'البارد', img: 'assets/iced-coffee.jpg', ring: '#C9D3CD' }
+]
+};
+}
+}
+
+return Component;
+})());
+DC.mount('main', document.getElementById('app'));
+</script>
+</body>
+</html>
