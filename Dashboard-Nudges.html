@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Pmenu — العروض اللحظية</title>
+<link rel="icon" href="assets/favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&amp;family=Poppins:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F6F4EF}
+a{color:#FF5E13}a:hover{color:#FF7A3D}
+input[type=range]{accent-color:#FF5E13;width:100%}
+@keyframes pm-pop{0%{transform:scale(.85);opacity:0}100%{transform:none;opacity:1}}
+.pm-pop{animation:pm-pop .4s cubic-bezier(.2,.9,.3,1.3) both}
+@media (prefers-reduced-motion: reduce){.pm-pop{animation:none}}
+</style>
+<link rel="stylesheet" href="css/demo.css">
+</head>
+<body class="is-page">
+<template id="tpl-main">
+<div dir="rtl" style="font-family: 'Readex Pro', sans-serif; color: #16140F; background: radial-gradient(1100px 520px at 90% -8%, rgba(255,94,19,.14), rgba(255,94,19,0) 60%), radial-gradient(700px 420px at 0% 100%, rgba(255,94,19,.06), rgba(255,94,19,0) 60%), #F6F4EF; min-height: 100vh; display: flex; flex-wrap: wrap; align-items: stretch">
+  <div style="flex: 1 1 240px; max-width: 272px"><div data-import="Sidebar" data-props='{"active": "nudges"}'></div></div>
+
+  <main style="flex: 999 1 560px; min-width: 0; padding: 32px 36px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px">
+      <div>
+        <h1 style="margin: 0; font-size: 34px; font-weight: 600">العروض اللحظية</h1>
+        <p style="margin: 6px 0 0; color: #6B675E; font-weight: 300">المنيو يقرأ تصرف العميل وهو يتصفح، ويطلع له العرض المناسب في اللحظة المناسبة</p>
+      </div>
+      <button type="button" style="padding: 12px 22px; border-radius: 999px; border: 0; background: #FF5E13; color: #0A0A0A; font: inherit; font-weight: 700; cursor: pointer">+ قاعدة جديدة</button>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px">
+      <template data-for="{{kpis}}" data-as="k">
+        <div style="padding: 20px; border-radius: 22px; background: {{k.bg}}; color: {{k.fg}}; border: 1px solid rgba(22,20,15,.07); box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16); display: flex; flex-direction: column; gap: 8px">
+          <span style="font-size: 13px; opacity: .75">{{k.t}}</span>
+          <strong style="font-family: 'Poppins', sans-serif; font-size: 34px; line-height: 1">{{k.v}}</strong>
+          <span style="font-size: 12px; opacity: .8">{{k.d}}</span>
+        </div>
+      </template>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+      <section style="flex: 1.3 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 10px">
+        <template data-for="{{rules}}" data-as="r">
+          <button type="button" onClick="{{r.pick}}" style="text-align: right; font: inherit; color: inherit; cursor: pointer; padding: 18px; border-radius: 22px; background: #FFFFFF; border: 2px solid {{r.ring}}; box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -22px rgba(22,20,15,.2); display: flex; flex-wrap: wrap; align-items: center; gap: 14px">
+            <span style="width: 46px; height: 46px; border-radius: 14px; background: {{r.iconBg}}; display: flex; align-items: center; justify-content: center; flex: none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="{{r.iconFg}}" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{r.d}}"></path></svg></span>
+            <span style="flex: 1 1 240px; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+              <strong style="font-size: 16px; font-weight: 600">{{r.t}}</strong>
+              <span style="display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 13px"><span style="padding: 3px 9px; border-radius: 8px; background: #F3F0EA; color: #6B675E">لما</span><span>{{r.when}}</span><span style="padding: 3px 9px; border-radius: 8px; background: #F3F0EA; color: #6B675E">يطلع</span><span>{{r.then}}</span></span>
+            </span>
+            <span style="flex: none; display: flex; flex-direction: column; align-items: flex-end; gap: 4px"><strong style="font-family: 'Poppins', sans-serif; font-size: 18px; color: {{r.rateColor}}">{{r.rate}}</strong><span style="font-size: 11px; color: #6B675E">قبلوا العرض</span></span>
+          </button>
+        </template>
+      </section>
+
+      <section style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+        <div style="padding: 22px; border-radius: 26px; background: #FFFFFF; border: 1px solid rgba(22,20,15,.07); box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16); display: flex; flex-direction: column; gap: 16px">
+          <strong style="font-size: 18px">{{cur.t}}</strong>
+          <label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: #3D3A33">{{cur.sliderLabel}} · {{cur.wait}}<input type="range" min="{{cur.min}}" max="{{cur.max}}" value="{{cur.waitN}}" onChange="{{setWait}}"></label>
+          <label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: #3D3A33">قيمة الخصم · {{s.disc}}٪<input type="range" min="5" max="30" step="5" value="{{s.disc}}" onChange="{{setDisc}}"></label>
+          <label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: #3D3A33">مدة العرض · {{s.mins}} دقيقة<input type="range" min="1" max="10" value="{{s.mins}}" onChange="{{setMins}}"></label>
+          <div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 14px; color: #3D3A33">على أي صنف؟</span>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap"><template data-for="{{targets}}" data-as="o"><button type="button" onClick="{{o.pick}}" style="padding: 9px 14px; border-radius: 12px; font: inherit; font-size: 13px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}; border: 1px solid {{o.border}}">{{o.t}}</button></template></div>
+          </div>
+          <span style="font-size: 12px; color: #6B675E; line-height: 1.6">يطلع للعميل مرة وحدة بس في الزيارة، وما يطلع لنفس الجوال أكثر من مرة في الأسبوع.</span>
+        </div>
+
+        <div style="align-self: center; width: 300px; height: 560px; border-radius: 46px; background: #0A0A0A; padding: 9px; box-sizing: border-box; box-shadow: 0 40px 80px -30px rgba(22,20,15,.45)">
+          <div style="position: relative; width: 100%; height: 100%; border-radius: 37px; overflow: hidden; background: #F4F1EA">
+            <div style="padding: 22px 16px 14px; background: #054026"><img src="assets/wordmark-cream.svg" alt="وِكاد" style="height: 26px; width: auto"></div>
+            <div style="padding: 12px; display: flex; flex-direction: column; gap: 8px; filter: blur(1.5px); opacity: .7">
+              <div style="height: 110px; border-radius: 16px; background: #E2D9CB"></div>
+              <div style="height: 60px; border-radius: 14px; background: #FFFFFF"></div>
+              <div style="height: 60px; border-radius: 14px; background: #FFFFFF"></div>
+              <div style="height: 60px; border-radius: 14px; background: #FFFFFF"></div>
+            </div>
+            <div style="position: absolute; inset: 0; background: rgba(5,20,12,.45); display: flex; align-items: center; justify-content: center; padding: 16px">
+              <div class="pm-pop" style="width: 100%; border-radius: 24px; background: #FFFFFF; overflow: hidden">
+                <img src="{{cur.img}}" alt="" style="width: 100%; height: 120px; object-fit: cover; display: block">
+                <div style="padding: 16px; display: flex; flex-direction: column; gap: 8px; text-align: center">
+                  <strong style="font-size: 16px">{{cur.popTitle}}</strong>
+                  <span style="font-size: 13px; color: #4A5A50; line-height: 1.6">{{cur.popText}}</span>
+                  <span dir="ltr" style="font-family: 'Poppins', sans-serif; font-size: 28px; font-weight: 700">{{s.mins}}:00</span>
+                  <span style="height: 44px; border-radius: 999px; background: #FF5E13; color: #0A0A0A; font-weight: 700; display: flex; align-items: center; justify-content: center">{{cur.cta}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+</template>
+<template id="tpl-Sidebar">
+<nav dir="rtl" aria-label="لوحة التحكم" style="font-family: 'Readex Pro', sans-serif; color: #16140F; background: #FFFFFF; width: 100%; min-height: 1000px; box-sizing: border-box; padding: 24px 16px; display: flex; flex-direction: column; gap: 6px; border-left: 1px solid rgba(22,20,15,.07)">
+  <a href="site.html" dir="ltr" style="align-self: flex-end; padding: 0 10px 20px; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 26px; color: #16140F; text-decoration: none"><span style="color: #FF5E13">P</span>menu</a>
+  <div style="display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 16px; background: #F6F4EF; border: 1px solid rgba(22,20,15,.07); margin-bottom: 14px">
+    <div style="width: 38px; height: 38px; border-radius: 11px; background: #054026; display: flex; align-items: center; justify-content: center; flex: none"><img src="assets/wordmark-cream.svg" alt="" style="width: 26px; height: auto"></div>
+    <div style="display: flex; flex-direction: column; min-width: 0"><strong style="font-size: 15px; font-weight: 600">وِكاد</strong><span style="font-size: 12px; color: #6B675E">٣ فروع · الباقة الفخمة</span></div>
+  </div>
+  <template data-for="{{items}}" data-as="it">
+    <a href="{{it.href}}" style="display: flex; align-items: center; gap: 12px; padding: 13px 14px; border-radius: 14px; text-decoration: none; font-size: 15px; background: {{it.bg}}; color: {{it.fg}}; font-weight: {{it.fw}}">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{it.d}}"></path></svg>
+      <span style="flex: 1 1 auto; white-space: nowrap">{{it.label}}</span>
+      <template data-if="{{it.badge}}"><span style="padding: 2px 8px; border-radius: 999px; background: #FF5E13; color: #0A0A0A; font-size: 11px; font-weight: 700">{{it.badge}}</span></template>
+    </a>
+  </template>
+  <div style="margin-top: 28px; position: relative; overflow: hidden; padding: 18px; border-radius: 20px; background: #E8467C; color: #fff; display: flex; flex-direction: column; gap: 8px">
+    <div aria-hidden="true" style="position: absolute; top: -30px; left: -30px; width: 100px; height: 100px; border-radius: 50%; border: 1px solid rgba(255,255,255,.45)"></div>
+    <span style="font-size: 12px; opacity: .9">Season Drop</span>
+    <strong style="font-size: 17px">أكتوبر الوردي مفعّل</strong>
+    <span style="font-size: 13px; line-height: 1.6">يرجع ثيمك تلقائياً ١ نوفمبر</span>
+  </div>
+</nav>
+</template>
+<div class="demo-badge" role="note"><i aria-hidden="true"></i><span class="db-txt"><b class="db-long">عرض تجريبي وتخيّلي فقط</b><b class="db-short">عرض تجريبي</b><small class="db-long">للتجربة الأفضل افتحه من متصفح الكمبيوتر</small><small class="db-short">الأفضل من الكمبيوتر</small></span></div>
+<div id="app"></div>
+<nav class="demo-nav" aria-label="تنقل العرض">
+  <a href="index.html" class="demo-brand" dir="ltr"><span>P</span>menu</a>
+  <a href="index.html">القصة</a>
+  <a href="site.html">الموقع</a>
+  <a href="Dashboard-Overview.html">لوحة التحكم</a>
+  <a href="menus.html">منيو العميل</a>
+</nav>
+<script src="js/morphdom.min.js"></script>
+<script src="js/dc.js"></script>
+<script>
+DC.define('Sidebar', document.getElementById('tpl-Sidebar'), (function () {
+
+class Component extends DCLogic {
+renderVals() {
+const a = this.props.active ?? 'overview';
+const L = [
+{ k: 'overview', label: 'نبض المنيو', href: 'Dashboard-Overview.html', d: 'M3 12h4l3-8 4 16 3-8h4', badge: '' },
+{ k: 'editor', label: 'المحرر الكامل', href: 'Dashboard-Editor.html', d: 'M4 20h4L19 9l-4-4L4 16zM14 6l4 4', badge: 'جديد' },
+{ k: 'insights', label: 'رؤى المبيعات', href: 'Dashboard-Insights.html', d: 'M3 17l5-5 4 4 8-8M15 8h5v5', badge: '' },
+{ k: 'nudges', label: 'العروض اللحظية', href: 'Dashboard-Nudges.html', d: 'M13 2L3 14h9l-1 8 10-12h-9z', badge: 'جديد' },
+{ k: 'campaigns', label: 'الحملات', href: 'Dashboard-Campaigns.html', d: 'M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1zM15 9a3 3 0 0 1 0 6M18 6a7 7 0 0 1 0 12', badge: '' },
+{ k: 'whatsapp', label: 'مساعد واتساب', href: 'Dashboard-WhatsApp.html', d: 'M21 12a9 9 0 0 1-13.5 7.8L3 21l1.2-4.5A9 9 0 1 1 21 12z', badge: '' },
+{ k: 'menu', label: 'المنيو والصور', href: 'Dashboard-Menu.html', d: 'M4 6h16M4 12h16M4 18h10', badge: '' },
+{ k: 'themes', label: 'الهوية والثيمات', href: 'Dashboard-Themes.html', d: 'M12 3a9 9 0 1 0 0 18c1.5 0 2-1 2-2s-1-2 0-3h3a4 4 0 0 0 4-4c0-5-4-9-9-9zM7.5 11h.01M10.5 7h.01M15 7.5h.01', badge: '' },
+{ k: 'smart', label: 'المنيو الذكي', href: 'Dashboard-Smart.html', d: 'M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z', badge: '' },
+{ k: 'google', label: 'قوقل والظهور', href: 'Dashboard-Google.html', d: 'M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21zM12 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z', badge: '' },
+{ k: 'qr', label: 'الباركود', href: 'Dashboard-QR.html', d: 'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h3v3h-3zM20 20h1M17 20h.01M20 14h1', badge: '' },
+{ k: 'billing', label: 'الاشتراك', href: 'Dashboard-Billing.html', d: 'M2 6h20v12H2zM2 10h20', badge: '' }
+];
+return { items: L.map(x => ({ ...x, bg: x.k === a ? '#16140F' : 'transparent', fg: x.k === a ? '#FFFFFF' : '#3D3A33', fw: x.k === a ? '600' : '400' })) };
+}
+}
+
+return Component;
+})());
+DC.define('main', document.getElementById('tpl-main'), (function () {
+
+class Component extends DCLogic {
+constructor(p) { super(p); this.state = { rule: 0, disc: 15, mins: 2, target: 0, waits: [20, 3, 45, 1, 30, 25] }; }
+renderVals() {
+const s = this.state;
+const R = [
+{ t: 'طوّل يتصفح وما طلب', when: 'يتصفح أكثر من {w} بدون ما يضيف شي', then: 'عرض على الأقل مبيعاً بعدّاد', d: 'M12 7v5l3 2M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z', rate: '27%', unit: 'ثانية', min: 5, max: 90, label: 'ينتظر قبل ما يطلع العرض', img: 'assets/mango-cheesecake.jpg', popTitle: 'عرض لك أنت بس', popText: 'اطلب تشيز كيك المانجو خلال {m} دقيقة وخذه بخصم {d}٪', cta: 'أبيه بالعرض' },
+{ t: 'فتح الصنف كذا مرة', when: 'فتح نفس الصنف {w} مرات وما طلبه', then: 'خصم صغير يحسم تردده', d: 'M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z', rate: '34%', unit: 'مرات', min: 2, max: 6, label: 'عدد مرات الفتح', img: 'assets/smores.jpg', popTitle: 'شكلك محتار؟', popText: 'ذرا وِكاد بخصم {d}٪ لو طلبته خلال {m} دقيقة', cta: 'خلاص، أبيه' },
+{ t: 'بيطلع من المنيو', when: 'رجع لفوق بسرعة أو {w} بدون حركة', then: 'آخر فرصة على صنف موسمي', d: 'M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9', rate: '12%', unit: 'ثانية', min: 10, max: 90, label: 'مدة الوقوف', img: 'assets/iced-coffee.jpg', popTitle: 'قبل لا تروح..', popText: 'قهوة اليوم الباردة بخصم {d}٪ لمدة {m} دقيقة', cta: 'جرّبها' },
+{ t: 'أول زيارة', when: 'أول مرة يمسح الباركود ({w} زيارة)', then: 'ترحيب وخصم على أول طلب', d: 'M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z', rate: '41%', unit: 'زيارة', min: 1, max: 1, label: 'رقم الزيارة', img: 'assets/latte.jpg', popTitle: 'هلا والله، أول مرة؟', popText: 'خصم {d}٪ على أول طلب خلال {m} دقيقة', cta: 'يلا' },
+{ t: 'قبل الإغلاق', when: 'باقي {w} دقيقة على الإغلاق', then: 'الحلا المتبقي بسعر خاص', d: 'M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z', rate: '38%', unit: 'دقيقة', min: 15, max: 90, label: 'قبل الإغلاق بـ', img: 'assets/mango-cheesecake.jpg', popTitle: 'آخر قطع اليوم', popText: 'الحلا المتبقي بخصم {d}٪ لمدة {m} دقيقة', cta: 'احجز لي قطعة' },
+{ t: 'رجع مرة ثانية', when: 'زار قبل {w} يوم أو أقل', then: '«نفس طلبك؟» بضغطة', d: 'M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5', rate: '46%', unit: 'يوم', min: 1, max: 60, label: 'آخر زيارة قبل', img: 'assets/smores.jpg', popTitle: 'نوّرت من جديد', popText: 'نفس طلبك المرة اللي فاتت؟ وخصم {d}٪ خلال {m} دقيقة', cta: 'نفس طلبي' }
+];
+const fill = (t, w) => t.replace('{w}', w).replace('{m}', s.mins).replace('{d}', s.disc);
+const r = R[s.rule];
+const w = s.waits[s.rule];
+const rules = R.map((x, i) => ({ t: x.t, d: x.d, rate: x.rate, when: fill(x.when, s.waits[i] + ' ' + x.unit), then: x.then, ring: s.rule === i ? '#FF5E13' : 'transparent', iconBg: s.rule === i ? '#FF5E13' : 'rgba(255,94,19,.12)', iconFg: s.rule === i ? '#0A0A0A' : '#FF5E13', rateColor: parseInt(x.rate) >= 30 ? '#178048' : '#16140F', pick: () => this.setState({ rule: i }) }));
+const T = ['الأقل مبيعاً تلقائياً', 'صنف أختاره', 'كل الحلا'];
+return {
+s, rules,
+cur: { t: r.t, sliderLabel: r.label, wait: w + ' ' + r.unit, waitN: w, min: r.min, max: r.max, img: r.img, popTitle: r.popTitle, popText: fill(r.popText, w), cta: r.cta },
+setWait: (e) => { const ws = s.waits.slice(); ws[s.rule] = Number(e.target.value); this.setState({ waits: ws }); },
+setDisc: (e) => this.setState({ disc: Number(e.target.value) }),
+setMins: (e) => this.setState({ mins: Number(e.target.value) }),
+targets: T.map((t, i) => ({ t, bg: s.target === i ? '#16140F' : '#FFFFFF', fg: s.target === i ? '#FFFFFF' : '#3D3A33', border: s.target === i ? '#16140F' : 'rgba(22,20,15,.14)', pick: () => this.setState({ target: i }) })),
+kpis: [
+{ t: 'عروض طلعت هذا الأسبوع', v: '1,284', d: 'لعملاء كانوا بيطلعون بدون طلب', bg: '#FFFFFF', fg: '#16140F' },
+{ t: 'قبلوا العرض', v: '31%', d: '٣٩٨ طلب إضافي', bg: '#FF5E13', fg: '#0A0A0A' },
+{ t: 'دخل من العروض', v: '7,960', d: 'ريال هذا الأسبوع', bg: '#FFFFFF', fg: '#16140F' },
+{ t: 'الأقل مبيعاً تحسّن', v: '+58%', d: 'تشيز كيك المانجو', bg: '#16140F', fg: '#F6F4EF' }
+]
+};
+}
+}
+
+return Component;
+})());
+DC.mount('main', document.getElementById('app'));
+</script>
+</body>
+</html>

@@ -9,68 +9,145 @@
 <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&amp;family=Poppins:wght@600;700&amp;display=swap" rel="stylesheet">
 <style>
 body{margin:0}
+@keyframes pm-up{from{transform:translateY(100%)}to{transform:none}}
+@keyframes pm-pop{0%{transform:scale(.85);opacity:0}100%{transform:none;opacity:1}}
+@keyframes pm-ring{0%{box-shadow:0 0 0 0 rgba(255,94,19,.55)}100%{box-shadow:0 0 0 14px rgba(255,94,19,0)}}
+.pm-up{animation:pm-up .38s cubic-bezier(.2,.8,.2,1) both}
+.pm-pop{animation:pm-pop .4s cubic-bezier(.2,.9,.3,1.3) both}
+.pm-ring{animation:pm-ring 1.4s ease-out infinite}
+@media (prefers-reduced-motion: reduce){.pm-up,.pm-pop,.pm-ring{animation:none}}
 </style>
 <link rel="stylesheet" href="css/demo.css">
 </head>
 <body class="is-phone">
 <template id="tpl-main">
 <div dir="rtl" style="position: relative; width: 390px; height: 844px; overflow: hidden; font-family: 'Readex Pro', sans-serif; background: #F4F1EA; color: #0C1A12">
-  <div style="position: relative; height: 250px; overflow: hidden">
+  <div style="position: relative; height: 230px; overflow: hidden">
     <img src="assets/counter.jpg" alt="واجهة وِكاد" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
     <div style="position: absolute; inset: 0; background: linear-gradient(rgba(5,64,38,.2), rgba(5,64,38,.92))"></div>
     <div style="position: absolute; top: 18px; right: 18px; left: 18px; display: flex; justify-content: space-between; align-items: center">
       <button type="button" style="height: 36px; padding: 0 14px; border-radius: 999px; border: 0; background: rgba(237,230,218,.18); color: #EDE6DA; font: inherit; font-size: 13px">English</button>
       <span style="padding: 7px 12px; border-radius: 999px; background: rgba(237,230,218,.18); color: #EDE6DA; font-size: 12px">٤٣° · مفتوح لين ١٢ م</span>
     </div>
-    <div style="position: absolute; bottom: 20px; right: 20px; left: 20px; display: flex; flex-direction: column; gap: 6px">
-      <img src="assets/wordmark-cream.svg" alt="وِكاد" style="height: 46px; width: auto; align-self: flex-start">
+    <div style="position: absolute; bottom: 18px; right: 20px; left: 20px; display: flex; flex-direction: column; gap: 6px">
+      <img src="assets/wordmark-cream.svg" alt="وِكاد" style="height: 44px; width: auto; align-self: flex-start">
       <span style="color: #DEC49E; font-size: 13px">قهوة مختصة · الدمام</span>
     </div>
   </div>
 
-  <div style="display: flex; gap: 14px; padding: 16px 18px 6px; overflow: hidden">
+  <div style="display: flex; gap: 14px; padding: 14px 18px 4px; overflow: hidden">
     <template data-for="{{stories}}" data-as="st">
       <div style="display: flex; flex-direction: column; align-items: center; gap: 6px; flex: none">
-        <div style="width: 62px; height: 62px; border-radius: 50%; padding: 3px; background: {{st.ring}}"><img src="{{st.img}}" alt="" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 2px solid #F4F1EA; box-sizing: border-box"></div>
+        <div style="width: 58px; height: 58px; border-radius: 50%; padding: 3px; background: {{st.ring}}"><img src="{{st.img}}" alt="" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 2px solid #F4F1EA; box-sizing: border-box"></div>
         <span style="font-size: 11px; color: #3F4D45">{{st.t}}</span>
       </div>
     </template>
   </div>
 
-  <div style="padding: 10px 18px 0; display: flex; flex-direction: column; gap: 10px">
+  <div style="padding: 8px 18px 0; display: flex; flex-direction: column; gap: 10px">
     <strong style="font-size: 15px; font-weight: 500">اختيارات وِكاد</strong>
     <div style="display: flex; gap: 8px">
       <template data-for="{{moods}}" data-as="m"><button type="button" onClick="{{m.pick}}" style="padding: 9px 14px; border-radius: 999px; font: inherit; font-size: 13px; cursor: pointer; background: {{m.bg}}; color: {{m.fg}}; border: 1px solid {{m.border}}">{{m.t}}</button></template>
     </div>
   </div>
 
-  <div style="margin: 14px 18px 0; position: relative; height: 170px; border-radius: 22px; overflow: hidden">
+  <button type="button" onClick="{{hero.open}}" style="margin: 12px 18px 0; position: relative; width: calc(100% - 36px); height: 160px; border-radius: 22px; overflow: hidden; border: 0; padding: 0; cursor: pointer; font: inherit; display: block">
     <img src="{{hero.img}}" alt="{{hero.n}}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
-    <div style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(5,64,38,0) 30%, rgba(5,64,38,.88))"></div>
-    <div style="position: absolute; top: 16px; right: 16px; bottom: 16px; width: 55%; display: flex; flex-direction: column; justify-content: space-between; color: #EDE6DA">
+    <span style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(5,64,38,0) 30%, rgba(5,64,38,.88))"></span>
+    <span style="position: absolute; top: 14px; right: 16px; bottom: 14px; width: 55%; display: flex; flex-direction: column; justify-content: space-between; color: #EDE6DA; text-align: right">
       <span style="align-self: flex-start; padding: 4px 10px; border-radius: 999px; background: #DEC49E; color: #054026; font-size: 11px; font-weight: 600">{{hero.tag}}</span>
-      <div style="display: flex; flex-direction: column; gap: 2px"><strong style="font-size: 20px">{{hero.n}}</strong><span style="font-size: 12px; opacity: .85">{{hero.cal}}</span><strong style="font-family: 'Poppins', sans-serif; font-size: 18px; color: #ECD7B4">{{hero.p}} <span style="font-family: 'Readex Pro', sans-serif; font-size: 12px">ر.س</span></strong></div>
-    </div>
-  </div>
-
-  <div style="display: flex; gap: 18px; padding: 16px 18px 8px; font-size: 14px; border-bottom: 1px solid #E3EBE6">
-    <span style="padding-bottom: 8px; border-bottom: 2px solid #0A6B41; color: #0A6B41; font-weight: 600">قهوة</span><span style="color: #7D8B83">باردة</span><span style="color: #7D8B83">حلا</span><span style="color: #7D8B83">موسمي</span>
-  </div>
+      <span style="display: flex; flex-direction: column; gap: 2px"><strong style="font-size: 19px">{{hero.n}}</strong><span style="font-size: 12px; opacity: .85">{{hero.cal}}</span><strong style="font-family: 'Poppins', sans-serif; font-size: 17px; color: #ECD7B4">{{hero.p}} <span style="font-family: 'Readex Pro', sans-serif; font-size: 12px">ر.س</span></strong></span>
+    </span>
+  </button>
 
   <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; padding: 12px 18px">
     <template data-for="{{grid}}" data-as="g">
-      <div style="border-radius: 18px; background: #fff; overflow: hidden; box-shadow: 0 1px 0 rgba(12,26,18,.05)">
-        <img src="{{g.img}}" alt="{{g.n}}" style="width: 100%; height: 118px; object-fit: cover; display: block">
-        <div style="padding: 10px 12px; display: flex; justify-content: space-between; align-items: center"><div style="display: flex; flex-direction: column"><strong style="font-size: 13px; font-weight: 500">{{g.n}}</strong><span style="font-size: 11px; color: #7D8B83">{{g.cal}}</span></div><strong style="font-family: 'Poppins', sans-serif; font-size: 14px; color: #0A6B41">{{g.p}}</strong></div>
-      </div>
+      <button type="button" onClick="{{g.open}}" style="border-radius: 18px; background: #fff; overflow: hidden; border: 0; padding: 0; font: inherit; color: inherit; text-align: right; cursor: pointer; box-shadow: 0 1px 0 rgba(12,26,18,.05)">
+        <img src="{{g.img}}" alt="{{g.n}}" style="width: 100%; height: 108px; object-fit: cover; display: block">
+        <span style="padding: 10px 12px; display: flex; justify-content: space-between; align-items: center"><span style="display: flex; flex-direction: column"><strong style="font-size: 13px; font-weight: 500">{{g.n}}</strong><span style="font-size: 11px; color: #7D8B83">{{g.cal}}</span></span><strong style="font-family: 'Poppins', sans-serif; font-size: 14px; color: #0A6B41">{{g.p}}</strong></span>
+      </button>
     </template>
   </div>
 
-  <div style="position: absolute; bottom: 16px; right: 16px; left: 16px; padding: 8px; border-radius: 999px; background: #054026; display: flex; gap: 8px; box-shadow: 0 16px 32px rgba(5,64,38,.35)">
-    <button type="button" style="flex: 1 1 0; height: 48px; border-radius: 999px; border: 0; background: #DEC49E; color: #054026; font: inherit; font-weight: 600">نادِ الويتر</button>
-    <button type="button" style="flex: 1 1 0; height: 48px; border-radius: 999px; border: 0; background: transparent; color: #EDE6DA; font: inherit">الاتجاهات</button>
-    <button type="button" aria-label="بحث" style="width: 48px; height: 48px; border-radius: 50%; border: 0; background: rgba(237,230,218,.14); display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#EDE6DA" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg></button>
+  <div style="position: absolute; bottom: 16px; right: 16px; left: 16px; padding: 8px; border-radius: 999px; background: #054026; display: flex; gap: 8px; align-items: center; box-shadow: 0 16px 32px rgba(5,64,38,.35)">
+    <template data-if="{{cart.has}}">
+      <button type="button" style="flex: 1 1 auto; height: 48px; border-radius: 999px; border: 0; background: #FF5E13; color: #0A0A0A; font: inherit; font-weight: 700; display: flex; align-items: center; justify-content: space-between; padding: 0 18px"><span>طلبك · {{cart.count}}</span><span style="font-family: 'Poppins', sans-serif">{{cart.total}} ر.س</span></button>
+    </template>
+    <template data-if="{{cart.empty}}">
+      <button type="button" style="flex: 1 1 0; height: 48px; border-radius: 999px; border: 0; background: #DEC49E; color: #054026; font: inherit; font-weight: 600">نادِ الويتر</button>
+      <button type="button" style="flex: 1 1 0; height: 48px; border-radius: 999px; border: 0; background: transparent; color: #EDE6DA; font: inherit">الاتجاهات</button>
+    </template>
   </div>
+
+  <template data-if="{{sheet.open}}">
+    <div style="position: absolute; inset: 0; background: rgba(5,20,12,.45)">
+      <button type="button" onClick="{{close}}" aria-label="إغلاق" style="position: absolute; inset: 0; border: 0; background: transparent; cursor: pointer"></button>
+      <div class="pm-up" style="position: absolute; right: 0; left: 0; bottom: 0; max-height: 92%; overflow-y: auto; border-radius: 28px 28px 0 0; background: #F4F1EA; display: flex; flex-direction: column">
+        <div style="position: relative; height: 250px; flex: none">
+          <img src="{{sheet.img}}" alt="{{sheet.n}}" style="width: 100%; height: 100%; object-fit: cover">
+          <button type="button" onClick="{{close}}" aria-label="إغلاق" style="position: absolute; top: 14px; left: 14px; width: 40px; height: 40px; border-radius: 50%; border: 0; background: rgba(255,255,255,.9); font-size: 18px; cursor: pointer">✕</button>
+          <span style="position: absolute; bottom: 12px; right: 14px; padding: 6px 12px; border-radius: 999px; background: rgba(5,64,38,.85); color: #EDE6DA; font-size: 12px">{{sheet.social}}</span>
+        </div>
+        <div style="padding: 18px; display: flex; flex-direction: column; gap: 14px">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px">
+            <div style="display: flex; flex-direction: column; gap: 4px"><strong style="font-size: 21px">{{sheet.n}}</strong><span style="font-size: 13px; color: #4A5A50; line-height: 1.6">{{sheet.desc}}</span></div>
+            <strong style="font-family: 'Poppins', sans-serif; font-size: 22px; color: #0A6B41; flex: none">{{sheet.total}}</strong>
+          </div>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap; font-size: 12px">
+            <span style="padding: 5px 10px; border-radius: 999px; background: #fff">{{sheet.cal}}</span>
+            <template data-for="{{sheet.al}}" data-as="a"><span style="padding: 5px 10px; border-radius: 999px; background: #FFF4D6; color: #6B4A00">يحتوي {{a}}</span></template>
+            <span style="padding: 5px 10px; border-radius: 999px; background: #fff">جاهز خلال ٥ دقايق</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px">
+            <span style="font-size: 14px; font-weight: 600">الحجم</span>
+            <div style="display: flex; gap: 8px">
+              <template data-for="{{sheet.sizes}}" data-as="z"><button type="button" onClick="{{z.pick}}" style="flex: 1 1 0; padding: 10px 6px; border-radius: 14px; font: inherit; font-size: 13px; cursor: pointer; background: {{z.bg}}; color: {{z.fg}}; border: 1px solid {{z.border}}">{{z.t}}<br><span style="font-size: 11px; opacity: .75">{{z.extra}}</span></button></template>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px">
+            <span style="font-size: 14px; font-weight: 600">إضافات</span>
+            <template data-for="{{sheet.adds}}" data-as="a">
+              <button type="button" onClick="{{a.toggle}}" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; border-radius: 14px; background: #fff; border: 1px solid {{a.border}}; font: inherit; font-size: 13px; cursor: pointer"><span style="display: flex; align-items: center; gap: 10px"><span style="width: 20px; height: 20px; border-radius: 6px; background: {{a.box}}; color: #fff; font-size: 13px; line-height: 20px; text-align: center">{{a.mark}}</span>{{a.t}}</span><span style="color: #4A5A50">+{{a.p}} ر.س</span></button>
+            </template>
+          </div>
+          <div style="display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 16px; background: #fff; border: 2px dashed #FF5E13">
+            <img src="{{sheet.pairImg}}" alt="" style="width: 52px; height: 52px; border-radius: 12px; object-fit: cover">
+            <div style="flex: 1 1 auto; display: flex; flex-direction: column; gap: 2px; font-size: 12px"><strong style="font-size: 13px">يطلع معه حلو؟</strong><span style="color: #4A5A50">{{sheet.pairText}}</span></div>
+            <button type="button" onClick="{{sheet.addPair}}" style="padding: 8px 12px; border-radius: 999px; border: 0; background: #054026; color: #fff; font: inherit; font-size: 12px; cursor: pointer">{{sheet.pairBtn}}</button>
+          </div>
+          <button type="button" onClick="{{sheet.add}}" style="height: 54px; border-radius: 999px; border: 0; background: #054026; color: #EDE6DA; font: inherit; font-size: 16px; font-weight: 700; cursor: pointer">أضف للطلب · {{sheet.total}} ر.س</button>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template data-if="{{nudge.show}}">
+    <div style="position: absolute; inset: 0; background: rgba(5,20,12,.5); display: flex; align-items: center; justify-content: center; padding: 22px">
+      <div class="pm-pop" style="position: relative; width: 100%; border-radius: 28px; background: #FFFFFF; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,.35)">
+        <button type="button" onClick="{{nudge.dismiss}}" aria-label="إغلاق العرض" style="position: absolute; top: 12px; left: 12px; z-index: 2; width: 36px; height: 36px; border-radius: 50%; border: 0; background: rgba(255,255,255,.9); cursor: pointer">✕</button>
+        <div style="position: relative; height: 170px">
+          <img src="assets/mango-cheesecake.jpg" alt="تشيز كيك المانجو" style="width: 100%; height: 100%; object-fit: cover">
+          <span class="pm-ring" style="position: absolute; bottom: -22px; right: 22px; width: 64px; height: 64px; border-radius: 50%; background: #FF5E13; color: #0A0A0A; display: flex; align-items: center; justify-content: center; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 17px">−15%</span>
+        </div>
+        <div style="padding: 30px 20px 20px; display: flex; flex-direction: column; gap: 10px; text-align: center">
+          <template data-if="{{nudge.live}}">
+            <strong style="font-size: 20px">عرض لك أنت بس</strong>
+            <span style="font-size: 14px; color: #4A5A50; line-height: 1.6">اطلب <b style="color: #0C1A12">تشيز كيك المانجو</b> خلال دقيقتين، وخذه بـ<b style="color: #0A6B41">٢٢ بدل ٢٦</b></span>
+            <div dir="ltr" style="font-family: 'Poppins', sans-serif; font-size: 38px; font-weight: 700; color: {{nudge.color}}">{{nudge.time}}</div>
+            <div style="height: 6px; border-radius: 99px; background: #EEE9DF; overflow: hidden"><div style="height: 6px; background: #FF5E13; width: {{nudge.w}}"></div></div>
+            <button type="button" onClick="{{nudge.accept}}" style="margin-top: 6px; height: 52px; border-radius: 999px; border: 0; background: #FF5E13; color: #0A0A0A; font: inherit; font-size: 16px; font-weight: 700; cursor: pointer">أبيه بالعرض</button>
+            <button type="button" onClick="{{nudge.dismiss}}" style="height: 40px; border: 0; background: transparent; color: #7D8B83; font: inherit; font-size: 13px; cursor: pointer">لا، شكراً</button>
+          </template>
+          <template data-if="{{nudge.done}}">
+            <strong style="font-size: 20px">تم! انضاف لطلبك ✓</strong>
+            <span style="font-size: 14px; color: #4A5A50; line-height: 1.6">قل للكاشير الكود هذا ويطلع لك الخصم</span>
+            <div style="padding: 14px; border-radius: 16px; background: #F4F1EA; font-family: 'Poppins', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: 3px" dir="ltr">WK-15</div>
+            <button type="button" onClick="{{nudge.dismiss}}" style="height: 50px; border-radius: 999px; border: 0; background: #054026; color: #EDE6DA; font: inherit; font-weight: 700; cursor: pointer">كمّل التصفح</button>
+          </template>
+        </div>
+      </div>
+    </div>
+  </template>
 </div>
 </template>
 <div class="demo-badge" role="note"><i aria-hidden="true"></i><span class="db-txt"><b class="db-long">عرض تجريبي وتخيّلي فقط</b><b class="db-short">عرض تجريبي</b><small class="db-long">للتجربة الأفضل افتحه من متصفح الكمبيوتر</small><small class="db-short">الأفضل من الكمبيوتر</small></span></div>
@@ -88,25 +165,63 @@ body{margin:0}
 DC.define('main', document.getElementById('tpl-main'), (function () {
 
 class Component extends DCLogic {
-constructor(p) { super(p); this.state = { mood: 0 }; }
+constructor(p) { super(p); this.state = { mood: 0, open: null, size: 1, adds: {}, pair: false, cart: [], nudge: 'off', left: 120 }; }
+componentDidMount() {
+const after = (this.props.nudgeAfter ?? 8) * 1000;
+const fire = () => { if (this.state.nudge !== 'off') return; if (this.state.open) { this.idle = setTimeout(fire, 3000); return; } this.setState({ nudge: 'live', left: 120 }); };
+this.idle = setTimeout(fire, after);
+this.tick = setInterval(() => { if (this.state.nudge === 'live') this.setState({ left: Math.max(0, this.state.left - 1) }); }, 1000);
+}
+componentWillUnmount() { clearTimeout(this.idle); clearInterval(this.tick); }
 renderVals() {
+const s = this.state;
 const D = {
-thra: { n: 'ذرا وِكاد', p: '24', cal: '٣٢٠ سعرة', img: 'assets/smores.jpg' },
-cake: { n: 'تشيز كيك المانجو', p: '26', cal: '٣٨٠ سعرة', img: 'assets/mango-cheesecake.jpg' },
-latte: { n: 'لاتيه', p: '18', cal: '١٩٠ سعرة', img: 'assets/latte.jpg' },
-iced: { n: 'آيس أمريكانو', p: '16', cal: '١٠ سعرات', img: 'assets/iced-black.jpg' },
-cold: { n: 'قهوة اليوم الباردة', p: '19', cal: '٥ سعرات', img: 'assets/iced-coffee.jpg' }
+thra: { n: 'ذرا وِكاد', p: 24, cal: '٣٢٠ سعرة', img: 'assets/smores.jpg', desc: 'شوكولاتة حارة مع مارشميلو محمّص بالنار. توقيع وِكاد.', al: ['حليب'], social: '٣٤ طلبوه اليوم', adds: [['شوت إسبريسو', 4], ['مارشميلو زيادة', 3]] },
+cake: { n: 'تشيز كيك المانجو', p: 26, cal: '٣٨٠ سعرة', img: 'assets/mango-cheesecake.jpg', desc: 'تشيز كيك كريمي بمانجو طازج على قاعدة بسكويت.', al: ['حليب', 'جلوتين'], social: 'ينطلب مع القهوة كثير', adds: [['صوص مانجو زيادة', 3], ['آيس كريم فانيلا', 6]] },
+latte: { n: 'لاتيه', p: 18, cal: '١٩٠ سعرة', img: 'assets/latte.jpg', desc: 'إسبريسو من محصول مختار مع حليب مبخّر ورسمة لاتيه.', al: ['حليب'], social: '٥٢ طلبوه اليوم', adds: [['حليب شوفان', 3], ['شوت إضافي', 4]] },
+iced: { n: 'آيس أمريكانو', p: 16, cal: '١٠ سعرات', img: 'assets/iced-black.jpg', desc: 'إسبريسو مزدوج على ثلج. منعش وخفيف.', al: [], social: 'الأكثر طلباً في الحر', adds: [['شوت إضافي', 4], ['سيرب كراميل', 2]] },
+cold: { n: 'قهوة اليوم الباردة', p: 19, cal: '٥ سعرات', img: 'assets/iced-coffee.jpg', desc: 'محصول إثيوبي مقطّر على البارد. فواكه وزهور.', al: [], social: 'جديد هذا الأسبوع', adds: [['ثلج أقل', 0], ['شوت إضافي', 4]] }
 };
 const M = [
 { t: 'الأكثر مبيعاً', hero: 'thra', tag: 'الأكثر مبيعاً', grid: ['latte', 'cake'] },
 { t: 'جديدنا', hero: 'cake', tag: 'جديد', grid: ['cold', 'thra'] },
 { t: 'منعش للحر', hero: 'iced', tag: 'يبرّد عليك', grid: ['cold', 'cake'] }
 ];
-const m = M[this.state.mood];
+const m = M[s.mood];
+const opener = (k) => () => this.setState({ open: k, size: 1, adds: {}, pair: false });
+const SZ = [['صغير', -3], ['وسط', 0], ['كبير', 4]];
+let sheet = { open: false };
+if (s.open) {
+const it = D[s.open];
+const addSum = it.adds.reduce((t, a, i) => t + (s.adds[i] ? a[1] : 0), 0);
+const total = it.p + SZ[s.size][1] + addSum + (s.pair ? 22 : 0);
+const pairCake = s.open !== 'cake';
+sheet = {
+open: true, n: it.n, img: it.img, desc: it.desc, cal: it.cal, al: it.al, social: it.social, total,
+sizes: SZ.map((z, i) => ({ t: z[0], extra: z[1] === 0 ? 'الأساسي' : (z[1] > 0 ? '+' + z[1] : z[1]) + ' ر.س', bg: s.size === i ? '#054026' : '#fff', fg: s.size === i ? '#EDE6DA' : '#0C1A12', border: s.size === i ? '#054026' : '#E3EBE6', pick: () => this.setState({ size: i }) })),
+adds: it.adds.map((a, i) => ({ t: a[0], p: a[1], box: s.adds[i] ? '#0A6B41' : '#E3EBE6', mark: s.adds[i] ? '✓' : '', border: s.adds[i] ? '#0A6B41' : '#E3EBE6', toggle: () => this.setState({ adds: { ...s.adds, [i]: !s.adds[i] } }) })),
+pairImg: pairCake ? D.cake.img : D.latte.img,
+pairText: pairCake ? 'تشيز كيك المانجو بـ٢٢ بدل ٢٦' : 'لاتيه معه بـ١٥ بدل ١٨',
+pairBtn: s.pair ? 'انضاف ✓' : 'أضف',
+addPair: () => this.setState({ pair: !s.pair }),
+add: () => this.setState({ open: null, cart: s.cart.concat([{ n: it.n, t: total }]) })
+};
+}
+const left = s.left;
+const cartTotal = s.cart.reduce((t, c) => t + c.t, 0);
 return {
-moods: M.map((x, i) => ({ t: x.t, bg: this.state.mood === i ? '#054026' : '#fff', fg: this.state.mood === i ? '#EDE6DA' : '#0C1A12', border: this.state.mood === i ? '#054026' : '#E3EBE6', pick: () => this.setState({ mood: i }) })),
-hero: { ...D[m.hero], tag: m.tag },
-grid: m.grid.map(k => D[k]),
+moods: M.map((x, i) => ({ t: x.t, bg: s.mood === i ? '#054026' : '#fff', fg: s.mood === i ? '#EDE6DA' : '#0C1A12', border: s.mood === i ? '#054026' : '#E3EBE6', pick: () => this.setState({ mood: i }) })),
+hero: { ...D[m.hero], tag: m.tag, open: opener(m.hero) },
+grid: m.grid.map(k => ({ ...D[k], open: opener(k) })),
+sheet,
+close: () => this.setState({ open: null }),
+cart: { has: s.cart.length > 0, empty: s.cart.length === 0, count: s.cart.length === 1 ? 'صنف واحد' : s.cart.length + ' أصناف', total: cartTotal },
+nudge: {
+show: s.nudge === 'live' || s.nudge === 'done', live: s.nudge === 'live', done: s.nudge === 'done',
+time: Math.floor(left / 60) + ':' + String(left % 60).padStart(2, '0'), w: Math.round(left / 120 * 100) + '%', color: left <= 30 ? '#C2410C' : '#0C1A12',
+accept: () => this.setState({ nudge: 'done', cart: s.cart.concat([{ n: 'تشيز كيك المانجو', t: 22 }]) }),
+dismiss: () => this.setState({ nudge: 'closed' })
+},
 stories: [
 { t: 'جديدنا', img: 'assets/smores.jpg', ring: 'conic-gradient(#0A6B41, #DEC49E, #0A6B41)' },
 { t: 'الحلا', img: 'assets/mango-cheesecake.jpg', ring: 'conic-gradient(#0A6B41, #DEC49E, #0A6B41)' },

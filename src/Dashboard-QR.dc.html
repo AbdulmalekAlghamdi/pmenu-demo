@@ -2,16 +2,18 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
-<title>Pmenu — الباركود</title>
+<title>Pmenu — استوديو الباركود</title>
 <script src="./support.js"></script>
 </head>
 <body>
 <x-dc>
 <helmet>
-<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&amp;family=Poppins:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&amp;family=Poppins:wght@500;600;700;800&amp;family=Reem+Kufi:wght@600;700&amp;display=swap" rel="stylesheet">
 <style>
 body{margin:0;background:#F6F4EF}
 a{color:#FF5E13}a:hover{color:#FF7A3D}
+input[type=range]{accent-color:#FF5E13;width:100%}
+input[type=color]{width:42px;height:42px;border:0;border-radius:12px;padding:0;background:none;cursor:pointer}
 </style>
 </helmet>
 <div dir="rtl" style="font-family: 'Readex Pro', sans-serif; color: #16140F; background: radial-gradient(1100px 520px at 90% -8%, rgba(255,94,19,.14), rgba(255,94,19,0) 60%), radial-gradient(700px 420px at 0% 100%, rgba(255,94,19,.06), rgba(255,94,19,0) 60%), #F6F4EF; min-height: 100vh; display: flex; flex-wrap: wrap; align-items: stretch">
@@ -20,111 +22,138 @@ a{color:#FF5E13}a:hover{color:#FF7A3D}
   <main style="flex: 999 1 560px; min-width: 0; padding: 32px 36px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px">
     <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px">
       <div>
-        <h1 style="margin: 0; font-size: 34px; font-weight: 600">الباركود</h1>
-        <p style="margin: 6px 0 0; color: #6B675E; font-weight: 300">رابط ثابت للأبد: غيّر المنيو والثيم كيف ما تبي بدون ما تطبع من جديد</p>
+        <h1 style="margin: 0; font-size: 34px; font-weight: 600">استوديو الباركود</h1>
+        <p style="margin: 6px 0 0; color: #6B675E; font-weight: 300">باركود بهويتك، ذكي يغيّر وجهته لحاله، وتطبعه وتوصلك لين المحل</p>
       </div>
-      <span dir="ltr" style="padding: 12px 18px; border-radius: 999px; background: #FFFFFF; border: 1px solid rgba(22,20,15,.08); font-family: 'Poppins', sans-serif; font-size: 14px; color: #3D3A33; box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16)">pmenu.sa/wekad</span>
+      <span dir="ltr" style="padding: 12px 18px; border-radius: 999px; background: #FFFFFF; font-family: 'Poppins', sans-serif; font-size: 14px; color: #3D3A33; box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16)">pmenu.sa/wekad</span>
     </div>
 
-    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch">
-      <section style="position: relative; flex: 3 1 480px; min-width: 0; min-height: 520px; border-radius: 28px; overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 32px; box-sizing: border-box">
+    <div style="display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px">
+      <sc-for list="{{templates}}" as="t" hint-placeholder-count="5">
+        <button type="button" onClick="{{t.pick}}" style="flex: none; display: flex; align-items: center; gap: 10px; padding: 10px 16px 10px 12px; border-radius: 16px; font: inherit; font-size: 14px; cursor: pointer; background: {{t.bg}}; color: {{t.fg}}; border: 1px solid {{t.border}}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{t.d}}"></path></svg>{{t.t}}</button>
+      </sc-for>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: stretch">
+      <section style="position: relative; flex: 1.2 1 440px; min-width: 0; min-height: 560px; border-radius: 28px; overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 32px; box-sizing: border-box">
         <img src="/_blob/6b7575ca47bf3cb57980503ea567bb10" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(2px) brightness(.55)">
         <div style="position: relative; display: flex; flex-direction: column; align-items: center">
-          <div style="width: 270px; padding: 26px 24px 22px; border-radius: 26px 26px 10px 10px; background: {{frame}}; display: flex; flex-direction: column; align-items: center; gap: 16px; box-shadow: 0 40px 80px rgba(0,0,0,.5)">
-            <img src="{{logo}}" alt="وِكاد" style="height: 34px; width: auto">
-            <div style="position: relative; background: #fff; padding: 14px; border-radius: 16px">
-              <div role="img" aria-label="باركود منيو وِكاد" style="display: grid; grid-template-columns: repeat(25, minmax(0, 1fr)); width: 200px; height: 200px">
-                <sc-for list="{{cells}}" as="c" hint-placeholder-count="625"><div style="background: {{c.bg}}; border-radius: {{rad}}"></div></sc-for>
+          <div style="width: {{f.w}}; padding: {{f.pad}}; border-radius: {{f.rad}}; background: {{f.bg}}; display: flex; flex-direction: column; align-items: center; gap: 14px; box-shadow: 0 40px 80px rgba(0,0,0,.5); transform: rotate({{f.rot}})">
+            <sc-if value="{{f.head}}" hint-placeholder-val="{{true}}"><img src="{{f.logo}}" alt="وِكاد" style="height: 32px; width: auto"></sc-if>
+            <sc-if value="{{f.big}}" hint-placeholder-val="{{false}}"><strong style="font-family: 'Reem Kufi', sans-serif; font-size: 30px; color: {{f.fg}}; text-align: center; line-height: 1.3">منيونا صار رقمي</strong></sc-if>
+            <div style="position: relative; background: #FFFFFF; padding: 12px; border-radius: {{q.tileR}}">
+              <div style="position: relative; width: 189px; height: 189px">
+                <div role="img" aria-label="باركود منيو وِكاد" style="display: grid; grid-template-columns: repeat(21, minmax(0, 1fr)); width: 189px; height: 189px">
+                  <sc-for list="{{q.cells}}" as="c" hint-placeholder-count="441"><div style="background: {{c.bg}}; border-radius: {{q.dot}}; transform: scale({{q.scale}})"></div></sc-for>
+                </div>
+                <sc-for list="{{q.eyes}}" as="e" hint-placeholder-count="3">
+                  <div style="position: absolute; top: {{e.top}}; left: {{e.left}}; width: 63px; height: 63px; box-sizing: border-box; border: 9px solid {{e.c}}; border-radius: {{q.eyeR}}; display: flex; align-items: center; justify-content: center"><div style="width: 27px; height: 27px; background: {{e.c}}; border-radius: {{q.eyeInR}}"></div></div>
+                </sc-for>
+                <sc-if value="{{s.logo}}" hint-placeholder-val="{{true}}"><div style="position: absolute; top: 50%; left: 50%; width: {{q.logoBox}}; height: {{q.logoBox}}; transform: translate(-50%, -50%); border-radius: 12px; background: #054026; border: 4px solid #FFFFFF; display: flex; align-items: center; justify-content: center"><img src="/_blob/180e7683b31119fe5e372edcb2673be9" alt="" style="width: 70%; height: auto"></div></sc-if>
               </div>
-              <div style="position: absolute; top: 50%; left: 50%; width: 50px; height: 50px; margin: -25px 0 0 -25px; border-radius: 12px; background: #054026; border: 4px solid #fff; display: flex; align-items: center; justify-content: center"><img src="/_blob/180e7683b31119fe5e372edcb2673be9" alt="" style="width: 32px; height: auto"></div>
             </div>
-            <strong style="color: {{onFrame}}; font-size: 17px; font-weight: 500">{{caption}}</strong>
-            <span style="color: {{onFrame}}; opacity: .7; font-size: 12px">طاولة ٧</span>
+            <strong style="color: {{f.fg}}; font-size: 17px; font-weight: 600; text-align: center">{{s.caption}}</strong>
+            <sc-if value="{{f.table}}" hint-placeholder-val="{{true}}"><span style="color: {{f.fg}}; opacity: .75; font-size: 13px">طاولة ٧</span></sc-if>
           </div>
-          <div style="width: 300px; height: 18px; border-radius: 0 0 14px 14px; background: #2A2018; box-shadow: 0 20px 40px rgba(0,0,0,.5)"></div>
+          <sc-if value="{{f.base}}" hint-placeholder-val="{{true}}"><div style="width: 300px; height: 18px; border-radius: 0 0 14px 14px; background: #2A2018; box-shadow: 0 20px 40px rgba(0,0,0,.5)"></div></sc-if>
         </div>
+        <span style="position: absolute; top: 16px; right: 16px; padding: 8px 14px; border-radius: 999px; background: rgba(255,255,255,.92); font-size: 13px; font-weight: 500">{{f.name}}</span>
       </section>
 
-      <section style="flex: 2 1 340px; min-width: 0; padding: 24px; border-radius: 28px; background: #FFFFFF; border: 1px solid rgba(22,20,15,.07); display: flex; flex-direction: column; gap: 20px; box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16)">
-        <h2 style="margin: 0; font-size: 18px; font-weight: 500">تصميم الستاند</h2>
-        <div style="display: flex; flex-direction: column; gap: 10px">
-          <span style="font-size: 14px; color: #3D3A33">اللون</span>
-          <div style="display: flex; gap: 10px; flex-wrap: wrap">
-            <sc-for list="{{colors}}" as="k" hint-placeholder-count="5"><button type="button" onClick="{{k.pick}}" aria-label="{{k.name}}" style="width: 46px; height: 46px; border-radius: 14px; background: {{k.c}}; border: 1px solid rgba(22,20,15,.12); cursor: pointer; outline: {{k.ring}}; outline-offset: 3px"></button></sc-for>
-          </div>
+      <section style="flex: 1 1 340px; min-width: 0; padding: 22px; border-radius: 28px; background: #FFFFFF; border: 1px solid rgba(22,20,15,.07); box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16); display: flex; flex-direction: column; gap: 16px">
+        <div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 14px; color: #3D3A33">شكل النقاط</span>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap"><sc-for list="{{seg.dot}}" as="o" hint-placeholder-count="4"><button type="button" onClick="{{o.pick}}" style="padding: 9px 13px; border-radius: 12px; font: inherit; font-size: 13px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}; border: 1px solid {{o.border}}">{{o.t}}</button></sc-for></div>
         </div>
-        <div style="display: flex; flex-direction: column; gap: 10px">
-          <span style="font-size: 14px; color: #3D3A33">شكل النقاط</span>
-          <div role="group" aria-label="شكل النقاط" style="display: flex; padding: 4px; border-radius: 14px; background: #F3F0EA">
-            <sc-for list="{{shapes}}" as="sh" hint-placeholder-count="2"><button type="button" onClick="{{sh.pick}}" style="flex: 1 1 0; padding: 10px; border: 0; border-radius: 10px; font: inherit; font-size: 14px; cursor: pointer; background: {{sh.bg}}; color: {{sh.fg}}">{{sh.name}}</button></sc-for>
-          </div>
+        <div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 14px; color: #3D3A33">شكل العيون (الزوايا)</span>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap"><sc-for list="{{seg.eye}}" as="o" hint-placeholder-count="3"><button type="button" onClick="{{o.pick}}" style="padding: 9px 13px; border-radius: 12px; font: inherit; font-size: 13px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}; border: 1px solid {{o.border}}">{{o.t}}</button></sc-for></div>
         </div>
-        <label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: #3D3A33">النص على الستاند
-          <input type="text" value="{{caption}}" onChange="{{setCaption}}" style="padding: 14px; border-radius: 14px; border: 1px solid rgba(22,20,15,.12); background: #F3F0EA; color: #16140F; font: inherit"></label>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center">
+          <label style="display: flex; align-items: center; gap: 10px; font-size: 13px"><input type="color" value="{{s.c1}}" onChange="{{setC1}}" aria-label="اللون الأول">اللون</label>
+          <label style="display: flex; align-items: center; gap: 10px; font-size: 13px"><input type="color" value="{{s.c2}}" onChange="{{setC2}}" aria-label="لون التدرج">التدرج</label>
+          <label style="display: flex; align-items: center; gap: 10px; font-size: 13px"><input type="color" value="{{s.eyeC}}" onChange="{{setEye}}" aria-label="لون العيون">العيون</label>
+          <label style="display: flex; align-items: center; gap: 10px; font-size: 13px"><input type="color" value="{{s.frame}}" onChange="{{setFrame}}" aria-label="لون الإطار">الإطار</label>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px; border-radius: 14px; background: #F6F4EF; font-size: 14px">الشعار في النص<button type="button" onClick="{{toggleLogo}}" aria-label="الشعار في النص" style="width: 52px; height: 30px; border-radius: 999px; border: 0; padding: 3px; background: {{sw.bg}}; display: flex; justify-content: {{sw.j}}; cursor: pointer"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FFFFFF"></span></button></div>
+        <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #6B675E">الجملة تحت الباركود<input type="text" value="{{s.caption}}" onChange="{{setCap}}" style="padding: 12px; border-radius: 12px; border: 1px solid rgba(22,20,15,.14); font: inherit; font-size: 14px; color: #16140F"></label>
         <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: auto">
-          <button type="button" style="padding: 14px; border-radius: 999px; border: 0; background: #FF5E13; color: #0A0A0A; font: inherit; font-weight: 700">ستاندات PDF للطباعة</button>
-          <button type="button" style="padding: 14px; border-radius: 999px; border: 1px solid rgba(22,20,15,.16); background: transparent; color: #16140F; font: inherit">PNG · SVG</button>
+          <button type="button" style="padding: 13px; border-radius: 999px; border: 0; background: #FF5E13; color: #0A0A0A; font: inherit; font-weight: 700; cursor: pointer">اطلب طباعة</button>
+          <button type="button" style="padding: 13px; border-radius: 999px; border: 1px solid rgba(22,20,15,.14); background: #FFFFFF; font: inherit; cursor: pointer">PNG · SVG · PDF</button>
         </div>
       </section>
     </div>
 
-    <section style="padding: 24px; border-radius: 28px; background: #FFFFFF; border: 1px solid rgba(22,20,15,.07); display: flex; flex-direction: column; gap: 14px; box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16)">
-      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px"><h2 style="margin: 0; font-size: 18px; font-weight: 500">باركود لكل فرع وطاولة</h2><button type="button" style="padding: 10px 16px; border-radius: 999px; border: 1px dashed rgba(22,20,15,.2); background: transparent; color: #3D3A33; font: inherit">+ إضافة طاولات</button></div>
-      <div style="overflow-x: auto">
-        <table style="width: 100%; min-width: 560px; border-collapse: collapse; font-size: 15px">
-          <thead><tr style="color: #6B675E; font-size: 13px; text-align: right"><th style="padding: 10px 8px; font-weight: 400">المكان</th><th style="padding: 10px 8px; font-weight: 400">عدد الباركودات</th><th style="padding: 10px 8px; font-weight: 400">مسحات ٧ أيام</th><th style="padding: 10px 8px; font-weight: 400">أكثر طاولة</th></tr></thead>
-          <tbody>
-            <tr style="border-top: 1px solid rgba(22,20,15,.06)"><td style="padding: 14px 8px">الفرع الرئيسي · الكاونتر</td><td style="padding: 14px 8px">١</td><td style="padding: 14px 8px; font-family: 'Poppins', sans-serif">920</td><td style="padding: 14px 8px; color: #6B675E">—</td></tr>
-            <tr style="border-top: 1px solid rgba(22,20,15,.06)"><td style="padding: 14px 8px">الفرع الرئيسي · الجلسات</td><td style="padding: 14px 8px">١٢</td><td style="padding: 14px 8px; font-family: 'Poppins', sans-serif">745</td><td style="padding: 14px 8px">طاولة ٧</td></tr>
-            <tr style="border-top: 1px solid rgba(22,20,15,.06)"><td style="padding: 14px 8px">الفرع الثاني</td><td style="padding: 14px 8px">٨</td><td style="padding: 14px 8px; font-family: 'Poppins', sans-serif">660</td><td style="padding: 14px 8px">طاولة ٣</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
+    <div style="display: flex; flex-wrap: wrap; gap: 20px">
+      <section style="flex: 1 1 380px; min-width: 0; padding: 22px; border-radius: 28px; background: #16140F; color: #F6F4EF; display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; align-items: center; gap: 10px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF5E13" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"></path></svg><h2 style="margin: 0; font-size: 18px; font-weight: 600">باركود ذكي: نفس الباركود، وجهة تتغيّر</h2></div>
+        <sc-for list="{{smart}}" as="m" hint-placeholder-count="4">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px; border-radius: 14px; background: rgba(246,244,239,.06); font-size: 14px">
+            <span style="display: flex; flex-direction: column; gap: 2px"><span>{{m.t}}</span><span style="font-size: 12px; color: #BDB8AD">{{m.d}}</span></span>
+            <button type="button" onClick="{{m.toggle}}" aria-label="{{m.t}}" style="width: 52px; height: 30px; border-radius: 999px; border: 0; padding: 3px; background: {{m.bg}}; display: flex; justify-content: {{m.j}}; cursor: pointer; flex: none"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FFFFFF"></span></button>
+          </div>
+        </sc-for>
+      </section>
+      <section style="flex: 1 1 380px; min-width: 0; padding: 22px; border-radius: 28px; background: #FFFFFF; border: 1px solid rgba(22,20,15,.07); box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16); display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px"><h2 style="margin: 0; font-size: 18px; font-weight: 600">كل باركود وأرقامه</h2><button type="button" style="padding: 9px 14px; border-radius: 999px; border: 1px dashed rgba(22,20,15,.25); background: transparent; font: inherit; font-size: 13px">+ باركود جديد</button></div>
+        <sc-for list="{{codes}}" as="c" hint-placeholder-count="4">
+          <div style="display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(22,20,15,.06); font-size: 14px">
+            <span style="width: 34px; height: 34px; border-radius: 10px; background: #F3F0EA; display: flex; align-items: center; justify-content: center; flex: none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16140F" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h3v3h-3z"></path></svg></span>
+            <span style="flex: 1 1 auto; display: flex; flex-direction: column; gap: 2px"><span>{{c.t}}</span><span style="font-size: 12px; color: #6B675E">{{c.d}}</span></span>
+            <span style="flex: 0 0 110px; height: 8px; border-radius: 99px; background: #F0ECE4"><span style="display: block; height: 8px; border-radius: 99px; background: #FF5E13; width: {{c.w}}"></span></span>
+            <strong style="font-family: 'Poppins', sans-serif; flex: 0 0 48px; text-align: left">{{c.v}}</strong>
+          </div>
+        </sc-for>
+      </section>
+    </div>
   </main>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1050}}'>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1350}}'>
 class Component extends DCLogic {
-constructor(p) { super(p); this.state = { color: 0, shape: 1, caption: 'امسح وتصفّح منيو وِكاد' }; }
+constructor(p) { super(p); this.state = { tpl: 0, dot: 'round', eye: 'soft', c1: '#054026', c2: '#0A6B41', eyeC: '#054026', frame: '#054026', logo: true, caption: 'امسح وتصفّح منيو وِكاد', smart: { 0: true, 1: true, 2: false, 3: true } }; }
 renderVals() {
 const s = this.state;
-const P = [
-['أخضر وِكاد', '#054026', '#0A6B41', '#EDE6DA', '/_blob/180e7683b31119fe5e372edcb2673be9'],
-['رملي', '#ECD7B4', '#054026', '#054026', '/_blob/26c19d4192f17d853aae7c4f2cd39d85'],
-['أسود', '#16140F', '#0A0A0A', '#F5F5F0', '/_blob/180e7683b31119fe5e372edcb2673be9'],
-['أبيض', '#FFFFFF', '#054026', '#054026', '/_blob/26c19d4192f17d853aae7c4f2cd39d85'],
-['وردي أكتوبر', '#D6336C', '#9E1F4D', '#FFFFFF', '/_blob/180e7683b31119fe5e372edcb2673be9']
-];
-const cur = P[s.color];
-const ink = cur[2];
-const N = 25;
-const finder = (r, c) => {
-const pts = [[0, 0], [0, N - 7], [N - 7, 0]];
-for (const p of pts) {
-const y = r - p[0], x = c - p[1];
-if (y >= 0 && y < 7 && x >= 0 && x < 7) return (y === 0 || y === 6 || x === 0 || x === 6 || (y >= 2 && y <= 4 && x >= 2 && x <= 4)) ? 1 : 0;
-if (y >= -1 && y <= 7 && x >= -1 && x <= 7) return 0;
-}
-return -1;
-};
-let seed = 11;
-const rnd = () => { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; };
+const hex = (h) => { const n = parseInt(h.slice(1), 16); return [n >> 16, (n >> 8) & 255, n & 255]; };
+const light = (h) => { const c = hex(h); return (c[0] * 299 + c[1] * 587 + c[2] * 114) / 1000 > 150; };
+const mix = (a, b, t) => { const x = hex(a), y = hex(b); return 'rgb(' + x.map((v, i) => Math.round(v + (y[i] - v) * t)).join(',') + ')'; };
+const N = 21; let seed = 11; const rnd = () => { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; };
+const inEye = (r, c) => (r < 8 && c < 8) || (r < 8 && c > N - 9) || (r > N - 9 && c < 8);
+const mid = (r, c) => s.logo && r >= 8 && r <= 12 && c >= 8 && c <= 12;
 const cells = [];
-for (let r = 0; r < N; r++) for (let c = 0; c < N; c++) {
-const f = finder(r, c);
-const mid = r >= 9 && r <= 15 && c >= 9 && c <= 15;
-const on = mid ? false : (f === -1 ? rnd() > 0.5 : f === 1);
-cells.push({ bg: on ? ink : 'transparent' });
-}
+for (let r = 0; r < N; r++) for (let c = 0; c < N; c++) { const on = !inEye(r, c) && !mid(r, c) && rnd() > .5; cells.push({ bg: on ? mix(s.c1, s.c2, (r + c) / (2 * N)) : 'transparent' }); }
+const TP = [
+{ t: 'ستاند طاولة', d: 'M6 3h12v14H6zM4 21h16', w: '280px', pad: '24px 22px 20px', rad: '26px 26px 10px 10px', rot: '0deg', head: true, big: false, table: true, base: true },
+{ t: 'ستيكر الباب', d: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z', w: '300px', pad: '34px 28px', rad: '50%', rot: '-4deg', head: true, big: false, table: false, base: false },
+{ t: 'كرت الكاشير', d: 'M3 6h18v12H3z', w: '330px', pad: '20px', rad: '18px', rot: '3deg', head: true, big: false, table: false, base: false },
+{ t: 'بوستر', d: 'M5 2h14v20H5z', w: '300px', pad: '30px 24px', rad: '6px', rot: '0deg', head: true, big: true, table: false, base: false },
+{ t: 'ملصق NFC', d: 'M6 8a6 6 0 0 1 0 8M10 6a10 10 0 0 1 0 12M14 4a14 14 0 0 1 0 16', w: '250px', pad: '22px', rad: '40px', rot: '0deg', head: true, big: false, table: false, base: false }
+];
+const tp = TP[s.tpl];
+const fg = light(s.frame) ? '#16140F' : '#F6F4EF';
+const segOf = (key, list) => list.map(o => ({ t: o[1], bg: s[key] === o[0] ? '#16140F' : '#FFFFFF', fg: s[key] === o[0] ? '#FFFFFF' : '#3D3A33', border: s[key] === o[0] ? '#16140F' : 'rgba(22,20,15,.14)', pick: () => this.setState({ [key]: o[0] }) }));
+const SM = [
+['حسب الوقت', 'الصبح يفتح منيو الفطور، والليل المنيو الكامل'],
+['يعرف رقم الطاولة', 'نادِ الويتر يوصل للكاشير برقم الطاولة'],
+['حسب لغة الجوال', 'جوال إنجليزي؟ يفتح المنيو بالإنجليزي'],
+['تغيّر الوجهة بدون طباعة', 'فعالية؟ وجّه الباركود لصفحتها وارجعه بعدين']
+];
 return {
+s,
+templates: TP.map((t, i) => ({ t: t.t, d: t.d, bg: s.tpl === i ? '#16140F' : '#FFFFFF', fg: s.tpl === i ? '#FFFFFF' : '#3D3A33', border: s.tpl === i ? '#16140F' : 'rgba(22,20,15,.12)', pick: () => this.setState({ tpl: i }) })),
+f: { ...tp, name: tp.t, bg: s.frame, fg, logo: light(s.frame) ? '/_blob/26c19d4192f17d853aae7c4f2cd39d85' : '/_blob/180e7683b31119fe5e372edcb2673be9' },
+q: {
 cells,
-frame: cur[1], onFrame: cur[3], logo: cur[4],
-rad: s.shape === 1 ? '50%' : '0',
-caption: s.caption,
-setCaption: (e) => this.setState({ caption: e.target.value }),
-colors: P.map((p, i) => ({ name: p[0], c: p[1], ring: s.color === i ? '2px solid #FF5E13' : '0 solid transparent', pick: () => this.setState({ color: i }) })),
-shapes: ['مربعات', 'دوائر'].map((n, i) => ({ name: n, bg: s.shape === i ? '#16140F' : 'transparent', fg: s.shape === i ? '#FFFFFF' : '#3D3A33', pick: () => this.setState({ shape: i }) }))
+dot: s.dot === 'square' ? '0' : s.dot === 'soft' ? '2px' : '50%', scale: s.dot === 'small' ? '.72' : '1',
+eyes: [{ top: '0', left: '0' }, { top: '0', left: '126px' }, { top: '126px', left: '0' }].map(e => ({ ...e, c: s.eyeC })),
+eyeR: s.eye === 'square' ? '0' : s.eye === 'soft' ? '14px' : '50%', eyeInR: s.eye === 'square' ? '0' : s.eye === 'soft' ? '6px' : '50%',
+tileR: s.tpl === 1 ? '50%' : '14px', logoBox: '50px'
+},
+seg: { dot: segOf('dot', [['square', 'مربعات'], ['soft', 'ناعمة'], ['round', 'دوائر'], ['small', 'نقاط صغيرة']]), eye: segOf('eye', [['square', 'مربعة'], ['soft', 'مدوّرة'], ['circle', 'دائرية']]) },
+setC1: (e) => this.setState({ c1: e.target.value }), setC2: (e) => this.setState({ c2: e.target.value }),
+setEye: (e) => this.setState({ eyeC: e.target.value }), setFrame: (e) => this.setState({ frame: e.target.value }),
+setCap: (e) => this.setState({ caption: e.target.value }),
+toggleLogo: () => this.setState({ logo: !s.logo }), sw: { bg: s.logo ? '#FF5E13' : '#D9D5CC', j: s.logo ? 'flex-end' : 'flex-start' },
+smart: SM.map((m, i) => ({ t: m[0], d: m[1], bg: s.smart[i] ? '#FF5E13' : '#3A3730', j: s.smart[i] ? 'flex-end' : 'flex-start', toggle: () => this.setState({ smart: { ...s.smart, [i]: !s.smart[i] } }) })),
+codes: [['الفرع الرئيسي · الكاونتر', 'ستاند أكريليك', 920], ['الجلسات · طاولات ١–١٢', '١٢ ستاند', 745], ['الفرع الثاني', '٨ ستاندات', 660], ['ستيكر الباب', 'يمسحونه وهم برّا', 410]].map(c => ({ t: c[0], d: c[1], v: c[2], w: Math.round(c[2] / 920 * 100) + '%' }))
 };
 }
 }

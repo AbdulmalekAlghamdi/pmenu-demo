@@ -233,6 +233,31 @@ gsap.from('.camp-chips span', { y: 30, opacity: 0, scale: .8, stagger: .08, dura
 gsap.from('.camp-card', { y: 80, opacity: 0, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: '.camp-card', start: 'top 85%' } });
 gsap.to('.cc-chart i', { scaleY: 1, stagger: .09, duration: .9, ease: 'power3.out', scrollTrigger: { trigger: '.cc-chart', start: 'top 80%' } });
 
+/* ITEM SHEET + INSTANT OFFER */
+(function () {
+  const lis = $$('.nd-steps li'), tap = $('.nd-tap'), sheet = $('.nd-sheet'), timer = $('.nd-timer'), pop = $('.nd-pop');
+  let st = -1, secs = 0, secIv = null, cd = 120, cdIv = null;
+  function step(n) {
+    if (n === st) return; st = n;
+    lis.forEach((li, i) => li.classList.toggle('on', i === n));
+    tap.classList.toggle('press', n === 1);
+    sheet.classList.toggle('on', n === 1);
+    timer.classList.toggle('on', n === 2);
+    pop.classList.toggle('on', n === 3);
+    clearInterval(secIv); clearInterval(cdIv);
+    if (n === 2) { secs = 0; $('.nd-sec').textContent = 0; secIv = setInterval(() => { secs = Math.min(20, secs + 1); $('.nd-sec').textContent = secs; }, 180); }
+    if (n === 3) { cd = 120; cdIv = setInterval(() => { cd = Math.max(0, cd - 1); $('.nd-cd').textContent = Math.floor(cd / 60) + ':' + String(cd % 60).padStart(2, '0'); gsap.set('.nd-bar em', { scaleX: cd / 120 }); }, 1000); }
+  }
+  step(0);
+  mm.add({ desk: '(min-width: 761px)', mob: '(max-width: 760px)' }, (ctx) => {
+    const desk = ctx.conditions.desk;
+    ScrollTrigger.create({
+      trigger: desk ? '.nd' : '.nd-phone', start: desk ? 'top top' : 'top 70%', end: desk ? '+=220%' : 'bottom 10%', pin: desk,
+      onUpdate: (self) => step(Math.min(3, Math.floor(self.progress * 4))),
+    });
+  });
+})();
+
 /* FULL EDITOR: the menu reshapes itself step by step */
 (function () {
   const ph = $('.ed-phone'), lis = $$('.ed-list li'), qr = $('.ed-qr');
