@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Pmenu — رؤى المبيعات</title>
+<link rel="icon" href="assets/favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&amp;family=Poppins:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F6F4EF}
+a{color:#FF5E13}a:hover{color:#FF7A3D}
+</style>
+<link rel="stylesheet" href="css/demo.css">
+</head>
+<body class="is-page">
+<template id="tpl-main">
+<div dir="rtl" style="font-family: 'Readex Pro', sans-serif; color: #16140F; background: radial-gradient(1100px 520px at 90% -8%, rgba(255,94,19,.14), rgba(255,94,19,0) 60%), radial-gradient(700px 420px at 0% 100%, rgba(255,94,19,.06), rgba(255,94,19,0) 60%), #F6F4EF; min-height: 100vh; display: flex; flex-wrap: wrap; align-items: stretch">
+  <div style="flex: 1 1 240px; max-width: 272px"><div data-import="Sidebar" data-props='{"active": "insights"}'></div></div>
+
+  <main style="flex: 999 1 560px; min-width: 0; padding: 32px 36px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px">
+      <div>
+        <h1 style="margin: 0; font-size: 34px; font-weight: 600">رؤى المبيعات</h1>
+        <p style="margin: 6px 0 0; color: #6B675E; font-weight: 300">Pmenu يقرأ منيوك ومبيعاتك من فودكس، ويقول لك وش تسوي</p>
+      </div>
+      <span style="display: flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px; background: #FFFFFF; box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16); font-size: 14px; color: #3D3A33"><span style="width: 8px; height: 8px; border-radius: 50%; background: #178048"></span>متزامن مع فودكس</span>
+    </div>
+
+    <section style="padding: 26px; border-radius: 28px; background: #FFFFFF; border: 1px solid rgba(22,20,15,.07); box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16); display: flex; flex-direction: column; gap: 18px">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px">
+        <div style="display: flex; align-items: center; gap: 10px"><span style="width: 40px; height: 40px; border-radius: 12px; background: rgba(255,94,19,.12); display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF5E13" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.6M12 17h.01"></path></svg></span><h2 style="margin: 0; font-size: 22px; font-weight: 600">ليش ما انطلب؟</h2></div>
+        <div role="group" aria-label="الصنف" style="display: flex; gap: 8px; flex-wrap: wrap">
+          <template data-for="{{tabs}}" data-as="t"><button type="button" onClick="{{t.pick}}" style="display: flex; align-items: center; gap: 8px; padding: 6px 14px 6px 6px; border-radius: 999px; font: inherit; font-size: 14px; cursor: pointer; background: {{t.bg}}; color: {{t.fg}}; border: 1px solid {{t.border}}"><img src="{{t.img}}" alt="" style="width: 30px; height: 30px; border-radius: 50%; object-fit: cover">{{t.n}}</button></template>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: stretch">
+        <div style="flex: 1 1 300px; display: flex; flex-direction: column; gap: 14px">
+          <img src="{{cur.img}}" alt="{{cur.n}}" style="width: 100%; height: 190px; border-radius: 20px; object-fit: cover; filter: {{cur.filter}}">
+          <div style="display: flex; flex-direction: column; gap: 10px">
+            <template data-for="{{cur.funnel}}" data-as="f">
+              <div style="display: flex; flex-direction: column; gap: 6px">
+                <div style="display: flex; justify-content: space-between; font-size: 14px"><span style="color: #3D3A33">{{f.t}}</span><strong style="font-family: 'Poppins', sans-serif">{{f.v}}</strong></div>
+                <div style="height: 12px; border-radius: 99px; background: #F0ECE4"><div style="height: 12px; border-radius: 99px; background: {{f.c}}; width: {{f.w}}"></div></div>
+              </div>
+            </template>
+          </div>
+          <p style="margin: 0; font-size: 14px; color: {{cur.verdictColor}}; font-weight: 500">{{cur.verdict}}</p>
+        </div>
+
+        <div style="flex: 1.4 1 380px; display: flex; flex-direction: column; gap: 12px">
+          <span style="font-size: 14px; color: #6B675E">الأسباب المحتملة</span>
+          <template data-for="{{cur.reasons}}" data-as="r">
+            <div style="display: flex; gap: 14px; align-items: flex-start; padding: 16px; border-radius: 18px; background: #F6F4EF">
+              <span style="flex: none; padding: 4px 10px; border-radius: 999px; background: {{r.lvlBg}}; color: {{r.lvlFg}}; font-size: 12px; font-weight: 600">{{r.lvl}}</span>
+              <div style="flex: 1 1 auto; display: flex; flex-direction: column; gap: 6px">
+                <strong style="font-size: 15px; font-weight: 500">{{r.t}}</strong>
+                <span style="font-size: 13px; color: #6B675E; line-height: 1.6">{{r.d}}</span>
+              </div>
+              <button type="button" style="flex: none; padding: 10px 14px; border-radius: 999px; border: 0; background: #16140F; color: #FFFFFF; font: inherit; font-size: 13px; cursor: pointer">{{r.cta}}</button>
+            </div>
+          </template>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding: 26px; border-radius: 28px; background: #FFFFFF; border: 1px solid rgba(22,20,15,.07); box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16); display: flex; flex-direction: column; gap: 20px">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px">
+        <div style="display: flex; align-items: center; gap: 10px"><span style="width: 40px; height: 40px; border-radius: 12px; background: rgba(255,94,19,.12); display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF5E13" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l5-5 4 4 8-8M15 8h5v5"></path></svg></span><h2 style="margin: 0; font-size: 22px; font-weight: 600">مؤشر الأسعار بالمنطقة</h2></div>
+        <div role="group" aria-label="النطاق" style="display: flex; padding: 4px; border-radius: 14px; background: #F3F0EA">
+          <template data-for="{{scopes}}" data-as="sc"><button type="button" onClick="{{sc.pick}}" style="padding: 9px 16px; border: 0; border-radius: 10px; font: inherit; font-size: 14px; cursor: pointer; background: {{sc.bg}}; color: {{sc.fg}}">{{sc.t}}</button></template>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: stretch">
+        <div style="flex: 0 1 280px; padding: 24px; border-radius: 24px; background: #16140F; color: #F6F4EF; display: flex; flex-direction: column; gap: 10px; justify-content: space-between">
+          <span style="font-size: 14px; color: #BDB8AD">منيوك مقارنةً بـ{{scope.label}}</span>
+          <strong style="font-family: 'Poppins', sans-serif; font-size: 64px; line-height: 1; color: #FF5E13" dir="ltr">{{scope.index}}</strong>
+          <span style="font-size: 15px; line-height: 1.6">{{scope.summary}}</span>
+          <span style="font-size: 12px; color: #A39F95">مبني على {{scope.count}} · بدون أسماء محلات</span>
+        </div>
+
+        <div style="flex: 1 1 440px; display: flex; flex-direction: column; gap: 4px">
+          <template data-for="{{rows}}" data-as="p">
+            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 14px; padding: 14px 0; border-bottom: 1px solid rgba(22,20,15,.06)">
+              <img src="{{p.img}}" alt="" style="width: 46px; height: 46px; border-radius: 12px; object-fit: cover; flex: none">
+              <div style="flex: 0 0 130px; display: flex; flex-direction: column; gap: 2px"><strong style="font-size: 15px; font-weight: 500">{{p.n}}</strong><span style="font-size: 12px; color: #6B675E">سعرك {{p.mine}} · المتوسط {{p.avg}}</span></div>
+              <div style="flex: 1 1 200px; position: relative; height: 34px">
+                <div style="position: absolute; top: 14px; right: 0; left: 0; height: 6px; border-radius: 99px; background: linear-gradient(90deg, #FFD3B8, #F0ECE4 50%, #CFE8D8)"></div>
+                <div style="position: absolute; top: 8px; width: 2px; height: 18px; background: #A39F95; right: {{p.avgPos}}"></div>
+                <div style="position: absolute; top: 6px; width: 22px; height: 22px; margin-right: -11px; border-radius: 50%; background: {{p.dot}}; box-shadow: 0 0 0 4px #FFFFFF, 0 4px 10px rgba(22,20,15,.25); right: {{p.minePos}}"></div>
+                <span style="position: absolute; top: 24px; right: 0; font-size: 11px; color: #A39F95">{{p.min}}</span>
+                <span style="position: absolute; top: 24px; left: 0; font-size: 11px; color: #A39F95">{{p.max}}</span>
+              </div>
+              <span style="flex: none; padding: 6px 12px; border-radius: 999px; background: {{p.chipBg}}; color: {{p.chipFg}}; font-size: 13px; font-weight: 500">{{p.verdict}}</span>
+            </div>
+          </template>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+</template>
+<template id="tpl-Sidebar">
+<nav dir="rtl" aria-label="لوحة التحكم" style="font-family: 'Readex Pro', sans-serif; color: #16140F; background: #FFFFFF; width: 100%; min-height: 1000px; box-sizing: border-box; padding: 24px 16px; display: flex; flex-direction: column; gap: 6px; border-left: 1px solid rgba(22,20,15,.07)">
+  <a href="site.html" dir="ltr" style="align-self: flex-end; padding: 0 10px 20px; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 26px; color: #16140F; text-decoration: none"><span style="color: #FF5E13">P</span>menu</a>
+  <div style="display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 16px; background: #F6F4EF; border: 1px solid rgba(22,20,15,.07); margin-bottom: 14px">
+    <div style="width: 38px; height: 38px; border-radius: 11px; background: #054026; display: flex; align-items: center; justify-content: center; flex: none"><img src="assets/wordmark-cream.svg" alt="" style="width: 26px; height: auto"></div>
+    <div style="display: flex; flex-direction: column; min-width: 0"><strong style="font-size: 15px; font-weight: 600">وِكاد</strong><span style="font-size: 12px; color: #6B675E">٣ فروع · الباقة الفخمة</span></div>
+  </div>
+  <template data-for="{{items}}" data-as="it">
+    <a href="{{it.href}}" style="display: flex; align-items: center; gap: 12px; padding: 13px 14px; border-radius: 14px; text-decoration: none; font-size: 15px; background: {{it.bg}}; color: {{it.fg}}; font-weight: {{it.fw}}">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{it.d}}"></path></svg>
+      <span style="flex: 1 1 auto">{{it.label}}</span>
+      <template data-if="{{it.badge}}"><span style="padding: 2px 8px; border-radius: 999px; background: #FF5E13; color: #0A0A0A; font-size: 11px; font-weight: 700">{{it.badge}}</span></template>
+    </a>
+  </template>
+  <div style="margin-top: 28px; position: relative; overflow: hidden; padding: 18px; border-radius: 20px; background: #E8467C; color: #fff; display: flex; flex-direction: column; gap: 8px">
+    <div aria-hidden="true" style="position: absolute; top: -30px; left: -30px; width: 100px; height: 100px; border-radius: 50%; border: 1px solid rgba(255,255,255,.45)"></div>
+    <span style="font-size: 12px; opacity: .9">Season Drop</span>
+    <strong style="font-size: 17px">أكتوبر الوردي مفعّل</strong>
+    <span style="font-size: 13px; line-height: 1.6">يرجع ثيمك تلقائياً ١ نوفمبر</span>
+  </div>
+</nav>
+</template>
+<div id="app"></div>
+<nav class="demo-nav" aria-label="تنقل العرض">
+  <a href="index.html" class="demo-brand" dir="ltr"><span>P</span>menu</a>
+  <a href="index.html">القصة</a>
+  <a href="site.html">الموقع</a>
+  <a href="Dashboard-Overview.html">لوحة التحكم</a>
+  <a href="menus.html">منيو العميل</a>
+</nav>
+<script src="js/morphdom.min.js"></script>
+<script src="js/dc.js"></script>
+<script>
+DC.define('Sidebar', document.getElementById('tpl-Sidebar'), (function () {
+
+class Component extends DCLogic {
+renderVals() {
+const a = this.props.active ?? 'overview';
+const L = [
+{ k: 'overview', label: 'نبض المنيو', href: 'Dashboard-Overview.html', d: 'M3 12h4l3-8 4 16 3-8h4', badge: '' },
+{ k: 'insights', label: 'رؤى ومؤشر الأسعار', href: 'Dashboard-Insights.html', d: 'M3 17l5-5 4 4 8-8M15 8h5v5', badge: 'جديد' },
+{ k: 'whatsapp', label: 'مساعد واتساب', href: 'Dashboard-WhatsApp.html', d: 'M21 12a9 9 0 0 1-13.5 7.8L3 21l1.2-4.5A9 9 0 1 1 21 12z', badge: 'جديد' },
+{ k: 'menu', label: 'المنيو والصور', href: 'Dashboard-Menu.html', d: 'M4 6h16M4 12h16M4 18h10', badge: '' },
+{ k: 'themes', label: 'الهوية والثيمات', href: 'Dashboard-Themes.html', d: 'M12 3a9 9 0 1 0 0 18c1.5 0 2-1 2-2s-1-2 0-3h3a4 4 0 0 0 4-4c0-5-4-9-9-9zM7.5 11h.01M10.5 7h.01M15 7.5h.01', badge: '' },
+{ k: 'smart', label: 'المنيو الذكي', href: 'Dashboard-Smart.html', d: 'M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z', badge: '' },
+{ k: 'google', label: 'قوقل والظهور', href: 'Dashboard-Google.html', d: 'M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21zM12 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z', badge: '' },
+{ k: 'qr', label: 'الباركود', href: 'Dashboard-QR.html', d: 'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h3v3h-3zM20 20h1M17 20h.01M20 14h1', badge: '' },
+{ k: 'billing', label: 'الاشتراك', href: 'Dashboard-Billing.html', d: 'M2 6h20v12H2zM2 10h20', badge: '' }
+];
+return { items: L.map(x => ({ ...x, bg: x.k === a ? '#16140F' : 'transparent', fg: x.k === a ? '#FFFFFF' : '#3D3A33', fw: x.k === a ? '600' : '400' })) };
+}
+}
+
+return Component;
+})());
+DC.define('main', document.getElementById('tpl-main'), (function () {
+
+class Component extends DCLogic {
+constructor(p) { super(p); this.state = { item: 0, scope: 0 }; }
+renderVals() {
+const s = this.state;
+const W = [
+{ n: 'تشيز كيك المانجو', img: 'assets/mango-cheesecake.jpg', filter: 'brightness(.82) saturate(.85)',
+funnel: [['انشاف في المنيو', '1,240', '100%', '#16140F'], ['فتحوا التفاصيل', '410', '33%', '#FF9457'], ['انطلب (من فودكس)', '88', '7%', '#FF5E13']],
+verdict: 'ينشاف كثير وينطلب قليل: ٧٪ بس، ومتوسط حلاك ١٨٪', verdictColor: '#C2410C',
+reasons: [
+{ lvl: 'ثقة عالية', t: 'الصورة بعيدة وغامقة', d: 'الأصناف اللي صورتها قريبة ومضيئة تنطلب ضعف غيرها في منيوك.', cta: 'حسّن الصورة' },
+{ lvl: 'ثقة متوسطة', t: 'السعر أعلى من المنطقة بـ٨٪', d: 'متوسط التشيز كيك في حيّك ٢٤ ر.س وأنت ٢٦.', cta: 'جرّب ٢٤ لأسبوع' },
+{ lvl: 'ثقة متوسطة', t: 'الوصف قصير وما يشهّي', d: '٦ كلمات بس. الأصناف الأكثر طلباً عندك وصفها فيه طعم وقوام.', cta: 'اكتب وصف جديد' }
+] },
+{ n: 'قهوة اليوم الباردة', img: 'assets/iced-coffee.jpg', filter: 'none',
+funnel: [['انشاف في المنيو', '860', '100%', '#16140F'], ['فتحوا التفاصيل', '190', '22%', '#FF9457'], ['انطلب (من فودكس)', '41', '5%', '#FF5E13']],
+verdict: 'تنطلب أقل من آيس أمريكانو بثلاث مرات مع إنها جنبه', verdictColor: '#C2410C',
+reasons: [
+{ lvl: 'ثقة عالية', t: 'الاسم ما يوضح وش هي', d: 'العملاء يوقفون عندها ويرجعون. «قهوة اليوم» تحتاج سطر يشرح المحصول.', cta: 'اقترح اسم' },
+{ lvl: 'ثقة متوسطة', t: 'مكانها تحت في القائمة', d: 'تجي سادسة في قسم البارد، وأغلب الطلبات من أول ٣ أصناف.', cta: 'ارفعها فوق' },
+{ lvl: 'ثقة منخفضة', t: 'ما فيها علامة «جديد»', d: 'الأصناف الجديدة تاخذ ٢٠٪ مشاهدات أكثر أول أسبوعين.', cta: 'أضف العلامة' }
+] }
+];
+const lvl = { 'ثقة عالية': ['rgba(255,94,19,.14)', '#C2410C'], 'ثقة متوسطة': ['rgba(240,200,80,.2)', '#7A5200'], 'ثقة منخفضة': ['#ECE8E0', '#5E5A52'] };
+const w = W[s.item];
+const cur = { ...w, funnel: w.funnel.map(f => ({ t: f[0], v: f[1], w: f[2], c: f[3] })), reasons: w.reasons.map(r => ({ ...r, lvlBg: lvl[r.lvl][0], lvlFg: lvl[r.lvl][1] })) };
+const tabs = W.map((x, i) => ({ n: x.n, img: x.img, bg: s.item === i ? '#16140F' : '#FFFFFF', fg: s.item === i ? '#FFFFFF' : '#3D3A33', border: s.item === i ? '#16140F' : 'rgba(22,20,15,.14)', pick: () => this.setState({ item: i }) }));
+const S = [
+{ t: 'حيّك', label: 'حيّك', count: '٤٢ مقهى في حيّك', index: '−6%', summary: 'أسعارك أقل من متوسط حيّك. عندك مجال ترفع بدون ما تخسر عملاء.', shift: 0 },
+{ t: '٥ كم', label: 'محيط ٥ كم', count: '١٣٨ مقهى حولك', index: '−3%', summary: 'قريب من متوسط المنطقة. اللاتيه أوضح فرصة للرفع.', shift: -1 },
+{ t: 'الدمام', label: 'مدينة الدمام', count: '٦١٠ مقهى في الدمام', index: '+2%', summary: 'أعلى بشوي من متوسط المدينة، وهذا طبيعي لمقهى مختص.', shift: -2 }
+];
+const sc = S[s.scope];
+const P = [
+['لاتيه', 'assets/latte.jpg', 18, 21, 14, 27],
+['آيس أمريكانو', 'assets/iced-black.jpg', 16, 17, 12, 22],
+['تشيز كيك المانجو', 'assets/mango-cheesecake.jpg', 26, 24, 18, 30],
+['ذرا وِكاد', 'assets/smores.jpg', 24, 0, 0, 0]
+];
+const rows = P.map(p => {
+const avg = p[3] ? p[3] + sc.shift : 0;
+if (!avg) return { n: p[0], img: p[1], mine: p[2], avg: '—', min: '', max: '', avgPos: '-100px', minePos: '50%', dot: '#16140F', verdict: 'صنف فريد بالمنطقة', chipBg: '#16140F', chipFg: '#FFFFFF' };
+const pos = v => Math.round((v - p[4]) / (p[5] - p[4]) * 100) + '%';
+const diff = Math.round((p[2] - avg) / avg * 100);
+const low = diff <= -5, high = diff >= 5;
+return { n: p[0], img: p[1], mine: p[2], avg: avg, min: p[4], max: p[5], avgPos: pos(avg), minePos: pos(p[2]),
+dot: low ? '#178048' : high ? '#FF5E13' : '#16140F',
+verdict: low ? 'عندك مجال ترفع' : high ? 'أعلى من المنطقة' : 'ضمن المتوسط',
+chipBg: low ? 'rgba(23,128,72,.12)' : high ? 'rgba(255,94,19,.14)' : '#F0ECE4',
+chipFg: low ? '#178048' : high ? '#C2410C' : '#3D3A33' };
+});
+return {
+cur, tabs, rows, scope: sc,
+scopes: S.map((x, i) => ({ t: x.t, bg: s.scope === i ? '#16140F' : 'transparent', fg: s.scope === i ? '#FFFFFF' : '#3D3A33', pick: () => this.setState({ scope: i }) }))
+};
+}
+}
+
+return Component;
+})());
+DC.mount('main', document.getElementById('app'));
+</script>
+</body>
+</html>

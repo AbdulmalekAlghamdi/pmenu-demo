@@ -283,3 +283,77 @@ section { position: relative; overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   .scroll-hint i, .caret, .live { animation: none; }
 }
+
+/* 5b advisor */
+.advisor { min-height: 100vh; display: flex; align-items: center; background: #FFF3EA; }
+.advisor-in { width: 100%; max-width: 1240px; margin: 0 auto; padding: 110px 32px; display: flex; flex-direction: column; gap: 40px; }
+.sec-copy.wide { max-width: 860px; }
+.adv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 18px; }
+.adv-card { background: #fff; border-radius: 30px; padding: 28px; display: flex; flex-direction: column; gap: 22px; box-shadow: 0 30px 60px -30px rgba(22, 20, 15, .3); }
+.adv-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.adv-head b { font-size: 24px; font-weight: 700; }
+.adv-head span { font-size: 14px; color: var(--muted); }
+.funnel { display: flex; flex-direction: column; gap: 14px; }
+.fn { display: grid; grid-template-columns: 110px 1fr 64px; align-items: center; gap: 12px; font-size: 14px; }
+.fn i { height: 14px; border-radius: 99px; background: #F0ECE4; overflow: hidden; display: block; }
+.fn i em { display: block; height: 100%; width: var(--w); border-radius: 99px; background: var(--ink); transform-origin: right; transform: scaleX(0); }
+.fn-hot i em { background: var(--orange); }
+.fn b { font-family: 'Poppins', sans-serif; font-size: 18px; text-align: left; }
+.reasons { display: flex; flex-direction: column; gap: 10px; }
+.rs { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 16px; background: #F6F4EF; font-size: 15px; }
+.rs em { font-style: normal; padding: 4px 10px; border-radius: 999px; background: rgba(255, 94, 19, .14); color: var(--orange-ink); font-size: 12px; font-weight: 600; flex: none; }
+.adv-dark { background: var(--ink); color: #F6F4EF; }
+.adv-dark .adv-head span { color: #BDB8AD; }
+.pidx { display: flex; align-items: center; gap: 18px; }
+.pidx strong { font-family: 'Poppins', sans-serif; font-size: 72px; line-height: 1; color: var(--orange); }
+.pidx span { font-size: 16px; line-height: 1.6; color: #E4E0D6; }
+.prow { display: grid; grid-template-columns: 100px 1fr 96px; align-items: center; gap: 12px; font-size: 14px; }
+.ptrack { position: relative; height: 8px; border-radius: 99px; background: linear-gradient(90deg, #7BD88F, #3A3730 50%, #FFB48C); direction: ltr; }
+.pavg { position: absolute; top: -6px; left: var(--x); width: 2px; height: 20px; background: #BDB8AD; }
+.pdot { position: absolute; top: 50%; left: 50%; width: 20px; height: 20px; margin: -10px 0 0 -10px; border-radius: 50%; background: #F6F4EF; box-shadow: 0 0 0 4px var(--ink); }
+.pdot.low { background: #7BD88F; }
+.pdot.high { background: var(--orange); }
+.prow em { font-style: normal; font-size: 13px; color: #BDB8AD; text-align: left; }
+.prow em.low { color: #7BD88F; }
+.prow em.high { color: #FF9A66; }
+
+/* 5c whatsapp */
+.wa { min-height: 100vh; display: flex; align-items: center; background: #EAF3EE; }
+.wa-in { width: 100%; max-width: 1240px; margin: 0 auto; padding: 100px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 48px; }
+.wa-stage { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; justify-content: center; }
+.wa-phone, .wa-menu { width: 280px; height: 560px; border-radius: 44px; overflow: hidden; box-shadow: 0 0 0 9px #0A0A0A, 0 40px 80px -30px rgba(22, 20, 15, .45); display: flex; flex-direction: column; flex: none; }
+.wa-phone { background: #EFE7DD; }
+.wa-top { background: #1F3B33; color: #fff; padding: 22px 14px 12px; display: flex; align-items: center; gap: 10px; }
+.wa-top > span { width: 38px; height: 38px; border-radius: 50%; background: var(--orange); color: #0A0A0A; display: flex; align-items: center; justify-content: center; font-family: 'Poppins', sans-serif; font-weight: 800; }
+.wa-top div { display: flex; flex-direction: column; }
+.wa-top b { font-weight: 500; font-size: 15px; }
+.wa-top small { font-size: 11px; opacity: .75; }
+.wa-chat { flex: 1; padding: 12px 10px; display: flex; flex-direction: column; gap: 7px; justify-content: flex-end; overflow: hidden; }
+.wm { max-width: 84%; padding: 8px 11px; border-radius: 13px; font-size: 13px; line-height: 1.55; box-shadow: 0 1px 1px rgba(0, 0, 0, .08); opacity: 0; transform: translateY(12px); }
+.wm.me { align-self: flex-start; background: #D9FDD3; }
+.wm.bot { align-self: flex-end; background: #fff; }
+.wm img { width: 170px; height: 100px; object-fit: cover; border-radius: 9px; margin-bottom: 6px; }
+.wa-arrow { width: 54px; height: 3px; background: var(--orange); border-radius: 3px; position: relative; }
+.wa-arrow::before { content: ''; position: absolute; left: -2px; top: -6px; width: 12px; height: 12px; border-left: 3px solid var(--orange); border-bottom: 3px solid var(--orange); transform: rotate(45deg); }
+.wa-menu { background: #F4F1EA; gap: 10px; }
+.wmh { background: #054026; padding: 26px 16px 16px; }
+.wmh img { width: 90px; }
+.wnew { margin: 0 12px; position: relative; height: 0; border-radius: 16px; overflow: hidden; opacity: 0; }
+.wnew img { width: 100%; height: 120px; object-fit: cover; }
+.wnew div { position: absolute; inset: 0; padding: 10px 12px; display: flex; flex-direction: column; justify-content: flex-end; background: linear-gradient(90deg, rgba(5, 64, 38, 0) 25%, rgba(5, 64, 38, .9)); color: #EDE6DA; }
+.wnew em { font-style: normal; align-self: flex-start; padding: 2px 9px; border-radius: 999px; background: var(--orange); color: #0A0A0A; font-size: 11px; font-weight: 700; }
+.wnew strong { font-family: 'Poppins', sans-serif; font-size: 13px; }
+.wrow { margin: 0 12px; display: flex; align-items: center; gap: 10px; padding: 8px; border-radius: 14px; background: #fff; font-size: 13px; transition: background-color .4s; }
+.wrow img { width: 46px; height: 46px; border-radius: 10px; object-fit: cover; }
+.wrow span { flex: 1; }
+.wrow b { font-family: 'Poppins', sans-serif; color: #0A6B41; }
+.wlatte.flash { background: #FFE2CF; }
+
+@media (max-width: 760px) {
+  .advisor-in, .wa-in { padding: 96px 20px 64px; gap: 28px; }
+  .fn { grid-template-columns: 90px 1fr 50px; }
+  .prow { grid-template-columns: 82px 1fr 78px; font-size: 13px; }
+  .pidx strong { font-size: 54px; }
+  .wa-arrow { transform: rotate(-90deg); }
+  .wa-phone, .wa-menu { width: 270px; height: 520px; }
+}

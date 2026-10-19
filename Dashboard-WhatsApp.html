@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Pmenu — مساعد واتساب</title>
+<link rel="icon" href="assets/favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&amp;family=Poppins:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F6F4EF}
+a{color:#FF5E13}a:hover{color:#FF7A3D}
+@keyframes pm-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes pm-dots{0%,80%,100%{opacity:.25}40%{opacity:1}}
+.pm-msg{animation:pm-in .35s ease-out both}
+.pm-d1{animation:pm-dots 1.2s infinite}
+.pm-d2{animation:pm-dots 1.2s .2s infinite}
+.pm-d3{animation:pm-dots 1.2s .4s infinite}
+@media (prefers-reduced-motion: reduce){.pm-msg,.pm-d1,.pm-d2,.pm-d3{animation:none}}
+</style>
+<link rel="stylesheet" href="css/demo.css">
+</head>
+<body class="is-page">
+<template id="tpl-main">
+<div dir="rtl" style="font-family: 'Readex Pro', sans-serif; color: #16140F; background: radial-gradient(1100px 520px at 90% -8%, rgba(255,94,19,.14), rgba(255,94,19,0) 60%), radial-gradient(700px 420px at 0% 100%, rgba(255,94,19,.06), rgba(255,94,19,0) 60%), #F6F4EF; min-height: 100vh; display: flex; flex-wrap: wrap; align-items: stretch">
+  <div style="flex: 1 1 240px; max-width: 272px"><div data-import="Sidebar" data-props='{"active": "whatsapp"}'></div></div>
+
+  <main style="flex: 999 1 560px; min-width: 0; padding: 32px 36px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px">
+      <div>
+        <h1 style="margin: 0; font-size: 34px; font-weight: 600">مساعد واتساب</h1>
+        <p style="margin: 6px 0 0; color: #6B675E; font-weight: 300">عدّل منيوك برسالة. بدون ما تفتح لوحة التحكم أصلاً</p>
+      </div>
+      <button type="button" onClick="{{replay}}" style="padding: 12px 20px; border-radius: 999px; border: 0; background: #16140F; color: #FFFFFF; font: inherit; font-weight: 500; cursor: pointer">أعد المحادثة</button>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start; justify-content: center">
+      <div style="width: 340px; height: 680px; border-radius: 48px; background: #0A0A0A; padding: 10px; box-sizing: border-box; box-shadow: 0 40px 80px -30px rgba(22,20,15,.45); flex: none">
+        <div style="width: 100%; height: 100%; border-radius: 38px; overflow: hidden; background: #EFE7DD; display: flex; flex-direction: column">
+          <div style="padding: 22px 16px 14px; background: #1F3B33; color: #FFFFFF; display: flex; align-items: center; gap: 12px">
+            <div style="width: 42px; height: 42px; border-radius: 50%; background: #FF5E13; color: #0A0A0A; display: flex; align-items: center; justify-content: center; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 20px">P</div>
+            <div style="display: flex; flex-direction: column; gap: 2px"><strong style="font-size: 16px; font-weight: 500">مساعد Pmenu</strong><span style="font-size: 12px; opacity: .75">{{status}}</span></div>
+          </div>
+          <div style="flex: 1 1 auto; padding: 14px 12px; display: flex; flex-direction: column; gap: 8px; overflow: hidden; justify-content: flex-end">
+            <template data-for="{{shown}}" data-as="m">
+              <div class="pm-msg" style="align-self: {{m.side}}; max-width: 82%; padding: 9px 12px; border-radius: 14px; background: {{m.bg}}; box-shadow: 0 1px 1px rgba(0,0,0,.08); display: flex; flex-direction: column; gap: 6px; font-size: 14px; line-height: 1.6">
+                <template data-if="{{m.img}}"><img src="{{m.img}}" alt="" style="width: 200px; height: 140px; border-radius: 10px; object-fit: cover"></template>
+                <span>{{m.t}}</span>
+                <span style="align-self: flex-end; font-size: 10px; color: #7A7A72" dir="ltr">{{m.time}}</span>
+              </div>
+            </template>
+            <template data-if="{{typing}}">
+              <div style="align-self: flex-start; padding: 12px 14px; border-radius: 14px; background: #FFFFFF; display: flex; gap: 4px"><span class="pm-d1" style="width: 7px; height: 7px; border-radius: 50%; background: #7A7A72"></span><span class="pm-d2" style="width: 7px; height: 7px; border-radius: 50%; background: #7A7A72"></span><span class="pm-d3" style="width: 7px; height: 7px; border-radius: 50%; background: #7A7A72"></span></div>
+            </template>
+          </div>
+          <div style="padding: 10px; background: #F4EFE8; display: flex; gap: 8px; align-items: center">
+            <div style="flex: 1 1 auto; padding: 11px 14px; border-radius: 999px; background: #FFFFFF; color: #8A867D; font-size: 13px">اكتب رسالة</div>
+            <div style="width: 40px; height: 40px; border-radius: 50%; background: #1F3B33; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 1 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.9V21h2v-2.1A7 7 0 0 0 19 12z"></path></svg></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 12px; flex: none">
+        <svg width="60" height="24" viewBox="0 0 60 24" fill="none" stroke="#FF5E13" stroke-width="2.5" stroke-linecap="round" aria-hidden="true" style="margin-top: 300px"><path d="M58 12H4M14 3L4 12l10 9"></path></svg>
+        <span style="font-size: 13px; color: #6B675E">يتحدّث فوراً</span>
+      </div>
+
+      <div style="width: 300px; height: 620px; border-radius: 46px; background: #0A0A0A; padding: 9px; box-sizing: border-box; box-shadow: 0 40px 80px -30px rgba(22,20,15,.45); flex: none; margin-top: 30px">
+        <div style="width: 100%; height: 100%; border-radius: 37px; overflow: hidden; background: #F4F1EA; display: flex; flex-direction: column; gap: 10px">
+          <div style="padding: 22px 16px 16px; background: #054026; display: flex; flex-direction: column; gap: 10px">
+            <img src="assets/wordmark-cream.svg" alt="وِكاد" style="height: 28px; width: auto; align-self: flex-start">
+            <template data-if="{{coldFirst}}"><span class="pm-msg" style="align-self: flex-start; padding: 6px 12px; border-radius: 999px; background: #DEC49E; color: #054026; font-size: 12px; font-weight: 600">بكرة حر.. الباردة أول من ١٢ الظهر</span></template>
+          </div>
+          <template data-if="{{newItem}}">
+            <div class="pm-msg" style="margin: 0 12px; position: relative; height: 130px; border-radius: 18px; overflow: hidden">
+              <img src="assets/smores.jpg" alt="ذرا بالكراميل" style="width: 100%; height: 100%; object-fit: cover; filter: saturate(1.2) contrast(1.05)">
+              <div style="position: absolute; inset: 0; padding: 12px 14px; display: flex; flex-direction: column; justify-content: flex-end; background: linear-gradient(90deg, rgba(5,64,38,0) 25%, rgba(5,64,38,.9)); color: #EDE6DA">
+                <span style="align-self: flex-start; padding: 3px 10px; border-radius: 999px; background: #FF5E13; color: #0A0A0A; font-size: 11px; font-weight: 700">جديد</span>
+                <strong style="font-size: 16px">ذرا بالكراميل</strong><strong style="font-family: 'Poppins', sans-serif; font-size: 14px">26 ر.س</strong>
+              </div>
+            </div>
+          </template>
+          <div style="margin: 0 12px; display: flex; align-items: center; gap: 10px; padding: 8px; border-radius: 14px; background: {{latteBg}}">
+            <img src="assets/latte.jpg" alt="" style="width: 50px; height: 50px; border-radius: 10px; object-fit: cover">
+            <span style="flex: 1 1 auto; font-size: 13px">لاتيه</span>
+            <strong style="font-family: 'Poppins', sans-serif; font-size: 15px; color: #0A6B41">{{lattePrice}}</strong>
+          </div>
+          <div style="margin: 0 12px; display: flex; align-items: center; gap: 10px; padding: 8px; border-radius: 14px; background: #FFFFFF">
+            <img src="assets/iced-black.jpg" alt="" style="width: 50px; height: 50px; border-radius: 10px; object-fit: cover">
+            <span style="flex: 1 1 auto; font-size: 13px">آيس أمريكانو</span>
+            <strong style="font-family: 'Poppins', sans-serif; font-size: 15px; color: #0A6B41">16</strong>
+          </div>
+          <div style="margin: 0 12px; display: flex; align-items: center; gap: 10px; padding: 8px; border-radius: 14px; background: #FFFFFF">
+            <img src="assets/mango-cheesecake.jpg" alt="" style="width: 50px; height: 50px; border-radius: 10px; object-fit: cover">
+            <span style="flex: 1 1 auto; font-size: 13px">تشيز كيك المانجو</span>
+            <strong style="font-family: 'Poppins', sans-serif; font-size: 15px; color: #0A6B41">26</strong>
+          </div>
+        </div>
+      </div>
+
+      <section style="flex: 1 1 260px; max-width: 320px; padding: 22px; border-radius: 24px; background: #FFFFFF; border: 1px solid rgba(22,20,15,.07); box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16); display: flex; flex-direction: column; gap: 12px">
+        <h2 style="margin: 0; font-size: 17px; font-weight: 600">قلها بأسلوبك</h2>
+        <template data-for="{{examples}}" data-as="e">
+          <div style="padding: 12px 14px; border-radius: 14px; background: #F6F4EF; font-size: 14px; line-height: 1.6">«{{e}}»</div>
+        </template>
+        <span style="font-size: 13px; color: #6B675E; line-height: 1.6">يفهم الكتابة والرسايل الصوتية، وما يعدّل شي إلا من رقم صاحب المحل أو الموظفين اللي تضيفهم.</span>
+      </section>
+    </div>
+  </main>
+</div>
+</template>
+<template id="tpl-Sidebar">
+<nav dir="rtl" aria-label="لوحة التحكم" style="font-family: 'Readex Pro', sans-serif; color: #16140F; background: #FFFFFF; width: 100%; min-height: 1000px; box-sizing: border-box; padding: 24px 16px; display: flex; flex-direction: column; gap: 6px; border-left: 1px solid rgba(22,20,15,.07)">
+  <a href="site.html" dir="ltr" style="align-self: flex-end; padding: 0 10px 20px; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 26px; color: #16140F; text-decoration: none"><span style="color: #FF5E13">P</span>menu</a>
+  <div style="display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 16px; background: #F6F4EF; border: 1px solid rgba(22,20,15,.07); margin-bottom: 14px">
+    <div style="width: 38px; height: 38px; border-radius: 11px; background: #054026; display: flex; align-items: center; justify-content: center; flex: none"><img src="assets/wordmark-cream.svg" alt="" style="width: 26px; height: auto"></div>
+    <div style="display: flex; flex-direction: column; min-width: 0"><strong style="font-size: 15px; font-weight: 600">وِكاد</strong><span style="font-size: 12px; color: #6B675E">٣ فروع · الباقة الفخمة</span></div>
+  </div>
+  <template data-for="{{items}}" data-as="it">
+    <a href="{{it.href}}" style="display: flex; align-items: center; gap: 12px; padding: 13px 14px; border-radius: 14px; text-decoration: none; font-size: 15px; background: {{it.bg}}; color: {{it.fg}}; font-weight: {{it.fw}}">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{it.d}}"></path></svg>
+      <span style="flex: 1 1 auto">{{it.label}}</span>
+      <template data-if="{{it.badge}}"><span style="padding: 2px 8px; border-radius: 999px; background: #FF5E13; color: #0A0A0A; font-size: 11px; font-weight: 700">{{it.badge}}</span></template>
+    </a>
+  </template>
+  <div style="margin-top: 28px; position: relative; overflow: hidden; padding: 18px; border-radius: 20px; background: #E8467C; color: #fff; display: flex; flex-direction: column; gap: 8px">
+    <div aria-hidden="true" style="position: absolute; top: -30px; left: -30px; width: 100px; height: 100px; border-radius: 50%; border: 1px solid rgba(255,255,255,.45)"></div>
+    <span style="font-size: 12px; opacity: .9">Season Drop</span>
+    <strong style="font-size: 17px">أكتوبر الوردي مفعّل</strong>
+    <span style="font-size: 13px; line-height: 1.6">يرجع ثيمك تلقائياً ١ نوفمبر</span>
+  </div>
+</nav>
+</template>
+<div id="app"></div>
+<nav class="demo-nav" aria-label="تنقل العرض">
+  <a href="index.html" class="demo-brand" dir="ltr"><span>P</span>menu</a>
+  <a href="index.html">القصة</a>
+  <a href="site.html">الموقع</a>
+  <a href="Dashboard-Overview.html">لوحة التحكم</a>
+  <a href="menus.html">منيو العميل</a>
+</nav>
+<script src="js/morphdom.min.js"></script>
+<script src="js/dc.js"></script>
+<script>
+DC.define('Sidebar', document.getElementById('tpl-Sidebar'), (function () {
+
+class Component extends DCLogic {
+renderVals() {
+const a = this.props.active ?? 'overview';
+const L = [
+{ k: 'overview', label: 'نبض المنيو', href: 'Dashboard-Overview.html', d: 'M3 12h4l3-8 4 16 3-8h4', badge: '' },
+{ k: 'insights', label: 'رؤى ومؤشر الأسعار', href: 'Dashboard-Insights.html', d: 'M3 17l5-5 4 4 8-8M15 8h5v5', badge: 'جديد' },
+{ k: 'whatsapp', label: 'مساعد واتساب', href: 'Dashboard-WhatsApp.html', d: 'M21 12a9 9 0 0 1-13.5 7.8L3 21l1.2-4.5A9 9 0 1 1 21 12z', badge: 'جديد' },
+{ k: 'menu', label: 'المنيو والصور', href: 'Dashboard-Menu.html', d: 'M4 6h16M4 12h16M4 18h10', badge: '' },
+{ k: 'themes', label: 'الهوية والثيمات', href: 'Dashboard-Themes.html', d: 'M12 3a9 9 0 1 0 0 18c1.5 0 2-1 2-2s-1-2 0-3h3a4 4 0 0 0 4-4c0-5-4-9-9-9zM7.5 11h.01M10.5 7h.01M15 7.5h.01', badge: '' },
+{ k: 'smart', label: 'المنيو الذكي', href: 'Dashboard-Smart.html', d: 'M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z', badge: '' },
+{ k: 'google', label: 'قوقل والظهور', href: 'Dashboard-Google.html', d: 'M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21zM12 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z', badge: '' },
+{ k: 'qr', label: 'الباركود', href: 'Dashboard-QR.html', d: 'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h3v3h-3zM20 20h1M17 20h.01M20 14h1', badge: '' },
+{ k: 'billing', label: 'الاشتراك', href: 'Dashboard-Billing.html', d: 'M2 6h20v12H2zM2 10h20', badge: '' }
+];
+return { items: L.map(x => ({ ...x, bg: x.k === a ? '#16140F' : 'transparent', fg: x.k === a ? '#FFFFFF' : '#3D3A33', fw: x.k === a ? '600' : '400' })) };
+}
+}
+
+return Component;
+})());
+DC.define('main', document.getElementById('tpl-main'), (function () {
+
+class Component extends DCLogic {
+constructor(p) { super(p); this.state = { step: 0 }; }
+componentDidMount() { this.run(); }
+componentWillUnmount() { clearInterval(this.t); }
+run() {
+clearInterval(this.t);
+this.setState({ step: 0 });
+this.t = setInterval(() => {
+if (this.state.step >= 8) { clearInterval(this.t); return; }
+this.setState({ step: this.state.step + 1 });
+}, 1700);
+}
+renderVals() {
+const s = this.state.step;
+const M = [
+{ me: 1, t: 'غيّر سعر اللاتيه ٢٠', time: '9:41' },
+{ me: 0, t: 'تم ✓ سعر اللاتيه صار ٢٠ ر.س في الفروع الثلاثة', time: '9:41' },
+{ me: 1, t: 'صنف جديد: ذرا بالكراميل ٢٦ ريال', img: 'assets/smores.jpg', time: '9:42' },
+{ me: 0, t: 'حسّنت الصورة وأضفته في «جديدنا» ✓ أنشره في قصص المنيو بعد؟', time: '9:42' },
+{ me: 1, t: 'ايه', time: '9:43' },
+{ me: 0, t: 'انتشر ✓ ونصيحة: بكرة ٤١° في الدمام. أفعّل «الباردة أول» من ١٢ الظهر؟', time: '9:43' },
+{ me: 1, t: 'فعّل', time: '9:43' },
+{ me: 0, t: 'تم ✓ وبرسل لك تقرير اليوم الساعة ١١ بالليل: الزوار، وأكثر صنف، واقتراح لبكرة.', time: '9:44' }
+];
+const shown = M.slice(0, s).map(m => ({ t: m.t, time: m.time, img: m.img || '', side: m.me ? 'flex-start' : 'flex-end', bg: m.me ? '#D9FDD3' : '#FFFFFF' }));
+const next = M[s];
+return {
+shown,
+typing: !!(next && !next.me),
+status: next && !next.me ? 'يكتب…' : 'متصل',
+lattePrice: s >= 2 ? '20' : '18',
+latteBg: s >= 2 && s < 4 ? '#FFE9DB' : '#FFFFFF',
+newItem: s >= 4,
+coldFirst: s >= 8,
+replay: () => this.run(),
+examples: ['شيل الموكا اليوم، خلصت', 'ارفع كل الحلا ريالين', 'وش أكثر صنف انطلب أمس؟', 'فعّل ثيم اليوم الوطني', 'سوّ عرض ١٥٪ على الكيك العصر']
+};
+}
+}
+
+return Component;
+})());
+DC.mount('main', document.getElementById('app'));
+</script>
+</body>
+</html>

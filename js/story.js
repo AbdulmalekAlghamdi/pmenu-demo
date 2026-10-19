@@ -192,6 +192,42 @@ setInterval(() => {
   el.textContent = v;
 }, 2200);
 
+/* ADVISOR: why not ordered + price index */
+ScrollTrigger.create({
+  trigger: '.adv-grid', start: 'top 72%', once: true,
+  onEnter: () => {
+    gsap.to('.fn i em', { scaleX: 1, duration: 1.4, stagger: .25, ease: 'power3.out' });
+    gsap.from('.rs', { x: -40, opacity: 0, stagger: .18, delay: .9, duration: .7, ease: 'back.out(1.6)' });
+    gsap.from('.pidx strong', { scale: .4, opacity: 0, duration: 1, ease: 'elastic.out(1, .6)', delay: .2 });
+    $$('.pdot').forEach((d, i) => gsap.to(d, { left: getComputedStyle(d).getPropertyValue('--x').trim(), duration: 1.4, delay: .5 + i * .2, ease: 'elastic.out(1, .7)' }));
+  },
+});
+gsap.from('.adv-card', { y: 70, opacity: 0, stagger: .15, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: '.adv-grid', start: 'top 85%' } });
+
+/* WHATSAPP: messages update the menu */
+const wms = $$('.wm');
+let waStep = -1;
+function setWa(step) {
+  if (step === waStep) return;
+  waStep = step;
+  wms.forEach((m, i) => gsap.to(m, { opacity: i < step ? 1 : 0, y: i < step ? 0 : 12, duration: reduce ? 0 : .35, overwrite: true }));
+  $('.wa-status').textContent = step < wms.length && step % 2 === 1 ? 'يكتب…' : 'متصل';
+  $('.wprice').textContent = step >= 2 ? '20' : '18';
+  $('.wlatte').classList.toggle('flash', step >= 2 && step < 4);
+  gsap.to('.wnew', { height: step >= 4 ? 120 : 0, opacity: step >= 4 ? 1 : 0, duration: reduce ? 0 : .6, ease: 'power3.out', overwrite: true });
+}
+setWa(0);
+mm.add({ desk: '(min-width: 761px)', mob: '(max-width: 760px)' }, (ctx) => {
+  const desk = ctx.conditions.desk;
+  ScrollTrigger.create({
+    trigger: desk ? '.wa' : '.wa-stage',
+    start: desk ? 'top top' : 'top 75%',
+    end: desk ? '+=180%' : 'bottom 25%',
+    pin: desk,
+    onUpdate: (self) => setWa(Math.min(wms.length, Math.floor(self.progress * (wms.length + 1)))),
+  });
+});
+
 /* GOOGLE: typing -> result -> pin drop */
 ScrollTrigger.create({
   trigger: '.gwin', start: 'top 70%', once: true,
