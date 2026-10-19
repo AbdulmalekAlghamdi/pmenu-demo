@@ -106,7 +106,7 @@ a{color:#FF5E13}a:hover{color:#FF7A3D}
   <template data-for="{{items}}" data-as="it">
     <a href="{{it.href}}" style="display: flex; align-items: center; gap: 12px; padding: 13px 14px; border-radius: 14px; text-decoration: none; font-size: 15px; background: {{it.bg}}; color: {{it.fg}}; font-weight: {{it.fw}}">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{it.d}}"></path></svg>
-      <span style="flex: 1 1 auto">{{it.label}}</span>
+      <span style="flex: 1 1 auto; white-space: nowrap">{{it.label}}</span>
       <template data-if="{{it.badge}}"><span style="padding: 2px 8px; border-radius: 999px; background: #FF5E13; color: #0A0A0A; font-size: 11px; font-weight: 700">{{it.badge}}</span></template>
     </a>
   </template>
@@ -118,7 +118,7 @@ a{color:#FF5E13}a:hover{color:#FF7A3D}
   </div>
 </nav>
 </template>
-<div class="demo-badge" role="note"><i aria-hidden="true"></i><span class="db-long">عرض تجريبي وتخيّلي فقط</span><span class="db-short">عرض تجريبي</span></div>
+<div class="demo-badge" role="note"><i aria-hidden="true"></i><span class="db-txt"><b class="db-long">عرض تجريبي وتخيّلي فقط</b><b class="db-short">عرض تجريبي</b><small class="db-long">للتجربة الأفضل افتحه من متصفح الكمبيوتر</small><small class="db-short">الأفضل من الكمبيوتر</small></span></div>
 <div id="app"></div>
 <nav class="demo-nav" aria-label="تنقل العرض">
   <a href="index.html" class="demo-brand" dir="ltr"><span>P</span>menu</a>
@@ -137,9 +137,9 @@ renderVals() {
 const a = this.props.active ?? 'overview';
 const L = [
 { k: 'overview', label: 'نبض المنيو', href: 'Dashboard-Overview.html', d: 'M3 12h4l3-8 4 16 3-8h4', badge: '' },
-{ k: 'insights', label: 'رؤى ومؤشر الأسعار', href: 'Dashboard-Insights.html', d: 'M3 17l5-5 4 4 8-8M15 8h5v5', badge: 'جديد' },
-{ k: 'campaigns', label: 'الحملات التسويقية', href: 'Dashboard-Campaigns.html', d: 'M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1zM15 9a3 3 0 0 1 0 6M18 6a7 7 0 0 1 0 12', badge: 'جديد' },
-{ k: 'whatsapp', label: 'مساعد واتساب', href: 'Dashboard-WhatsApp.html', d: 'M21 12a9 9 0 0 1-13.5 7.8L3 21l1.2-4.5A9 9 0 1 1 21 12z', badge: 'جديد' },
+{ k: 'insights', label: 'رؤى المبيعات', href: 'Dashboard-Insights.html', d: 'M3 17l5-5 4 4 8-8M15 8h5v5', badge: '' },
+{ k: 'campaigns', label: 'الحملات', href: 'Dashboard-Campaigns.html', d: 'M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1zM15 9a3 3 0 0 1 0 6M18 6a7 7 0 0 1 0 12', badge: 'جديد' },
+{ k: 'whatsapp', label: 'مساعد واتساب', href: 'Dashboard-WhatsApp.html', d: 'M21 12a9 9 0 0 1-13.5 7.8L3 21l1.2-4.5A9 9 0 1 1 21 12z', badge: '' },
 { k: 'menu', label: 'المنيو والصور', href: 'Dashboard-Menu.html', d: 'M4 6h16M4 12h16M4 18h10', badge: '' },
 { k: 'themes', label: 'الهوية والثيمات', href: 'Dashboard-Themes.html', d: 'M12 3a9 9 0 1 0 0 18c1.5 0 2-1 2-2s-1-2 0-3h3a4 4 0 0 0 4-4c0-5-4-9-9-9zM7.5 11h.01M10.5 7h.01M15 7.5h.01', badge: '' },
 { k: 'smart', label: 'المنيو الذكي', href: 'Dashboard-Smart.html', d: 'M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z', badge: '' },

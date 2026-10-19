@@ -402,3 +402,12 @@ section { position: relative; overflow: hidden; }
 @media (prefers-reduced-motion: reduce) { .demo-badge, .demo-badge::after, .demo-badge i { animation: none; } }
 .topbar { left: 250px; }
 @media (max-width: 760px) { .topbar { left: 128px; } }
+
+.demo-badge { height: auto; padding: 8px 18px 8px 14px; border-radius: 20px; }
+.demo-badge .db-txt { display: flex; flex-direction: column; gap: 1px; line-height: 1.35; }
+.demo-badge b { font-weight: 600; font-size: 13px; }
+.demo-badge small { font-size: 11px; color: #BDB8AD; font-weight: 400; }
+.demo-badge .db-short { display: none; }
+@media (max-width: 760px) { .demo-badge { padding: 6px 12px; border-radius: 16px; } .demo-badge .db-long { display: none; } .demo-badge .db-short { display: block; } .demo-badge b { font-size: 12px; } .demo-badge small { font-size: 10px; } }
+.topbar { left: 300px; }
+@media (max-width: 760px) { .topbar { left: 150px; } }

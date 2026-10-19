@@ -51,9 +51,9 @@ a{color:#FF5E13}a:hover{color:#FF7A3D}
         <div style="flex: 1.4 1 380px; display: flex; flex-direction: column; gap: 12px">
           <span style="font-size: 14px; color: #6B675E">الأسباب المحتملة</span>
           <sc-for list="{{cur.reasons}}" as="r" hint-placeholder-count="3">
-            <div style="display: flex; gap: 14px; align-items: flex-start; padding: 16px; border-radius: 18px; background: #F6F4EF">
+            <div style="display: flex; flex-wrap: wrap; gap: 12px 14px; align-items: flex-start; padding: 16px; border-radius: 18px; background: #F6F4EF">
               <span style="flex: none; padding: 4px 10px; border-radius: 999px; background: {{r.lvlBg}}; color: {{r.lvlFg}}; font-size: 12px; font-weight: 600">{{r.lvl}}</span>
-              <div style="flex: 1 1 auto; display: flex; flex-direction: column; gap: 6px">
+              <div style="flex: 1 1 200px; display: flex; flex-direction: column; gap: 6px">
                 <strong style="font-size: 15px; font-weight: 500">{{r.t}}</strong>
                 <span style="font-size: 13px; color: #6B675E; line-height: 1.6">{{r.d}}</span>
               </div>

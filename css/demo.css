@@ -84,3 +84,18 @@ body.is-phone #app > div {
 body.is-page { padding-top: 64px; }
 @media (max-width: 760px) { body.is-page { padding-top: 56px; } div:has(> [data-import="Sidebar"]) { top: 0 !important; } }
 @media (max-width: 560px) { body.is-phone .demo-badge { display: none; } }
+
+.demo-badge { height: auto; padding: 8px 18px 8px 14px; border-radius: 20px; }
+.demo-badge .db-txt { display: flex; flex-direction: column; gap: 1px; line-height: 1.35; }
+.demo-badge b { font-weight: 600; font-size: 13px; }
+.demo-badge small { font-size: 11px; color: #BDB8AD; font-weight: 400; }
+.demo-badge .db-short { display: none; }
+@media (max-width: 760px) { .demo-badge { padding: 6px 12px; border-radius: 16px; } .demo-badge .db-long { display: none; } .demo-badge .db-short { display: block; } .demo-badge b { font-size: 12px; } .demo-badge small { font-size: 10px; } }
+body.is-page { padding-top: 76px; }
+@media (max-width: 760px) { body.is-page { padding-top: 62px; } }
+
+@media (max-width: 760px) {
+  div:has(> [data-import="Sidebar"]) { position: static !important; }
+  svg[style*="margin-top: 300px"] { margin-top: 0 !important; transform: rotate(-90deg); }
+}
+@media (max-width: 760px) { body:not(.is-page):not(.is-phone) main { padding-top: 84px !important; } }

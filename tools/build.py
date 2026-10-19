@@ -21,7 +21,7 @@ ASSETS = {
     'ed67cfafe78b2f6ba4611f02485a7892': 'assets/iced-black.jpg',
 }
 
-RIBBON = '''<div class="demo-badge" role="note"><i aria-hidden="true"></i><span class="db-long">عرض تجريبي وتخيّلي فقط</span><span class="db-short">عرض تجريبي</span></div>'''
+RIBBON = '''<div class="demo-badge" role="note"><i aria-hidden="true"></i><span class="db-txt"><b class="db-long">عرض تجريبي وتخيّلي فقط</b><b class="db-short">عرض تجريبي</b><small class="db-long">للتجربة الأفضل افتحه من متصفح الكمبيوتر</small><small class="db-short">الأفضل من الكمبيوتر</small></span></div>'''
 
 NAV = '''<nav class="demo-nav" aria-label="تنقل العرض">
   <a href="index.html" class="demo-brand" dir="ltr"><span>P</span>menu</a>
