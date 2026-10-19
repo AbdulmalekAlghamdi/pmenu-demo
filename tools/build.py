@@ -19,6 +19,7 @@ ASSETS = {
     'cbe12c1da4c6581ed9e89c7c08e9a6a1': 'assets/motif-sand.svg',
     'cf3e70c0de50761053d88353688b5a86': 'assets/smores.jpg',
     'ed67cfafe78b2f6ba4611f02485a7892': 'assets/iced-black.jpg',
+    '3a920050864d3e81aa73a00adb27e7da': 'assets/pixory-dark.png',
 }
 
 RIBBON = '''<div class="demo-badge" role="note"><i aria-hidden="true"></i><span class="db-txt"><b class="db-long">عرض تجريبي وتخيّلي فقط</b><b class="db-short">عرض تجريبي</b><small class="db-long">للتجربة الأفضل افتحه من متصفح الكمبيوتر</small><small class="db-short">الأفضل من الكمبيوتر</small></span></div>'''

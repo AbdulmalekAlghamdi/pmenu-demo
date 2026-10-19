@@ -521,3 +521,10 @@ section { position: relative; overflow: hidden; }
   .nd-in { padding: 96px 20px 64px; gap: 28px; }
   .nd-phone { width: 270px; height: 560px; }
 }
+
+/* partner lockup */
+.cta-foot { display: flex; align-items: center; justify-content: center; gap: 18px; color: var(--ink); }
+.cta-foot .lk-pm { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 34px; letter-spacing: -1px; }
+.cta-foot i { font-style: normal; font-family: 'Poppins', sans-serif; font-size: 26px; font-weight: 300; color: var(--orange); }
+.cta-foot img { height: 50px; width: auto; }
+@media (max-width: 760px) { .cta-foot { gap: 12px; } .cta-foot .lk-pm { font-size: 26px; } .cta-foot img { height: 38px; } }

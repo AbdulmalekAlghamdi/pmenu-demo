@@ -99,3 +99,5 @@ body.is-page { padding-top: 76px; }
   svg[style*="margin-top: 300px"] { margin-top: 0 !important; transform: rotate(-90deg); }
 }
 @media (max-width: 760px) { body:not(.is-page):not(.is-phone) main { padding-top: 84px !important; } }
+
+body.is-page { padding-bottom: 84px; }
