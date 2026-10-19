@@ -4,278 +4,267 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Pmenu — الصفحة الرئيسية</title>
+<title>Pmenu — المنيو السعودي القادم</title>
+<meta name="description" content="عرض تفاعلي لمنصة Pmenu">
 <link rel="icon" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&amp;family=Poppins:wght@600;700;800&amp;display=swap" rel="stylesheet">
-<style>
-body{margin:0;background:#F6F4EF}
-a{color:#FF5E13}a:hover{color:#FF7A3D}
-@keyframes pm-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
-@keyframes pm-spin{to{transform:rotate(360deg)}}
-@keyframes pm-pulse{0%{box-shadow:0 0 0 0 rgba(255,94,19,.6)}100%{box-shadow:0 0 0 14px rgba(255,94,19,0)}}
-@keyframes pm-marquee{to{transform:translateX(50%)}}
-.pm-float{animation:pm-float 6s ease-in-out infinite}
-.pm-float2{animation:pm-float 7s ease-in-out -2s infinite}
-.pm-ring{animation:pm-spin 40s linear infinite}
-.pm-live{animation:pm-pulse 1.6s ease-out infinite}
-.pm-track{animation:pm-marquee 30s linear infinite}
-@media (prefers-reduced-motion: reduce){.pm-float,.pm-float2,.pm-ring,.pm-live,.pm-track{animation:none}}
-</style>
-<link rel="stylesheet" href="css/demo.css">
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&amp;family=Poppins:wght@500;600;700;800&amp;family=El+Messiri:wght@600;700&amp;family=Reem+Kufi:wght@600;700&amp;family=Amiri:wght@700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/story.css">
 </head>
-<body class="is-page">
-<template id="tpl-main">
-<div dir="rtl" style="font-family: 'Readex Pro', sans-serif; color: #16140F; background: radial-gradient(1100px 520px at 90% -8%, rgba(255,94,19,.14), rgba(255,94,19,0) 60%), radial-gradient(700px 420px at 0% 100%, rgba(255,94,19,.06), rgba(255,94,19,0) 60%), #F6F4EF; min-height: 100vh; overflow: hidden">
+<body>
 
-  <header style="max-width: 1280px; margin: 0 auto; padding: 24px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
-    <a href="#top" style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 30px; letter-spacing: -1px; color: #16140F; text-decoration: none" dir="ltr"><span style="color: #FF5E13">P</span>menu</a>
-    <nav aria-label="القائمة الرئيسية" style="display: flex; flex-wrap: wrap; gap: 6px; padding: 6px; border-radius: 999px; background: rgba(22,20,15,.05); border: 1px solid rgba(22,20,15,.08)">
-      <a href="#features" style="padding: 10px 18px; border-radius: 999px; color: #16140F; text-decoration: none; font-size: 15px">الميزات</a>
-      <a href="#drops" style="padding: 10px 18px; border-radius: 999px; color: #16140F; text-decoration: none; font-size: 15px">ثيمات المواسم</a>
-      <a href="#pricing" style="padding: 10px 18px; border-radius: 999px; color: #16140F; text-decoration: none; font-size: 15px">الأسعار</a>
-    </nav>
-    <div style="display: flex; gap: 10px">
-      <a href="Dashboard-Overview.html" style="padding: 12px 20px; border-radius: 999px; border: 1px solid rgba(22,20,15,.16); color: #16140F; text-decoration: none; font-weight: 500">دخول التاجر</a>
-      <a href="#pricing" style="padding: 12px 22px; border-radius: 999px; background: #FF5E13; color: #0A0A0A; text-decoration: none; font-weight: 700">اشترك الآن</a>
+<header class="topbar">
+  <a href="#intro" class="tb-brand" dir="ltr"><span>P</span>menu</a>
+  <div class="tb-progress" aria-hidden="true"><i></i></div>
+  <a href="site.html" class="tb-cta">جرّب الديمو الكامل</a>
+</header>
+
+<!-- 0 · Intro -->
+<section class="intro" id="intro">
+  <div class="intro-ring" aria-hidden="true"></div>
+  <div class="intro-dot" aria-hidden="true"></div>
+  <div class="intro-copy">
+    <p class="eyebrow">عرض تفاعلي · أكتوبر ٢٠٢٦</p>
+    <h1 class="wordmark" dir="ltr"><span class="w-p">P</span><span class="w-l">m</span><span class="w-l">e</span><span class="w-l">n</span><span class="w-l">u</span></h1>
+    <p class="intro-sub">المنيو السعودي القادم.. من حفر الباطن</p>
+  </div>
+  <div class="scroll-hint" aria-hidden="true"><span>انزل</span><i></i></div>
+</section>
+
+<!-- 1 · Problem -->
+<section class="problem" id="problem">
+  <div class="problem-in">
+    <p class="problem-lead"><b data-count="70000" data-suffix="+">0</b> مطعم ومقهى في المملكة.. وأغلب منيواتهم:</p>
+    <div class="problem-words">
+      <h2>ما تتغيّر.</h2>
+      <h2>ما تحس.</h2>
+      <h2>وما تعرف مين قرأها.</h2>
     </div>
-  </header>
-
-  <section id="top" style="position: relative; max-width: 1280px; margin: 0 auto; padding: 48px 32px 96px; display: flex; flex-wrap: wrap; align-items: center; gap: 48px">
-    <div aria-hidden="true" style="position: absolute; top: -120px; left: -160px; width: 620px; height: 620px; border-radius: 50%; background: radial-gradient(circle, rgba(255,94,19,.28), rgba(255,94,19,0) 65%); pointer-events: none"></div>
-
-    <div style="position: relative; flex: 1 1 520px; display: flex; flex-direction: column; gap: 28px">
-      <span style="align-self: flex-start; display: flex; align-items: center; gap: 10px; padding: 8px 16px 8px 12px; border-radius: 999px; background: rgba(255,94,19,.12); border: 1px solid rgba(255,94,19,.35); color: #C2410C; font-size: 14px; font-weight: 500"><span class="pm-live" style="width: 8px; height: 8px; border-radius: 50%; background: #FF5E13"></span>ثيم أكتوبر الوردي نزل الحين لكل المشتركين</span>
-      <h1 style="margin: 0; font-weight: 700; font-size: 76px; line-height: 1.12; letter-spacing: -1px">منيوك يستاهل<br><span style="color: #FF5E13">يُبهر</span> قبل لا يُطلب.</h1>
-      <p style="margin: 0; font-size: 21px; line-height: 1.8; color: #5E5A52; max-width: 560px; font-weight: 300">ارفع شعارك، Pmenu يقرأ هويتك ويصمم لك منيو حي بالباركود خلال دقائق. يتغيّر مع الطقس والوقت والمواسم، ويوريك وش يشوف عميلك لحظة بلحظة.</p>
-      <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center">
-        <a href="#pricing" style="padding: 18px 30px; border-radius: 999px; background: #FF5E13; color: #0A0A0A; text-decoration: none; font-weight: 700; font-size: 18px">ابدأ منيوك خلال ٥ دقائق</a>
-        <a href="Menu-Default.html" style="padding: 18px 30px; border-radius: 999px; border: 1px solid rgba(22,20,15,.18); color: #16140F; text-decoration: none; font-weight: 500; font-size: 18px">شوف منيو حي</a>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 12px; padding-top: 8px">
-        <span style="font-size: 14px; color: #6B675E">جرّب الثيمات على الجوال</span>
-        <div role="group" aria-label="اختر ثيم للمعاينة" style="display: flex; flex-wrap: wrap; gap: 8px">
-          <template data-for="{{themes}}" data-as="t">
-            <button type="button" onClick="{{t.pick}}" style="display: flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px; font: inherit; font-size: 14px; cursor: pointer; background: {{t.chipBg}}; color: {{t.chipFg}}; border: 1px solid {{t.chipBorder}}"><span style="width: 14px; height: 14px; border-radius: 50%; background: {{t.dot}}"></span>{{t.name}}</button>
-          </template>
-        </div>
-      </div>
-    </div>
-
-    <div style="position: relative; flex: 1 1 440px; height: 640px; display: flex; justify-content: center; align-items: center">
-      <div class="pm-ring" aria-hidden="true" style="position: absolute; width: 520px; height: 520px; border-radius: 50%; border: 1px solid rgba(22,20,15,.14)"></div>
-      <div aria-hidden="true" style="position: absolute; bottom: 40px; right: 10px; width: 170px; height: 170px; border-radius: 50%; background: #FF5E13"></div>
-
-      <div class="pm-float" style="position: relative; width: 290px; height: 590px; border-radius: 46px; background: #000; padding: 10px; box-sizing: border-box; box-shadow: 0 40px 120px rgba(0,0,0,.6), 0 0 0 1px rgba(22,20,15,.1)">
-        <div style="width: 100%; height: 100%; border-radius: 37px; overflow: hidden; background: {{cur.bg}}; display: flex; flex-direction: column">
-          <div style="position: relative; height: 170px; background: {{cur.hero}}; overflow: hidden">
-            <img src="assets/counter.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .55; mix-blend-mode: luminosity">
-            <div style="position: absolute; inset: 0; padding: 20px; display: flex; flex-direction: column; justify-content: flex-end; gap: 4px; background: linear-gradient(transparent 30%, {{cur.hero}})">
-              <span style="font-size: 12px; color: {{cur.heroSub}}">{{cur.tag}}</span>
-              <strong style="font-size: 26px; color: {{cur.heroFg}}">وِكاد</strong>
-            </div>
-          </div>
-          <div style="display: flex; gap: 8px; padding: 14px 14px 6px">
-            <span style="padding: 7px 12px; border-radius: 999px; background: {{cur.accent}}; color: {{cur.onAccent}}; font-size: 12px; font-weight: 600">مشروبات</span>
-            <span style="padding: 7px 12px; border-radius: 999px; background: {{cur.card}}; color: {{cur.fg}}; font-size: 12px">حلا</span>
-            <span style="padding: 7px 12px; border-radius: 999px; background: {{cur.card}}; color: {{cur.fg}}; font-size: 12px">مخبوزات</span>
-          </div>
-          <div style="padding: 8px 14px; display: flex; flex-direction: column; gap: 10px">
-            <template data-for="{{dishes}}" data-as="d">
-              <div style="display: flex; align-items: center; gap: 12px; padding: 10px; border-radius: 16px; background: {{cur.card}}">
-                <img src="{{d.img}}" alt="{{d.n}}" style="width: 54px; height: 54px; border-radius: 12px; object-fit: cover; flex: none; background: {{cur.thumb}}">
-                <div style="flex: 1 1 auto; display: flex; flex-direction: column; gap: 2px; color: {{cur.fg}}"><strong style="font-size: 14px">{{d.n}}</strong><span style="font-size: 11px; opacity: .7">{{d.c}}</span></div>
-                <strong style="font-size: 14px; color: {{cur.price}}">{{d.p}}</strong>
-              </div>
-            </template>
-          </div>
-        </div>
-      </div>
-
-      <div class="pm-float2" style="position: absolute; top: 70px; right: -6px; padding: 14px 18px; border-radius: 18px; background: rgba(255,255,255,.92); border: 1px solid rgba(22,20,15,.08); backdrop-filter: blur(12px); box-shadow: 0 18px 40px -16px rgba(22,20,15,.25); display: flex; flex-direction: column; gap: 4px">
-        <span style="font-size: 12px; color: #6B675E">يتصفحون منيوك الحين</span>
-        <strong style="font-family: 'Poppins', sans-serif; font-size: 28px; display: flex; align-items: center; gap: 8px"><span class="pm-live" style="width: 10px; height: 10px; border-radius: 50%; background: #FF5E13"></span>37</strong>
-      </div>
-      <div class="pm-float2" style="position: absolute; bottom: 120px; left: -10px; padding: 14px 18px; border-radius: 18px; background: rgba(255,255,255,.92); border: 1px solid rgba(22,20,15,.08); backdrop-filter: blur(12px); box-shadow: 0 18px 40px -16px rgba(22,20,15,.25); display: flex; align-items: center; gap: 12px">
-        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FF5E13" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
-        <div style="display: flex; flex-direction: column"><strong style="font-size: 14px">٤٤° في الخارج</strong><span style="font-size: 12px; color: #6B675E">قدّمنا المشروبات الباردة أول</span></div>
-      </div>
-    </div>
-  </section>
-
-  <div style="background: #FF5E13; color: #0A0A0A; padding: 18px 0; overflow: hidden; transform: rotate(-1.2deg); margin: 0 -40px">
-    <div class="pm-track" style="display: flex; gap: 48px; white-space: nowrap; font-weight: 700; font-size: 22px; width: max-content">
-      <span>بصمة الهوية من الشعار</span><span>✦</span><span>استوديو صور بالذكاء الاصطناعي</span><span>✦</span><span>نبض المنيو المباشر</span><span>✦</span><span>منيو يحس بالطقس</span><span>✦</span><span>ثيمات المواسم</span><span>✦</span><span>منيوك في قوقل</span><span>✦</span><span>بصمة الهوية من الشعار</span><span>✦</span><span>استوديو صور بالذكاء الاصطناعي</span><span>✦</span><span>نبض المنيو المباشر</span><span>✦</span><span>منيو يحس بالطقس</span><span>✦</span><span>ثيمات المواسم</span><span>✦</span><span>منيوك في قوقل</span>
+    <div class="paper" aria-hidden="true">
+      <div class="paper-title">MENU</div>
+      <i></i><i></i><i></i><i></i><i></i><i></i>
     </div>
   </div>
+</section>
 
-  <section id="features" style="max-width: 1280px; margin: 0 auto; padding: 120px 32px 80px; display: flex; flex-direction: column; gap: 48px">
-    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px">
-      <h2 style="margin: 0; font-size: 52px; font-weight: 700; line-height: 1.2; max-width: 680px">ميزات ما راح تلقاها<br>بأي منيو ثاني</h2>
-      <p style="margin: 0; color: #6B675E; font-size: 18px; max-width: 380px; line-height: 1.8; font-weight: 300">مبنية داخلياً من الصفر، عشان كذا نقدر نسوي اللي غيرنا ما يقدر عليه.</p>
+<!-- 2 · Brand DNA -->
+<section class="dna" id="dna">
+  <div class="dna-in">
+    <div class="sec-copy">
+      <span class="chip-label">بصمة الهوية</span>
+      <h2>ارفع شعارك..<br>والباقي علينا.</h2>
+      <p>Pmenu يقرأ ألوان شعارك وطابعه، ويطلّع لك منيو كامل بهويتك خلال ثواني.</p>
+    </div>
+    <div class="dna-stage">
+      <div class="dna-logo"><img src="assets/wordmark-cream.svg" alt="شعار وِكاد"></div>
+      <div class="dna-sw" style="--c:#054026"></div>
+      <div class="dna-sw" style="--c:#0A6B41"></div>
+      <div class="dna-sw" style="--c:#DEC49E"></div>
+      <div class="dna-sw" style="--c:#EDE6DA"></div>
+      <div class="dna-sw" style="--c:#6B4A35"></div>
+      <div class="dna-phone">
+        <div class="mini-hero"><img src="assets/counter.jpg" alt=""><img class="mini-logo" src="assets/wordmark-cream.svg" alt=""></div>
+        <div class="mini-row"><img src="assets/smores.jpg" alt=""><span>ذرا وِكاد</span><b>24</b></div>
+        <div class="mini-row"><img src="assets/latte.jpg" alt=""><span>لاتيه</span><b>18</b></div>
+        <div class="mini-row"><img src="assets/mango-cheesecake.jpg" alt=""><span>تشيز كيك المانجو</span><b>26</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 · One theme, everything changes -->
+<section class="themes" id="themes" data-theme="wekad">
+  <div class="themes-in">
+    <div class="season-word" aria-hidden="true">وِكاد</div>
+    <div class="themes-head">
+      <span class="chip-label">ثيمات المواسم</span>
+      <h2>ثيم واحد.. يلبسه كل شي.</h2>
+      <p>المنيو، الباركود، الستاند، وحتى نتيجة قوقل. تتغيّر كلها مع بعض، وتنزل تلقائياً كل موسم.</p>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px">
-      <div style="grid-column: span 2; min-height: 320px; padding: 36px; border-radius: 32px; background: #FFFFFF; border: 1px solid rgba(22,20,15,.08); display: flex; flex-wrap: wrap; gap: 32px; align-items: center; overflow: hidden; box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16)">
-        <div style="flex: 1 1 260px; display: flex; flex-direction: column; gap: 14px">
-          <span style="font-family: 'Poppins', sans-serif; color: #FF5E13; font-weight: 700">01</span>
-          <h3 style="margin: 0; font-size: 30px; font-weight: 600">بصمة الهوية</h3>
-          <p style="margin: 0; color: #5E5A52; line-height: 1.8; font-weight: 300">ارفع الشعار أو صورة لواجهة محلك، ونطلع لك ثيمات كاملة: ألوان، خطوط، زخارف، وحتى شكل الباركود. كلها من هويتك.</p>
-        </div>
-        <div style="flex: 1 1 240px; display: flex; align-items: center; gap: 14px; justify-content: center">
-          <div style="width: 92px; height: 92px; border-radius: 24px; background: #054026; display: flex; align-items: center; justify-content: center; flex: none"><img src="assets/wordmark-cream.svg" alt="شعار وِكاد" style="width: 62px; height: auto"></div>
-          <svg width="40" height="20" viewBox="0 0 40 20" fill="none" stroke="#FF5E13" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M38 10H4M12 2L4 10l8 8"></path></svg>
-          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
-            <div style="width: 48px; height: 48px; border-radius: 14px; background: #054026"></div><div style="width: 48px; height: 48px; border-radius: 14px; background: #0A6B41"></div><div style="width: 48px; height: 48px; border-radius: 14px; background: #DEC49E"></div><div style="width: 48px; height: 48px; border-radius: 14px; background: #6B4A35"></div>
-          </div>
-        </div>
+    <div class="stage">
+      <div class="st-card st-dash">
+        <div class="st-dash-top"><span class="dot"></span><b>لوحة التحكم</b></div>
+        <p>الثيم المفعّل</p>
+        <strong class="js-theme-name">وِكاد الكلاسيك</strong>
+        <div class="st-swatches"><i></i><i></i><i></i></div>
+        <span class="st-ok">✓ انتشر على كل الفروع</span>
       </div>
 
-      <div style="min-height: 320px; padding: 28px; border-radius: 32px; background: #FF5E13; color: #0A0A0A; display: flex; flex-direction: column; gap: 16px; justify-content: space-between">
-        <div style="display: flex; gap: 8px; height: 150px">
-          <div style="position: relative; flex: 1 1 0; border-radius: 18px; overflow: hidden"><img src="assets/mango-cheesecake.jpg" alt="صورة الطبق قبل التحسين" style="width: 100%; height: 100%; object-fit: cover; filter: brightness(.5) saturate(.4) blur(.6px)"><span style="position: absolute; top: 8px; right: 8px; padding: 3px 9px; border-radius: 99px; background: rgba(10,10,10,.75); color: #16140F; font-size: 11px">قبل</span></div>
-          <div style="position: relative; flex: 1 1 0; border-radius: 18px; overflow: hidden"><img src="assets/mango-cheesecake.jpg" alt="صورة الطبق بعد التحسين" style="width: 100%; height: 100%; object-fit: cover; filter: saturate(1.25) contrast(1.08)"><span style="position: absolute; top: 8px; right: 8px; padding: 3px 9px; border-radius: 99px; background: #0A0A0A; color: #FF5E13; font-size: 11px">بعد</span></div>
-        </div>
-        <div style="display: flex; flex-direction: column; gap: 10px"><h3 style="margin: 0; font-size: 30px; font-weight: 700">استوديو الصور</h3><p style="margin: 0; line-height: 1.7; font-weight: 400">صوّر الطبق بجوالك، والذكاء الاصطناعي يشيل الخلفية ويضبط الإضاءة.</p></div>
-      </div>
-
-      <div style="min-height: 300px; padding: 36px; border-radius: 32px; background: #FFFFFF; border: 1px solid rgba(22,20,15,.08); display: flex; flex-direction: column; gap: 14px; justify-content: space-between; box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16)">
-        <span style="font-family: 'Poppins', sans-serif; color: #FF5E13; font-weight: 700">03</span>
-        <div style="display: flex; flex-direction: column; gap: 12px"><h3 style="margin: 0; font-size: 26px; font-weight: 600">نبض المنيو المباشر</h3><p style="margin: 0; color: #5E5A52; line-height: 1.8; font-weight: 300">كم واحد يتصفح الحين، وش الأصناف اللي يوقفون عندها، ووين يطلعون. خريطة حرارية لمنيوك.</p></div>
-      </div>
-      <div style="min-height: 300px; padding: 36px; border-radius: 32px; background: #FFFFFF; border: 1px solid rgba(22,20,15,.08); display: flex; flex-direction: column; gap: 14px; justify-content: space-between; box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16)">
-        <span style="font-family: 'Poppins', sans-serif; color: #FF5E13; font-weight: 700">04</span>
-        <div style="display: flex; flex-direction: column; gap: 12px"><h3 style="margin: 0; font-size: 26px; font-weight: 600">منيو يحس</h3><p style="margin: 0; color: #5E5A52; line-height: 1.8; font-weight: 300">الجو حار؟ الباردة أول. الصبح؟ الفطور فوق. وقت الصلاة؟ تنبيه لطيف بموعد رجوعكم.</p></div>
-      </div>
-      <div style="min-height: 300px; padding: 36px; border-radius: 32px; background: #FFE7D9; color: #0A0A0A; display: flex; flex-direction: column; gap: 14px; justify-content: space-between">
-        <span style="font-family: 'Poppins', sans-serif; color: #D94A05; font-weight: 700">05</span>
-        <div style="display: flex; flex-direction: column; gap: 12px"><h3 style="margin: 0; font-size: 26px; font-weight: 600">وش مزاجك؟</h3><p style="margin: 0; color: #4A4A45; line-height: 1.8; font-weight: 400">العميل يختار مزاجه: «أبي شي منعش»، «جوعان مرة»، والمنيو يرشح له الأنسب.</p></div>
-      </div>
-
-      <div style="min-height: 260px; padding: 36px; border-radius: 32px; background: #FFFFFF; border: 1px solid rgba(22,20,15,.08); display: flex; flex-direction: column; gap: 12px; justify-content: space-between; box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16)">
-        <span style="font-family: 'Poppins', sans-serif; color: #FF5E13; font-weight: 700">06</span>
-        <div style="display: flex; flex-direction: column; gap: 12px"><h3 style="margin: 0; font-size: 26px; font-weight: 600">قصص المنيو</h3><p style="margin: 0; color: #5E5A52; line-height: 1.8; font-weight: 300">ستوريات بأعلى المنيو للأصناف الجديدة والعروض، مثل انستقرام بالضبط.</p></div>
-      </div>
-      <div style="min-height: 260px; padding: 36px; border-radius: 32px; background: #FFFFFF; border: 1px solid rgba(22,20,15,.08); display: flex; flex-direction: column; gap: 12px; justify-content: space-between; box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16)">
-        <span style="font-family: 'Poppins', sans-serif; color: #FF5E13; font-weight: 700">07</span>
-        <div style="display: flex; flex-direction: column; gap: 12px"><h3 style="margin: 0; font-size: 26px; font-weight: 600">تجربة A/B</h3><p style="margin: 0; color: #5E5A52; line-height: 1.8; font-weight: 300">جرّب صورتين أو وصفين لنفس الصنف، ونقول لك أيهم يجذب أكثر.</p></div>
-      </div>
-      <div style="min-height: 260px; padding: 36px; border-radius: 32px; background: #FFFFFF; border: 1px solid rgba(22,20,15,.08); display: flex; flex-direction: column; gap: 12px; justify-content: space-between; box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16)">
-        <span style="font-family: 'Poppins', sans-serif; color: #FF5E13; font-weight: 700">08</span>
-        <div style="display: flex; flex-direction: column; gap: 12px"><h3 style="margin: 0; font-size: 26px; font-weight: 600">مزامنة فودكس</h3><p style="margin: 0; color: #5E5A52; line-height: 1.8; font-weight: 300">أسعارك وأصنافك تتحدث تلقائياً من الكاشير. والسعرات معروضة حسب اشتراطات هيئة الغذاء.</p></div>
-      </div>
-      <div style="grid-column: span 3; padding: 36px; border-radius: 32px; background: #FFE7D9; color: #0A0A0A; display: flex; flex-wrap: wrap; gap: 32px; align-items: center">
-        <div style="flex: 1 1 320px; display: flex; flex-direction: column; gap: 14px">
-          <span style="font-family: 'Poppins', sans-serif; color: #D94A05; font-weight: 700">09</span>
-          <h3 style="margin: 0; font-size: 34px; font-weight: 700">منيوك يطلع في قوقل</h3>
-          <p style="margin: 0; color: #E3DED4; line-height: 1.8">نربط المنيو بقوقل ماب تلقائياً، وكل صنف له صفحة مهيأة لمحركات البحث. أحد بحث «تشيز كيك مانجو حفر الباطن»؟ يطلع له صنفك بالصورة والسعر وزر الاتجاهات.</p>
-        </div>
-        <div style="flex: 1 1 420px; padding: 20px; border-radius: 24px; background: #fff; border: 1px solid #E3E3DD; display: flex; flex-direction: column; gap: 14px; font-family: Arial, sans-serif">
-          <div style="display: flex; align-items: center; gap: 10px; padding: 12px 18px; border-radius: 999px; border: 1px solid #DADCE0; color: #202124; font-size: 15px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5F6368" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg>تشيز كيك مانجو حفر الباطن</div>
-          <div style="display: flex; gap: 14px; align-items: flex-start">
-            <img src="assets/mango-cheesecake.jpg" alt="تشيز كيك المانجو" style="width: 96px; height: 96px; border-radius: 14px; object-fit: cover; flex: none">
-            <div style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
-              <span dir="ltr" style="font-size: 12px; color: #4D5156; text-align: right">pmenu.sa › wekad › mango-cheesecake</span>
-              <strong style="font-size: 18px; color: #1A0DAB; font-weight: 400">تشيز كيك المانجو · وِكاد</strong>
-              <span style="font-size: 13px; color: #4D5156">★★★★★ ٤٫٨ · ٢٦ ر.س · ٣٨٠ سعرة · مفتوح الحين</span>
-              <div style="display: flex; gap: 8px; padding-top: 4px"><span style="padding: 6px 12px; border-radius: 999px; background: #E8F0FE; color: #1A56C4; font-size: 12px">الاتجاهات</span><span style="padding: 6px 12px; border-radius: 999px; background: #E8F0FE; color: #1A56C4; font-size: 12px">المنيو كامل</span></div>
+      <div class="phone" aria-label="منيو العميل">
+        <div class="screen">
+          <div class="p-hero">
+            <img class="p-heroimg" src="assets/counter.jpg" alt="">
+            <div class="p-heroin">
+              <img class="p-logo" src="assets/wordmark-cream.svg" alt="وِكاد">
+              <span class="p-tag js-tag">قهوة مختصة · حفر الباطن</span>
             </div>
           </div>
+          <div class="p-banner js-banner">أهلاً فيك في وِكاد</div>
+          <div class="p-tabs"><span class="on">مشروبات</span><span>حلا</span><span>موسمي</span></div>
+          <div class="p-feature">
+            <img src="assets/smores.jpg" alt="ذرا وِكاد">
+            <div class="p-ftext"><small class="js-ftag">توقيع وِكاد</small><b>ذرا وِكاد</b><strong>24 ر.س</strong></div>
+          </div>
+          <div class="p-item"><img src="assets/latte.jpg" alt=""><span>لاتيه<small>١٩٠ سعرة</small></span><b>18</b></div>
+          <div class="p-item"><img src="assets/mango-cheesecake.jpg" alt=""><span>تشيز كيك المانجو<small>٣٨٠ سعرة</small></span><b>26</b></div>
+          <div class="p-item"><img src="assets/iced-black.jpg" alt=""><span>آيس أمريكانو<small>١٠ سعرات</small></span><b>16</b></div>
+        </div>
+      </div>
+
+      <div class="st-side">
+        <div class="st-card st-qr">
+          <img class="qr-logo" src="assets/wordmark-cream.svg" alt="">
+          <div class="qr-tile"><div class="qr-grid" aria-label="باركود" role="img"></div></div>
+          <span>امسح وتصفّح المنيو</span>
+        </div>
+        <div class="st-card st-google">
+          <div class="g-search"><i></i>وِكاد حفر الباطن</div>
+          <div class="g-res">
+            <div class="g-thumb"><img src="assets/counter.jpg" alt=""></div>
+            <div><b>وِكاد · قهوة مختصة</b><small>مفتوح الحين</small><span class="g-btn">المنيو</span></div>
+          </div>
         </div>
       </div>
     </div>
-  </section>
 
-  <section id="drops" style="max-width: 1280px; margin: 0 auto; padding: 80px 32px; display: flex; flex-direction: column; gap: 40px">
-    <div style="display: flex; flex-direction: column; gap: 12px">
-      <span style="color: #FF5E13; font-weight: 600">Season Drops</span>
-      <h2 style="margin: 0; font-size: 52px; font-weight: 700">كل موسم، منيوك يلبس له</h2>
-      <p style="margin: 0; color: #6B675E; font-size: 18px; font-weight: 300">ثيمات موسمية تنزل تلقائياً، وتقدر تجدولها من الحين. ينتهي الموسم؟ يرجع ثيمك لحاله.</p>
+    <div class="theme-picker" role="group" aria-label="جرّب الثيم بنفسك">
+      <button type="button" data-pick="wekad"><i style="background:#0A6B41"></i>وِكاد</button>
+      <button type="button" data-pick="pink"><i style="background:#D6336C"></i>أكتوبر الوردي</button>
+      <button type="button" data-pick="national"><i style="background:#006C35"></i>اليوم الوطني</button>
+      <button type="button" data-pick="ramadan"><i style="background:#E0B654"></i>رمضان</button>
     </div>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px">
-      <div style="height: 300px; border-radius: 28px; background: #6B3E1F; color: #F6E7CF; padding: 24px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between"><span style="font-size: 14px">٢٢ فبراير</span><strong style="font-size: 26px">يوم التأسيس</strong></div>
-      <div style="height: 300px; border-radius: 28px; background: #14213D; color: #E0B654; padding: 24px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between"><span style="font-size: 14px">مع الهلال</span><strong style="font-size: 26px">رمضان</strong></div>
-      <div style="height: 300px; border-radius: 28px; background: #F4E9D8; color: #5A3B12; padding: 24px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between"><span style="font-size: 14px">شوال · ذو الحجة</span><strong style="font-size: 26px">العيدين</strong></div>
-      <div style="height: 300px; border-radius: 28px; background: #006C35; color: #fff; padding: 24px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between"><span style="font-size: 14px">٢٣ سبتمبر</span><strong style="font-size: 26px">اليوم الوطني</strong></div>
-      <div style="position: relative; height: 300px; border-radius: 28px; background: #E8467C; color: #fff; padding: 24px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 0 0 2px #0A0A0A, 0 0 0 4px #E8467C"><span style="align-self: flex-start; padding: 6px 12px; border-radius: 999px; background: #fff; color: #A3204F; font-size: 13px; font-weight: 700">مفعّل الحين</span><strong style="font-size: 26px">أكتوبر الوردي</strong></div>
-      <div style="height: 300px; border-radius: 28px; background: #DCE6F2; color: #1F3A5F; padding: 24px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between"><span style="font-size: 14px">ديسمبر</span><strong style="font-size: 26px">الشتاء</strong></div>
-    </div>
-  </section>
+  </div>
+</section>
 
-  <section id="pricing" style="max-width: 1280px; margin: 0 auto; padding: 80px 32px 120px; display: flex; flex-direction: column; gap: 40px">
-    <div style="display: flex; flex-direction: column; gap: 12px; align-items: center; text-align: center">
-      <h2 style="margin: 0; font-size: 52px; font-weight: 700">أسعار معلنة. بدون مندوب.</h2>
-      <p style="margin: 0; color: #6B675E; font-size: 18px; font-weight: 300">اشتراك سنوي، سجّل بنفسك وابدأ اليوم</p>
+<!-- 4 · Smart menu -->
+<section class="smart" id="smart">
+  <div class="smart-in">
+    <div class="sec-copy">
+      <span class="chip-label">المنيو الذكي</span>
+      <h2>منيو يحس<br>بالجو.</h2>
+      <p>كل ما زادت الحرارة، المنيو يرتّب نفسه: الباردة فوق، والحارة تنزل. بدون ما يلمسه أحد.</p>
+      <div class="temp"><span class="temp-num">18</span><span class="temp-deg">°</span><small>حفر الباطن</small></div>
+      <div class="temp-bar"><i></i></div>
     </div>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; align-items: stretch">
-      <div style="padding: 40px; border-radius: 32px; background: #FFFFFF; border: 1px solid rgba(22,20,15,.08); display: flex; flex-direction: column; gap: 24px; box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16)">
-        <h3 style="margin: 0; font-size: 24px; font-weight: 600">العادية</h3>
-        <div style="display: flex; align-items: baseline; gap: 8px"><span style="font-family: 'Poppins', sans-serif; font-size: 56px; font-weight: 700">999</span><span style="color: #6B675E">ريال / سنوياً</span></div>
-        <span style="color: #6B675E; font-size: 14px; margin-top: -16px">يعادل ٨٣ ريال بالشهر</span>
-        <ul style="margin: 0; padding: 0 20px 0 0; display: flex; flex-direction: column; gap: 12px; line-height: 1.6; color: #3D3A33; font-weight: 300">
-          <li>فرع واحد ومنيو QR ثنائي اللغة</li><li>الثيمات الجاهزة + ثيمات المواسم</li><li>استوديو الصور (٣٠ صورة بالشهر)</li><li>لوحة تحكم من الجوال</li>
-        </ul>
-        <a href="Dashboard-Billing.html" style="margin-top: auto; padding: 16px; border-radius: 999px; border: 1px solid rgba(22,20,15,.2); text-align: center; color: #16140F; text-decoration: none; font-weight: 600">اشترك</a>
-      </div>
-      <div style="position: relative; padding: 40px; border-radius: 32px; background: #FF5E13; color: #0A0A0A; display: flex; flex-direction: column; gap: 24px; overflow: hidden">
-        <div aria-hidden="true" style="position: absolute; top: -60px; left: -60px; width: 200px; height: 200px; border-radius: 50%; border: 1px solid rgba(10,10,10,.25)"></div>
-        <div style="display: flex; justify-content: space-between; align-items: center"><h3 style="margin: 0; font-size: 24px; font-weight: 700">الفخمة</h3><span style="padding: 6px 14px; border-radius: 999px; background: #0A0A0A; color: #FF5E13; font-size: 13px; font-weight: 600">الأكثر طلباً</span></div>
-        <div style="display: flex; align-items: baseline; gap: 8px"><span style="font-family: 'Poppins', sans-serif; font-size: 56px; font-weight: 700">1,199</span><span>ريال / سنوياً</span></div>
-        <span style="font-size: 14px; margin-top: -16px">يعادل ١٠٠ ريال بالشهر</span>
-        <ul style="margin: 0; padding: 0 20px 0 0; display: flex; flex-direction: column; gap: 12px; line-height: 1.6; font-weight: 500">
-          <li>تعدد الفروع</li><li>مزامنة تلقائية مع فودكس</li><li>بصمة الهوية + ثيمات مميزة</li><li>نبض المنيو المباشر وتقارير كاملة</li><li>المنيو الذكي وتجارب A/B</li>
-        </ul>
-        <a href="Dashboard-Billing.html" style="margin-top: auto; padding: 16px; border-radius: 999px; background: #0A0A0A; text-align: center; color: #F5F5F0; text-decoration: none; font-weight: 700">اشترك</a>
-      </div>
-      <div style="padding: 40px; border-radius: 32px; background: #FFFFFF; border: 1px dashed rgba(22,20,15,.2); display: flex; flex-direction: column; gap: 24px; box-shadow: 0 1px 2px rgba(22,20,15,.04), 0 18px 40px -18px rgba(22,20,15,.16)">
-        <h3 style="margin: 0; font-size: 24px; font-weight: 600">التصميم الخاص</h3>
-        <div style="display: flex; align-items: baseline; gap: 8px"><span style="font-family: 'Poppins', sans-serif; font-size: 40px; font-weight: 700">[المبلغ]</span><span style="color: #6B675E">مرة وحدة</span></div>
-        <p style="margin: 0; color: #3D3A33; line-height: 1.8; font-weight: 300">فريقنا يصمم منيو على مقاسك وحسب اشتراطاتك: خطوط ورسومات وأيقونات خاصة فيك. إضافة على أي باقة.</p>
-        <a href="Dashboard-Themes.html" style="margin-top: auto; padding: 16px; border-radius: 999px; border: 1px solid rgba(22,20,15,.2); text-align: center; color: #16140F; text-decoration: none; font-weight: 600">اطلب تصميمك</a>
+    <div class="smart-phone">
+      <div class="sp-head"><img src="assets/wordmark-cream.svg" alt="وِكاد"><span class="sp-chip">الجو بارد.. دفّي نفسك</span></div>
+      <div class="sp-list">
+        <div class="sp-item" data-k="thra"><img src="assets/smores.jpg" alt=""><span>ذرا وِكاد<small class="sp-badge">يدفّي</small></span><b>24</b></div>
+        <div class="sp-item" data-k="latte"><img src="assets/latte.jpg" alt=""><span>لاتيه<small class="sp-badge">يدفّي</small></span><b>18</b></div>
+        <div class="sp-item" data-k="cake"><img src="assets/mango-cheesecake.jpg" alt=""><span>تشيز كيك المانجو<small></small></span><b>26</b></div>
+        <div class="sp-item" data-k="iced"><img src="assets/iced-black.jpg" alt=""><span>آيس أمريكانو<small></small></span><b>16</b></div>
+        <div class="sp-item" data-k="cold"><img src="assets/iced-coffee.jpg" alt=""><span>قهوة اليوم الباردة<small></small></span><b>19</b></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <footer style="border-top: 1px solid rgba(22,20,15,.08); padding: 48px 32px; max-width: 1280px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px">
-    <span style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 26px" dir="ltr"><span style="color: #FF5E13">P</span>menu</span>
-    <span style="color: #6B675E">من حفر الباطن.. نبني المنيو السعودي القادم</span>
-    <span style="color: #A39F95; font-size: 14px">بالشراكة مع بيكسوري</span>
-  </footer>
-</div>
-</template>
-<div id="app"></div>
-<nav class="demo-nav" aria-label="تنقل العرض">
-  <a href="index.html" class="demo-brand" dir="ltr"><span>P</span>menu</a>
-  <a href="index.html">الموقع</a>
-  <a href="Dashboard-Overview.html">لوحة التحكم</a>
-  <a href="menus.html">منيو العميل</a>
-</nav>
-<script src="js/morphdom.min.js"></script>
-<script src="js/dc.js"></script>
-<script>
-DC.define('main', document.getElementById('tpl-main'), (function () {
+<!-- 5 · Live pulse -->
+<section class="pulse" id="pulse">
+  <div class="pulse-in">
+    <div class="sec-copy">
+      <span class="chip-label">نبض المنيو</span>
+      <h2>تعرف وش يصير..<br>لحظة بلحظة.</h2>
+      <p>كم واحد يتصفح الحين، وش الصنف اللي يوقفون عنده، ومتى ذروتك.</p>
+    </div>
+    <div class="pulse-grid">
+      <div class="pc pc-live"><span><i class="live"></i>يتصفحون الحين</span><b class="js-live" data-count="37">0</b></div>
+      <div class="pc"><span>مسحات الباركود هذا الأسبوع</span><b data-count="2325">0</b></div>
+      <div class="pc pc-chart">
+        <span>الزوار خلال الأسبوع</span>
+        <svg viewBox="0 0 600 200" preserveAspectRatio="none" aria-hidden="true">
+          <defs><linearGradient id="pg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF5E13" stop-opacity=".3"></stop><stop offset="1" stop-color="#FF5E13" stop-opacity="0"></stop></linearGradient></defs>
+          <path class="chart-area" d="M0 160 L100 140 L200 150 L300 115 L400 85 L500 25 L600 50 L600 200 L0 200Z" fill="url(#pg)"></path>
+          <path class="chart-line" d="M0 160 L100 140 L200 150 L300 115 L400 85 L500 25 L600 50" fill="none" stroke="#FF5E13" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </div>
+      <div class="pc pc-top">
+        <span>أكثر صنف يوقفون عنده</span>
+        <div class="bar"><img src="assets/smores.jpg" alt=""><em>ذرا وِكاد</em><i style="--w:100%"></i></div>
+        <div class="bar"><img src="assets/mango-cheesecake.jpg" alt=""><em>تشيز كيك</em><i style="--w:82%"></i></div>
+        <div class="bar"><img src="assets/latte.jpg" alt=""><em>لاتيه</em><i style="--w:64%"></i></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-class Component extends DCLogic {
-constructor(p) { super(p); this.state = { t: 0 }; }
-renderVals() {
-const T = [
-{ name: 'من شعارك', dot: '#0A6B41', bg: '#F4F1EA', hero: '#054026', heroFg: '#EDE6DA', heroSub: '#DEC49E', tag: 'ثيم بصمة الهوية', accent: '#0A6B41', onAccent: '#FFFFFF', card: '#FFFFFF', fg: '#0C1A12', thumb: '#DEC49E', price: '#0A6B41' },
-{ name: 'أكتوبر الوردي', dot: '#E8467C', bg: '#FFF1F5', hero: '#D6336C', heroFg: '#FFFFFF', heroSub: '#FFD3E1', tag: 'ثيم أكتوبر الوردي', accent: '#D6336C', onAccent: '#FFFFFF', card: '#FFFFFF', fg: '#5C1530', thumb: '#FAD0DE', price: '#C2255C' },
-{ name: 'اليوم الوطني', dot: '#006C35', bg: '#F2F7F3', hero: '#006C35', heroFg: '#FFFFFF', heroSub: '#BFE3CC', tag: 'ثيم اليوم الوطني', accent: '#006C35', onAccent: '#FFFFFF', card: '#FFFFFF', fg: '#0E2A1A', thumb: '#CFE6D7', price: '#006C35' },
-{ name: 'رمضان', dot: '#E0B654', bg: '#0F1830', hero: '#14213D', heroFg: '#E0B654', heroSub: '#9FB0D6', tag: 'رمضان كريم', accent: '#E0B654', onAccent: '#14213D', card: '#1A2747', fg: '#F2E8D0', thumb: '#2A3A63', price: '#E0B654' }
-];
-const t = this.state.t;
-return {
-cur: T[t],
-themes: T.map((x, i) => ({ name: x.name, dot: x.dot, chipBg: i === t ? '#16140F' : 'rgba(22,20,15,.04)', chipFg: i === t ? '#FFFFFF' : '#3D3A33', chipBorder: i === t ? '#16140F' : 'rgba(22,20,15,.14)', pick: () => this.setState({ t: i }) })),
-dishes: [{ n: 'ذرا وِكاد', c: '٣٢٠ سعرة', p: '24 ر.س', img: 'assets/smores.jpg' }, { n: 'آيس أمريكانو', c: '١٠ سعرات', p: '16 ر.س', img: 'assets/iced-black.jpg' }, { n: 'تشيز كيك المانجو', c: '٣٨٠ سعرة', p: '26 ر.س', img: 'assets/mango-cheesecake.jpg' }]
-};
-}
-}
+<!-- 6 · Google -->
+<section class="google" id="google">
+  <div class="google-in">
+    <div class="sec-copy">
+      <span class="chip-label">قوقل ماب ومحركات البحث</span>
+      <h2>اللي يدوّر على صنف..<br>يلقاك أنت.</h2>
+      <p>كل صنف في منيوك له صفحة مهيأة للبحث، ومربوط بقوقل ماب. بالصورة والسعر وزر الاتجاهات.</p>
+    </div>
+    <div class="gwin">
+      <div class="gbar"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5F6368" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg><span class="gtype"></span><i class="caret"></i></div>
+      <div class="gresult">
+        <img src="assets/mango-cheesecake.jpg" alt="تشيز كيك المانجو">
+        <div>
+          <small dir="ltr">pmenu.sa › wekad › mango-cheesecake</small>
+          <b>تشيز كيك المانجو | وِكاد · حفر الباطن</b>
+          <span>مانجو طازج على قاعدة بسكويت مقرمشة. ٢٦ ر.س · مفتوح الحين</span>
+          <div class="gbtns"><em>الاتجاهات</em><em>المنيو كامل</em></div>
+        </div>
+      </div>
+      <div class="gmap">
+        <svg viewBox="0 0 600 220" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="600" height="220" fill="#ECEAE4"></rect><path d="M0 150 Q150 130 300 160 T600 140" stroke="#fff" stroke-width="20" fill="none"></path><path d="M0 150 Q150 130 300 160 T600 140" stroke="#F6D58A" stroke-width="7" fill="none"></path><path d="M380 0 L350 220M120 0 L160 220" stroke="#fff" stroke-width="10"></path><rect x="190" y="40" width="120" height="70" rx="8" fill="#DCE8D5"></rect><rect x="420" y="30" width="90" height="80" rx="8" fill="#E0DED7"></rect></svg>
+        <div class="gpin"><img src="assets/wordmark-cream.svg" alt=""></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-return Component;
-})());
-DC.mount('main', document.getElementById('app'));
-</script>
+<!-- 7 · Studio -->
+<section class="studio" id="studio">
+  <div class="studio-in">
+    <div class="sec-copy">
+      <span class="chip-label">استوديو الصور</span>
+      <h2>صوّرها بجوالك..<br>ونطلّعها لك كأنها إعلان.</h2>
+      <p>الذكاء الاصطناعي يضبط الإضاءة والألوان والخلفية. والتاجر يختار.</p>
+    </div>
+    <div class="ba">
+      <img class="ba-before" src="assets/mango-cheesecake.jpg" alt="قبل">
+      <img class="ba-after" src="assets/mango-cheesecake.jpg" alt="بعد">
+      <div class="ba-line"><span>Pmenu Studio</span></div>
+      <em class="ba-l ba-l1">قبل</em><em class="ba-l ba-l2">بعد</em>
+    </div>
+  </div>
+</section>
+
+<!-- 8 · Business -->
+<section class="biz" id="biz">
+  <div class="biz-in">
+    <span class="chip-label dark">الفرصة</span>
+    <h2>أرقام تتكلم.</h2>
+    <div class="biz-grid">
+      <div class="bz"><b data-count="70000" data-suffix="+">0</b><span>مطعم في المملكة</span></div>
+      <div class="bz"><b data-count="999">0</b><span>ريال سنوياً · العادية</span></div>
+      <div class="bz bz-hot"><b data-count="1199">0</b><span>ريال سنوياً · الفخمة</span></div>
+      <div class="bz"><b data-count="699300">0</b><span>ريال إيرادات سنوية عند ١٪ فقط من السوق</span></div>
+    </div>
+    <p class="biz-note">استثمار أولي ١٣٬٢٠٠ ريال، والإطلاق خلال ٩٠ يوم.</p>
+  </div>
+</section>
+
+<!-- 9 · CTA -->
+<section class="cta" id="cta">
+  <div class="cta-dot" aria-hidden="true"></div>
+  <div class="cta-ring" aria-hidden="true"></div>
+  <div class="cta-in">
+    <h2>من حفر الباطن..<br>نبني المنيو السعودي القادم.</h2>
+    <div class="cta-btns">
+      <a href="site.html" class="btn-primary">جرّب الديمو الكامل</a>
+      <a href="Dashboard-Overview.html" class="btn-ghost">لوحة التحكم</a>
+      <a href="menus.html" class="btn-ghost">منيو العميل</a>
+    </div>
+    <p class="cta-foot"><span dir="ltr"><b>P</b>menu</span> · بالشراكة مع بيكسوري</p>
+  </div>
+</section>
+
+<script src="js/gsap.min.js"></script>
+<script src="js/ScrollTrigger.min.js"></script>
+<script src="js/story.js"></script>
 </body>
 </html>

@@ -23,20 +23,21 @@ ASSETS = {
 
 NAV = '''<nav class="demo-nav" aria-label="تنقل العرض">
   <a href="index.html" class="demo-brand" dir="ltr"><span>P</span>menu</a>
-  <a href="index.html">الموقع</a>
+  <a href="index.html">القصة</a>
+  <a href="site.html">الموقع</a>
   <a href="Dashboard-Overview.html">لوحة التحكم</a>
   <a href="menus.html">منيو العميل</a>
 </nav>'''
 
 
 def out_name(src_name):
-    return 'index.html' if src_name == 'Main.dc.html' else src_name.replace('.dc.html', '.html')
+    return 'site.html' if src_name == 'Main.dc.html' else src_name.replace('.dc.html', '.html')
 
 
 def rewrite(text):
     for blob, path in ASSETS.items():
         text = text.replace('/_blob/' + blob, path)
-    text = text.replace('Main.dc.html', 'index.html')
+    text = text.replace('Main.dc.html', 'site.html')
     return re.sub(r'([A-Za-z][\w-]*)\.dc\.html', r'\1.html', text)
 
 
