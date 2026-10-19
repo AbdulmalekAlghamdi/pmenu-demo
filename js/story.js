@@ -228,6 +228,11 @@ mm.add({ desk: '(min-width: 761px)', mob: '(max-width: 760px)' }, (ctx) => {
   });
 });
 
+/* CAMPAIGNS */
+gsap.from('.camp-chips span', { y: 30, opacity: 0, scale: .8, stagger: .08, duration: .7, ease: 'back.out(2)', scrollTrigger: { trigger: '.camp-chips', start: 'top 85%' } });
+gsap.from('.camp-card', { y: 80, opacity: 0, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: '.camp-card', start: 'top 85%' } });
+gsap.to('.cc-chart i', { scaleY: 1, stagger: .09, duration: .9, ease: 'power3.out', scrollTrigger: { trigger: '.cc-chart', start: 'top 80%' } });
+
 /* GOOGLE: typing -> result -> pin drop */
 ScrollTrigger.create({
   trigger: '.gwin', start: 'top 70%', once: true,

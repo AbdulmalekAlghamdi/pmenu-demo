@@ -21,6 +21,8 @@ ASSETS = {
     'ed67cfafe78b2f6ba4611f02485a7892': 'assets/iced-black.jpg',
 }
 
+RIBBON = '''<div class="demo-ribbon" role="note" aria-label="عرض تجريبي وتخيّلي فقط"><div class="rb-track" aria-hidden="true"><span>عرض تجريبي وتخيّلي فقط</span><span>الأرقام والبيانات المعروضة للتوضيح</span><span>Pmenu · نسخة عرض للمستثمرين</span><span>عرض تجريبي وتخيّلي فقط</span><span>الأرقام والبيانات المعروضة للتوضيح</span><span>Pmenu · نسخة عرض للمستثمرين</span><span>عرض تجريبي وتخيّلي فقط</span><span>الأرقام والبيانات المعروضة للتوضيح</span><span>Pmenu · نسخة عرض للمستثمرين</span><span>عرض تجريبي وتخيّلي فقط</span><span>الأرقام والبيانات المعروضة للتوضيح</span><span>Pmenu · نسخة عرض للمستثمرين</span><span>عرض تجريبي وتخيّلي فقط</span><span>الأرقام والبيانات المعروضة للتوضيح</span><span>Pmenu · نسخة عرض للمستثمرين</span><span>عرض تجريبي وتخيّلي فقط</span><span>الأرقام والبيانات المعروضة للتوضيح</span><span>Pmenu · نسخة عرض للمستثمرين</span></div></div>'''
+
 NAV = '''<nav class="demo-nav" aria-label="تنقل العرض">
   <a href="index.html" class="demo-brand" dir="ltr"><span>P</span>menu</a>
   <a href="index.html">القصة</a>
@@ -92,6 +94,7 @@ def build_page(src_path):
 </head>
 <body class="%(cls)s">
 %(templates)s
+%(ribbon)s
 <div id="app"></div>
 %(nav)s
 <script src="js/morphdom.min.js"></script>
@@ -104,7 +107,7 @@ DC.mount('main', document.getElementById('app'));
 </html>
 ''' % {
         'title': page['title'], 'helmet': page['helmet'].strip(), 'cls': 'is-phone' if is_phone else 'is-page',
-        'templates': '\n'.join(templates), 'nav': NAV, 'defines': '\n'.join(defines),
+        'templates': '\n'.join(templates), 'nav': NAV, 'ribbon': RIBBON, 'defines': '\n'.join(defines),
     }
     (ROOT / out_name(src_path.name)).write_text(html)
     return out_name(src_path.name)

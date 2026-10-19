@@ -71,3 +71,13 @@ body.is-phone #app > div {
   .demo-nav { left: 50%; transform: translateX(-50%); bottom: 12px; }
   .demo-nav a { padding: 9px 11px; font-size: 13px; }
 }
+
+.demo-ribbon { position: fixed; top: 0; left: 0; right: 0; z-index: 120; height: 30px; background: #16140F; color: #F6F4EF; overflow: hidden; display: flex; align-items: center; font-family: 'Readex Pro', system-ui, sans-serif; font-size: 13px; }
+.demo-ribbon .rb-track { display: flex; gap: 40px; white-space: nowrap; width: max-content; animation: rb 26s linear infinite; }
+.demo-ribbon .rb-track span { display: inline-flex; align-items: center; gap: 10px; }
+.demo-ribbon .rb-track span::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #FF5E13; }
+@keyframes rb { to { transform: translateX(50%); } }
+body { padding-top: 30px; }
+@media (max-width: 760px) { div:has(> [data-import="Sidebar"]) { top: 30px !important; } }
+@media (prefers-reduced-motion: reduce) { .demo-ribbon .rb-track { animation: none; } }
+@media (max-width: 560px) { body.is-phone .demo-ribbon { display: none; } body.is-phone { padding-top: 0; } }
