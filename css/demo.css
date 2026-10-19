@@ -72,12 +72,15 @@ body.is-phone #app > div {
   .demo-nav a { padding: 9px 11px; font-size: 13px; }
 }
 
-.demo-ribbon { position: fixed; top: 0; left: 0; right: 0; z-index: 120; height: 30px; background: #16140F; color: #F6F4EF; overflow: hidden; display: flex; align-items: center; font-family: 'Readex Pro', system-ui, sans-serif; font-size: 13px; }
-.demo-ribbon .rb-track { display: flex; gap: 40px; white-space: nowrap; width: max-content; animation: rb 26s linear infinite; }
-.demo-ribbon .rb-track span { display: inline-flex; align-items: center; gap: 10px; }
-.demo-ribbon .rb-track span::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #FF5E13; }
-@keyframes rb { to { transform: translateX(50%); } }
-body { padding-top: 30px; }
-@media (max-width: 760px) { div:has(> [data-import="Sidebar"]) { top: 30px !important; } }
-@media (prefers-reduced-motion: reduce) { .demo-ribbon .rb-track { animation: none; } }
-@media (max-width: 560px) { body.is-phone .demo-ribbon { display: none; } body.is-phone { padding-top: 0; } }
+.demo-badge { position: fixed; top: 14px; left: 14px; z-index: 130; display: flex; align-items: center; gap: 9px; height: 40px; padding: 0 16px 0 14px; border-radius: 999px; background: #16140F; color: #F6F4EF; font-family: 'Readex Pro', system-ui, sans-serif; font-size: 13px; font-weight: 500; overflow: hidden; box-shadow: 0 12px 30px -10px rgba(22, 20, 15, .45); animation: db-float 4s ease-in-out infinite; }
+.demo-badge::after { content: ''; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, .22) 50%, transparent 70%); transform: translateX(-120%); animation: db-shine 3.2s ease-in-out infinite; }
+.demo-badge i { width: 9px; height: 9px; border-radius: 50%; background: #FF5E13; animation: db-pulse 1.6s ease-out infinite; flex: none; }
+.demo-badge .db-short { display: none; }
+@keyframes db-pulse { 0% { box-shadow: 0 0 0 0 rgba(255, 94, 19, .7); } 100% { box-shadow: 0 0 0 10px rgba(255, 94, 19, 0); } }
+@keyframes db-shine { 0%, 40% { transform: translateX(-120%); } 100% { transform: translateX(120%); } }
+@keyframes db-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+@media (max-width: 760px) { .demo-badge { top: 10px; left: 10px; height: 36px; padding: 0 12px; font-size: 12px; } .demo-badge .db-long { display: none; } .demo-badge .db-short { display: inline; } }
+@media (prefers-reduced-motion: reduce) { .demo-badge, .demo-badge::after, .demo-badge i { animation: none; } }
+body.is-page { padding-top: 64px; }
+@media (max-width: 760px) { body.is-page { padding-top: 56px; } div:has(> [data-import="Sidebar"]) { top: 0 !important; } }
+@media (max-width: 560px) { body.is-phone .demo-badge { display: none; } }
