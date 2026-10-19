@@ -93,7 +93,7 @@ section { position: relative; overflow: hidden; }
 .themes[data-theme="ramadan"] { --bg: #0D152B; --sfg: #F2E8D0; --hero: #14213D; --heroFg: #E0B654; --accent: #E0B654; --onAccent: #14213D; --card: #1A2747; --fg: #F2E8D0; --price: #E0B654; --soft: #9FB0D6; --screen: #0F1830; --font: 'Amiri', serif; }
 .themes-in { height: 100vh; min-height: 680px; max-width: 1320px; margin: 0 auto; padding: 96px 28px 28px; display: flex; flex-direction: column; align-items: center; gap: 18px; position: relative; }
 .season-word { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: var(--font); font-weight: 700; font-size: clamp(90px, 16vw, 230px); white-space: nowrap; color: var(--accent); opacity: .1; pointer-events: none; transition: color .8s; }
-.themes-head { position: relative; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px; max-width: 760px; }
+.themes-head { position: relative; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px; max-width: 1040px; }
 .themes-head h2 { font-size: clamp(28px, 3.4vw, 48px); font-weight: 700; line-height: 1.15; }
 .themes-head p { font-size: 17px; line-height: 1.7; opacity: .75; font-weight: 300; }
 .themes .chip-label { background: color-mix(in srgb, var(--accent) 16%, transparent); color: var(--sfg); transition: background-color .8s, color .8s; }
